@@ -1,0 +1,48 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controle.pedido_produto;
+
+import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import modelo.pedido_produto.Pedido_produtoNegocio;
+
+/**
+ *
+ *
+ *
+ * Classe que representa a ação de excluir um pedido_produto existente
+ */
+public class ExcluirPedido_produtoServlet extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void service(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        Long pedido_id = Long.parseLong(request.getParameter("pedido_id"));
+        Integer produto_id = Integer.parseInt(request.getParameter("produto_id"));
+        Pedido_produtoNegocio pedido_produtoNegocio = new Pedido_produtoNegocio();
+        boolean sucessoExcluir = pedido_produtoNegocio.excluir(pedido_id, produto_id);
+        if (sucessoExcluir) {
+            request.setAttribute("mensagem", "Pedido_produto excluído com sucesso");
+        } else {
+            request.setAttribute("mensagem", "Não foi possível excluir pedido_produto");
+        }
+        RequestDispatcher rd = request.getRequestDispatcher("ListarPedido_produtoServlet");
+        rd.forward(request, response);
+    }
+
+}

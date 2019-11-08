@@ -1,0 +1,414 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.10
+-- Dumped by pg_dump version 9.6.10
+
+-- Started on 2019-06-11 04:36:23
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 12387)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2183 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 185 (class 1259 OID 16865)
+-- Name: categoria; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.categoria (
+    id integer NOT NULL,
+    descricao character varying NOT NULL
+);
+
+
+ALTER TABLE public.categoria OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 16871)
+-- Name: categoria_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.categoria_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categoria_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2184 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: categoria_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.categoria_id_seq OWNED BY public.categoria.id;
+
+
+--
+-- TOC entry 190 (class 1259 OID 16887)
+-- Name: cliente; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cliente (
+    login character varying NOT NULL,
+    nome character varying NOT NULL,
+    senha character varying NOT NULL
+);
+
+
+ALTER TABLE public.cliente OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 16969)
+-- Name: compra; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.compra (
+    id integer NOT NULL,
+    data time(6) without time zone NOT NULL,
+    cliente_login character varying NOT NULL
+);
+
+
+ALTER TABLE public.compra OWNER TO postgres;
+
+--
+-- TOC entry 191 (class 1259 OID 16967)
+-- Name: compra_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.compra_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.compra_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2185 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: compra_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.compra_id_seq OWNED BY public.compra.id;
+
+
+--
+-- TOC entry 193 (class 1259 OID 16983)
+-- Name: compra_produto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.compra_produto (
+    compra_id integer NOT NULL,
+    produto_id integer NOT NULL,
+    qtd integer NOT NULL
+);
+
+
+ALTER TABLE public.compra_produto OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 16873)
+-- Name: funcionario; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.funcionario (
+    login character varying NOT NULL,
+    nome character varying NOT NULL,
+    senha character varying NOT NULL,
+    salario numeric NOT NULL
+);
+
+
+ALTER TABLE public.funcionario OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 16879)
+-- Name: produto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.produto (
+    id integer NOT NULL,
+    descricao character varying NOT NULL,
+    categoria_id integer NOT NULL,
+    preco numeric NOT NULL
+);
+
+
+ALTER TABLE public.produto OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 16885)
+-- Name: produto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.produto_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.produto_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2186 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: produto_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.produto_id_seq OWNED BY public.produto.id;
+
+
+--
+-- TOC entry 2030 (class 2604 OID 16893)
+-- Name: categoria id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categoria ALTER COLUMN id SET DEFAULT nextval('public.categoria_id_seq'::regclass);
+
+
+--
+-- TOC entry 2032 (class 2604 OID 16972)
+-- Name: compra id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.compra ALTER COLUMN id SET DEFAULT nextval('public.compra_id_seq'::regclass);
+
+
+--
+-- TOC entry 2031 (class 2604 OID 16894)
+-- Name: produto id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produto ALTER COLUMN id SET DEFAULT nextval('public.produto_id_seq'::regclass);
+
+
+--
+-- TOC entry 2167 (class 0 OID 16865)
+-- Dependencies: 185
+-- Data for Name: categoria; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.categoria VALUES (1, 'Droga');
+INSERT INTO public.categoria VALUES (2, 'Pessoa');
+
+
+--
+-- TOC entry 2187 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: categoria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.categoria_id_seq', 1, false);
+
+
+--
+-- TOC entry 2172 (class 0 OID 16887)
+-- Dependencies: 190
+-- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2174 (class 0 OID 16969)
+-- Dependencies: 192
+-- Data for Name: compra; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2188 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: compra_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.compra_id_seq', 1, true);
+
+
+--
+-- TOC entry 2175 (class 0 OID 16983)
+-- Dependencies: 193
+-- Data for Name: compra_produto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2169 (class 0 OID 16873)
+-- Dependencies: 187
+-- Data for Name: funcionario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2170 (class 0 OID 16879)
+-- Dependencies: 188
+-- Data for Name: produto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.produto VALUES (1, 'Maconha', 1, 11.11);
+INSERT INTO public.produto VALUES (2, 'Metanfetamina', 1, 22.22);
+INSERT INTO public.produto VALUES (3, 'Ecstasy', 1, 33.33);
+INSERT INTO public.produto VALUES (4, 'LSD', 1, 44.44);
+INSERT INTO public.produto VALUES (5, 'Morfina', 1, 55.55);
+INSERT INTO public.produto VALUES (6, 'Crack', 1, 66.66);
+INSERT INTO public.produto VALUES (7, 'Prefeito', 2, 77777.77);
+INSERT INTO public.produto VALUES (8, 'Governador', 2, 888888.88);
+INSERT INTO public.produto VALUES (9, 'Deputado', 2, 999999.99);
+INSERT INTO public.produto VALUES (10, 'Senador', 2, 1000000);
+INSERT INTO public.produto VALUES (11, 'Ministro', 2, 1111111.11);
+INSERT INTO public.produto VALUES (12, 'Presidente', 2, 12121212.12);
+
+
+--
+-- TOC entry 2189 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: produto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.produto_id_seq', 1, false);
+
+
+--
+-- TOC entry 2034 (class 2606 OID 16896)
+-- Name: categoria categoria_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categoria
+    ADD CONSTRAINT categoria_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2041 (class 2606 OID 16902)
+-- Name: cliente cliente_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cliente
+    ADD CONSTRAINT cliente_pk PRIMARY KEY (login);
+
+
+--
+-- TOC entry 2043 (class 2606 OID 16977)
+-- Name: compra compra_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.compra
+    ADD CONSTRAINT compra_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2045 (class 2606 OID 16987)
+-- Name: compra_produto compra_produto_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.compra_produto
+    ADD CONSTRAINT compra_produto_pk PRIMARY KEY (produto_id, compra_id);
+
+
+--
+-- TOC entry 2036 (class 2606 OID 16898)
+-- Name: funcionario funcionario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.funcionario
+    ADD CONSTRAINT funcionario_pk PRIMARY KEY (login);
+
+
+--
+-- TOC entry 2039 (class 2606 OID 16900)
+-- Name: produto produto_pk; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produto
+    ADD CONSTRAINT produto_pk PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2037 (class 1259 OID 16903)
+-- Name: fki_produto_categoria_id_fk; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX fki_produto_categoria_id_fk ON public.produto USING btree (categoria_id);
+
+
+--
+-- TOC entry 2047 (class 2606 OID 16978)
+-- Name: compra compra_cliente_login_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.compra
+    ADD CONSTRAINT compra_cliente_login_fk FOREIGN KEY (cliente_login) REFERENCES public.cliente(login);
+
+
+--
+-- TOC entry 2048 (class 2606 OID 16988)
+-- Name: compra_produto compra_produto_compra_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.compra_produto
+    ADD CONSTRAINT compra_produto_compra_id_fk FOREIGN KEY (compra_id) REFERENCES public.compra(id);
+
+
+--
+-- TOC entry 2049 (class 2606 OID 16993)
+-- Name: compra_produto compra_produto_produto_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.compra_produto
+    ADD CONSTRAINT compra_produto_produto_id_fk FOREIGN KEY (produto_id) REFERENCES public.produto(id);
+
+
+--
+-- TOC entry 2046 (class 2606 OID 16904)
+-- Name: produto produto_categoria_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produto
+    ADD CONSTRAINT produto_categoria_id_fk FOREIGN KEY (categoria_id) REFERENCES public.categoria(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+-- Completed on 2019-06-11 04:36:27
+
+--
+-- PostgreSQL database dump complete
+--
+
