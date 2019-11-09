@@ -4,7 +4,7 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!---Teste Bosco -->
-<!--SELETOR DE CABEÇALHO: EXIBIRÁ UM CABEÇALHO DIFERENTE PARA CLIENTE, ESTABELECIMENTO OU USUÁRIO NÃO LOGADO-->
+<!--SELETOR DE  CABEÇALHO: EXIBIRÁ UM CABEÇALHO DIFERENTE PARA CLIENTE, ESTABELECIMENTO OU USUÁRIO NÃO LOGADO-->
 <%
 String tipo = (String) session.getAttribute("tipo");
 if (tipo != null && tipo.equals("estabelecimento")) { // usuário do tipo estabelecimento logado
