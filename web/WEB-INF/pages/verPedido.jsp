@@ -1,12 +1,17 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="modelo.pedido.Pedido"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!--SELETOR DE CABEÇALHO: EXIBIRÁ UM CABEÇALHO DIFERENTE PARA CLIENTE, ESTABELECIMENTO OU USUÁRIO NÃO LOGADO-->
 <%
+        DecimalFormat formatarMoeda = new DecimalFormat("#,##0.00");
+%>
+<%
 String tipo = (String) session.getAttribute("tipo");
 if (tipo != null && tipo.equals("estabelecimento")) { // usuário do tipo estabelecimento logado
 %>
+
 <%@include file="./cabecalhoEstabelecimento.jsp" %>
 <%
 }
@@ -36,19 +41,25 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <tr>
         <th>ID do Pedido</th>
         <th>Data e Horário</th>
+        <th>Observações</th>
+        <th>Agendamento</th>
+        <th>Status</th>
+        <th>Senha do Pedido</th>
+        <th>Valor Total</th>
         <th>Login do Cliente</th>
+        <th>Login do Estabelecimento</th>
         <th class="controles"></th>
     </tr>
     <% for (Pedido item : resultado) {%>
     <tr>
         <td><%= item.getId()%></td>
-        <td><%= item.getObservacoes()%></td>
-        <td><%= item.getAgendamento()%></td>
         <td><%= sdf.format(item.getHorario())%></td>
-        <td><%= item.getSenhadopedido()%></td>
-        <td><%= item.getCliente_login()%></td>
+        <td><%= item.getObservacoes() == null ? "" : item.getObservacoes() %></td>
+        <td><%= item.getAgendamento() == null ? "" : item.getAgendamento() %></td>
         <td><%= item.getStatus()%></td>
-        <td><%= item.getValortotal()%></td>
+        <td><%= item.getSenhadopedido()%></td>
+        <td>R$ <%= formatarMoeda.format(item.getValortotal())%></td>
+        <td><%= item.getCliente_login()%></td>
         <td><%= item.getEstabelecimento_login()%></td>
         </tr>
     <% } %>

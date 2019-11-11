@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import modelo.pedido_produto.Pedido_produtoDAO;
 
 /**
  *
@@ -56,7 +57,8 @@ public class PedidoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido");
+            ResultSet resultSet = statement.executeQuery("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login");
+            Pedido_produtoDAO pdao = new Pedido_produtoDAO();
             while (resultSet.next()) {
                 Pedido pedido = new Pedido();
                 pedido.setId(resultSet.getLong("id"));
@@ -68,6 +70,8 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setCliente_nome(resultSet.getString("cliente_nome"));
+                pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));
                 resultado.add(pedido);
             }
             resultSet.close();
@@ -203,7 +207,7 @@ public class PedidoDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO pedido (id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login) VALUES (?, ?, ?, now(), ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO pedido (id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login) VALUES (?, ?, ?, now(), ?, ?, ?, ?, ?)");
             preparedStatement.setLong(1, id);
             preparedStatement.setString(2, observacoes);
             preparedStatement.setString(3, agendamento);

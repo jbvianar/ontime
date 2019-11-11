@@ -21,7 +21,6 @@ import modelo.cookie.CookieUtils;
 import modelo.carrinho.CarrinhoItem;
 import modelo.carrinho.CarrinhoNegocio;
 
-
 /**
  *
  * @author Sony
@@ -42,25 +41,31 @@ public class ProcessarPedidoServlet extends HttpServlet {
         PedidoDAO pedidoDAO = new PedidoDAO();
         Long pedidoId = pedidoDAO.obterNovoId();
         HttpSession session = request.getSession();//REQUESTPARAMETER, SEU ANIMAL
-        String observacoes = request.getParameter("observacoes");
-        String agendamento = request.getParameter("agendamento");
+        String observacoes = null;
+        if (request.getParameter("observacoes") != null && request.getParameter("observacoes").trim().length() > 0) {
+            observacoes = request.getParameter("observacoes");
+        };
+        String agendamento = null;
+        if (request.getParameter("agendamento") != null && request.getParameter("agendamento").trim().length() > 0) {
+            observacoes = request.getParameter("agendamento");
+        };
         //Date horario = new java.util.Date(request.getParameter("horario").getTime());
         Integer senhadopedido = 123;
-        String status = request.getParameter("status");
-        Double valortotal = 7.50;
-        String estabelecimento_login = request.getParameter("estabelecimento_login");
+        String status = "EM PREPARO";
+        Double valorTotal = Double.parseDouble(request.getParameter("valorTotal"));
+        String estabelecimento_login = "a";
         String cliente_login = (String) session.getAttribute("login");
         PedidoNegocio pedidoNegocio = new PedidoNegocio();
-        boolean sucessoCompra = pedidoNegocio.inserir(pedidoId, observacoes, agendamento, senhadopedido, status, valortotal, cliente_login, estabelecimento_login);
+        boolean sucessoCompra = pedidoNegocio.inserir(pedidoId, observacoes, agendamento, senhadopedido, status, valorTotal, cliente_login, estabelecimento_login);
         Cookie c = CookieUtils.obterCookie(request);
         List<CarrinhoItem> itens = CarrinhoNegocio.obterCarrinho(c.getValue());
         Pedido_produtoDAO pedido_produtoDAO = new Pedido_produtoDAO();
         for (CarrinhoItem carrinhoItem : itens) {
             pedido_produtoDAO.inserir(pedidoId, carrinhoItem.getProduto().getId(), carrinhoItem.getQuantidade(), cliente_login);
         }
-        if (sucessoCompra) {
+        if (sucessoCompra) { 
             request.setAttribute("mensagem", "Compra realizada com sucesso");
-            RequestDispatcher rd = request.getRequestDispatcher("InicioServlet");
+            RequestDispatcher rd = request.getRequestDispatcher("InicioServlet?carrinhoVazio=true");
             rd.forward(request, response);
         } else {
             request.setAttribute("mensagem", "Faça login como cliente para finalizar o pedido");

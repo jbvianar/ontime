@@ -82,6 +82,40 @@ public class Pedido_produtoDAO {
         }
         return pedido_produto;
     }
+    
+     /**
+     * Método utilizado para obter um pedido_produto pelos ids
+     *
+     * @param pedido_id
+     * @param produto_id
+     * @return
+     */
+    public List<Pedido_produto> obterPedido_produto(Long pedido_id) {
+        List<Pedido_produto> resultado = new ArrayList<Pedido_produto>();
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT p.pedido_id, p.produto_id, p.quantidade, p.cliente_login, pp.nome as produto_nome FROM pedido_produto as p, produto as pp WHERE p.pedido_id = ? AND pp.id = p.produto_id");
+            preparedStatement.setLong(1, pedido_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Pedido_produto pedido_produto = new Pedido_produto();
+                pedido_produto.setPedido_id(resultSet.getLong("pedido_id"));
+                pedido_produto.setProduto_id(resultSet.getInt("produto_id"));
+                pedido_produto.setQuantidade(resultSet.getInt("quantidade"));
+                pedido_produto.setCliente_login(resultSet.getString("cliente_login"));
+                pedido_produto.setProduto_nome(resultSet.getString("produto_nome"));
+                resultado.add(pedido_produto);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return null;
+        }
+        return resultado;
+    }
+
 
     /**
      * Método utilizado para inserir um novo pedido_produto

@@ -6,6 +6,8 @@
 package modelo.pedido;
 
 import java.util.Date;
+import java.util.List;
+import modelo.pedido_produto.Pedido_produto;
 
 
 
@@ -25,7 +27,30 @@ public class Pedido {
     private Double valortotal;
     private String cliente_login;
     private String estabelecimento_login;//variável para futura escalabilidade
+    
+    private String cliente_nome;
+    List<Pedido_produto> produtos;
 
+    public List<Pedido_produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Pedido_produto> produtos) {
+        this.produtos = produtos;
+    }
+    
+    
+
+    public String getCliente_nome() {
+        return cliente_nome;
+    }
+
+    public void setCliente_nome(String cliente_nome) {
+        this.cliente_nome = cliente_nome;
+    }
+    
+    
+    
     public Long getId() {
         return id;
     }

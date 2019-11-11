@@ -28,6 +28,7 @@
                         <div class="div-table-col"><a href="InicioServlet">Home</a></div>
                         <div class="div-table-col"><a href="VerClienteServlet">Meus Dados de Cliente</a></div>
                         <div class="div-table-col"><a href="VerPedidoServlet">Meus Pedidos</a></div>
+                        <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet">Carrinho de Compras</a></div>
                         <div class="div-table-col"><a href="LogoutServlet">Sair</a></div>
                     </div>
                 </div>

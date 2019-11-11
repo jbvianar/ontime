@@ -41,6 +41,7 @@ public class AlterarProdutoServlet extends HttpServlet {
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Integer id = null;
         String nome = null;
         String descricao = null;
@@ -64,25 +65,25 @@ public class AlterarProdutoServlet extends HttpServlet {
                 while (iter.hasNext()) {
                     FileItem item = iter.next();
                     if (item.isFormField() && item.getFieldName().equals("id")) {
-                        id = Integer.parseInt(item.getString());
+                        id = Integer.parseInt(item.getString("UTF-8"));
                     }
                     if (item.isFormField() && item.getFieldName().equals("nome")) {
-                        nome = (item.getString());
+                        nome = (item.getString("UTF-8"));
                     }
                     if (item.isFormField() && item.getFieldName().equals("descricao")) {
-                        descricao = (item.getString());
+                        descricao = (item.getString("UTF-8"));
                     }
                     if (item.isFormField() && item.getFieldName().equals("preco")) {
-                        preco = Double.parseDouble(item.getString());
+                        preco = Double.parseDouble(item.getString("UTF-8"));
                     }
                     if (item.isFormField() && item.getFieldName().equals("quantidade")) {
-                        quantidade = Integer.parseInt(item.getString());
+                        quantidade = Integer.parseInt(item.getString("UTF-8"));
                     }
                     if (item.isFormField() && item.getFieldName().equals("disponibilidade")) {
-                        disponibilidade = Boolean.parseBoolean(item.getString());
+                        disponibilidade = Boolean.parseBoolean(item.getString("UTF-8"));
                     }
                     if (item.isFormField() && item.getFieldName().equals("categoria_id")) {
-                        categoria_id = Integer.parseInt(item.getString());
+                        categoria_id = Integer.parseInt(item.getString("UTF-8"));
                     }
                     if (!item.isFormField() && item.getFieldName().equals("imagem") && item.getContentType().startsWith("image/")) {
                         foto = item;
@@ -96,6 +97,8 @@ public class AlterarProdutoServlet extends HttpServlet {
                 String fotoStr = "";
                 if (uploadFoto) {
                     fotoStr = id + foto.getName().substring(foto.getName().lastIndexOf("."));
+                } else {
+                    fotoStr = produtoNegocio.obterProduto(id).getImagem();
                 }
                 sucesso = produtoNegocio.alterar(id, nome, descricao, preco, fotoStr, quantidade, disponibilidade, categoria_id);
 

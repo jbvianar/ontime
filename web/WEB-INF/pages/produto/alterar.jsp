@@ -29,7 +29,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 <div id="titulo">Cadastro de Produtos</div>
 <% Produto produto = (Produto) request.getAttribute("produto"); %>
 <% if (produto != null) {%>
-<form action="AlterarProdutoServlet" method="post" enctype="multipart/form-data">
+<form action="AlterarProdutoServlet" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
     <div class="rotulo">ID do Produto:</div>
     <div class="campo"><input type="text" name="id" id="id" value="<%= produto.getId()%>" readonly="readonly" required/><span id="msg"></span></div>
     <div class="rotulo">Nome do Produto:</div>

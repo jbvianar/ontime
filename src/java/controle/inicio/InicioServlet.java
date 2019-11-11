@@ -19,7 +19,7 @@ import modelo.produto.ProdutoNegocio;
 
 /**
  *
- * 
+ *
  *
  * Servlet que faz o controle da inicialização da página principal da aplicação
  */
@@ -35,25 +35,34 @@ public class InicioServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {        
+            throws ServletException, IOException {
+        boolean zerarCarrinho = false;
+        if (request.getParameter("carrinhoVazio") != null && Boolean.parseBoolean(request.getParameter("carrinhoVazio"))) {
+            zerarCarrinho = true;
+        }
         ProdutoNegocio produtoNegocio = new ProdutoNegocio();
         request.setAttribute("produtos", produtoNegocio.obterTodos());
-
         Cookie c = CookieUtils.obterCookie(request); // obtém o cookie da aplicação, caso exista
-        
-        if (c == null) {
+        if (!zerarCarrinho) {
+
+            if (c == null) {
+                // se o cookie não existir, cria-o vazio
+                c = new Cookie(CookieUtils.COOKIE_KEY, null);
+                c.setValue("");
+            } else {
+                // caso o cookie já exista, resgata o carrinho de compras armazenado dentro do valor do cookie
+                List<CarrinhoItem> carrinho = CarrinhoNegocio.obterCarrinho(c.getValue());
+                request.setAttribute("carrinho", carrinho);
+
+            }
+        } else {
             // se o cookie não existir, cria-o vazio
             c = new Cookie(CookieUtils.COOKIE_KEY, null);
             c.setValue("");
-        } else {
-            // caso o cookie já exista, resgata o carrinho de compras armazenado dentro do valor do cookie
-            List<CarrinhoItem> carrinho = CarrinhoNegocio.obterCarrinho(c.getValue());
-            request.setAttribute("carrinho", carrinho);
-            
+
         }
         c.setMaxAge(Integer.MAX_VALUE); // atualiza a idade do cookie para o máximo do valor inteiro
-        response.addCookie(c); // salva o cookie no navegador do cliente
-        
+        response.addCookie(c);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

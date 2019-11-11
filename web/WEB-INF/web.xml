@@ -200,6 +200,10 @@
         <servlet-name>MostrarImagemProdutoServlet</servlet-name>
         <servlet-class>controle.produto.MostrarImagemProdutoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MostrarProdutoCarrinhoServlet</servlet-name>
+        <servlet-class>controle.carrinho.MostrarProdutoCarrinhoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -399,6 +403,10 @@
     <servlet-mapping>
         <servlet-name>MostrarImagemProdutoServlet</servlet-name>
         <url-pattern>/MostrarImagemProdutoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProdutoCarrinhoServlet</servlet-name>
+        <url-pattern>/MostrarProdutoCarrinhoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

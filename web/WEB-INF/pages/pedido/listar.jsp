@@ -1,3 +1,4 @@
+<%@page import="modelo.pedido_produto.Pedido_produto"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
@@ -44,8 +45,9 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <th>Agendamento</th>
         <th>Status</th>
         <th>Senha do Pedido</th>
+        <th>Itens</th>
         <th>Valor Total</th>
-        <th>Login do Cliente</th>
+        <th>Nome do Cliente</th>
         <th>Login do Estabelecimento</th>
         <th class="controles"></th>
     </tr>
@@ -53,12 +55,22 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <tr>
         <td><%= item.getId()%></td>
         <td><%= sdf.format(item.getHorario())%></td>
-        <td><%= item.getObservacoes()%></td>
-        <td><%= item.getAgendamento()%></td>
+        <td><%= item.getObservacoes() == null ? "" : item.getObservacoes() %></td>
+        <td><%= item.getAgendamento() == null ? "" : item.getAgendamento() %></td>
         <td><%= item.getStatus()%></td>
         <td><%= item.getSenhadopedido()%></td>
+        <td>
+            <% List<Pedido_produto> produtos = item.getProdutos();
+            for (int i = 0; i < produtos.size(); i++) {
+                out.print(produtos.get(i).getProduto_nome() + " - " + produtos.get(i).getQuantidade());
+                if (i < produtos.size() - 1) {
+                    out.println(",");
+                }
+            }
+            %>
+        </td>
         <td>R$ <%= formatarMoeda.format(item.getValortotal())%></td>
-        <td><%= item.getCliente_login()%></td>
+        <td><%= item.getCliente_nome()%></td>
         <td><%= item.getEstabelecimento_login()%></td>
         <td><a href="ObterPedidoServlet?id=<%= item.getId()%>">Alterar</a>&nbsp;<a href="ExcluirPedidoServlet?id=<%= item.getId()%>">Excluir</a></td>
     </tr>

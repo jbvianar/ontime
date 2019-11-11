@@ -36,6 +36,7 @@
                             <div><input type="submit" value="Fazer Login" /></div>
                         </form></div>
                         <div class="div-table-col"><a href="novoEstabelecimento.jsp">Criar novo estabelecimento</a></div>
+                        <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet">Carrinho de Compras</a></div>
                     </div>
                 </div>
                 <%

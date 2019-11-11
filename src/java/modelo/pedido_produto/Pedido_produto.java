@@ -15,9 +15,19 @@ package modelo.pedido_produto;
 public class Pedido_produto {//Cada item do pedido
     private Long pedido_id;
     private Integer produto_id;
+    private String produto_nome;
     private Integer quantidade;
     private String cliente_login;//variável para facilitar a recuperação de cliente pelo item do produto
 
+    public String getProduto_nome() {
+        return produto_nome;
+    }
+
+    public void setProduto_nome(String produto_nome) {
+        this.produto_nome = produto_nome;
+    }
+
+    
     public Long getPedido_id() {
         return pedido_id;
     }

@@ -39,7 +39,7 @@ public class RemoverProdutoCarrinhoServlet extends HttpServlet {
         String novoValor = CarrinhoNegocio.removerItem(produtoId, c.getValue());
         c.setValue(novoValor);
 
-        request.getRequestDispatcher("InicioServlet").forward(request, response);
+        request.getRequestDispatcher("MostrarProdutoCarrinhoServlet").forward(request, response);
     }
 
 }
