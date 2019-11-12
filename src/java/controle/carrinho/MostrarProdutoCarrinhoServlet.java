@@ -8,6 +8,7 @@ package controle.carrinho;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -34,12 +35,15 @@ public class MostrarProdutoCarrinhoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Cookie c = CookieUtils.obterCookie(request); // obtém o cookie da aplicação, caso exista
         
         if (c == null) {
             // se o cookie não existir, cria-o vazio
             c = new Cookie(CookieUtils.COOKIE_KEY, null);
             c.setValue("");
+            //request.setAttribute("mensagem", "Seu carrinho está vazio");
         } else {
             // caso o cookie já exista, resgata o carrinho de compras armazenado dentro do valor do cookie
             List<CarrinhoItem> carrinho = CarrinhoNegocio.obterCarrinho(c.getValue());
@@ -48,8 +52,13 @@ public class MostrarProdutoCarrinhoServlet extends HttpServlet {
         }
         c.setMaxAge(Integer.MAX_VALUE); // atualiza a idade do cookie para o máximo do valor inteiro
         response.addCookie(c); // salva o cookie no navegador do cliente
-        
-        request.getRequestDispatcher("carrinho.jsp").forward(request, response);
+        /*if (c == null) {
+            request.setAttribute("mensagem", "Seu carrinho está vazio");
+            RequestDispatcher rd = request.getRequestDispatcher("carrinho.jsp");
+            rd.forward(request, response);
+        } else {*/
+            request.getRequestDispatcher("carrinho.jsp").forward(request, response);
+        //}
     }
 
 }

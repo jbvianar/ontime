@@ -41,7 +41,7 @@ public class EstabelecimentoNegocio {
      * @return
      */
     public boolean inserir(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, String status) {
-        if (login == null || login.trim().length() == 0 || senha == null || senha.trim().length() == 0 || razaosocial == null || razaosocial.trim().length() == 0 || email == null || email.trim().length() == 0 || status == null || status.trim().length() == 0) {
+        if (login == null || login.trim().length() == 0 || senha == null || senha.trim().length() == 0 || razaosocial == null || razaosocial.trim().length() == 0 || email == null || email.trim().length() == 0 || cnpj == null || cnpj <=0 || telefone == null || telefone <=0 || email.trim().length() == 0 || status == null || status.trim().length() == 0) {
             return false;
         }
         EstabelecimentoDAO dao = new EstabelecimentoDAO();
@@ -85,7 +85,7 @@ public class EstabelecimentoNegocio {
      * @return
      */
     public boolean alterar(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, String status) {
-        if (login == null || login.trim().length() == 0 || senha == null || senha.trim().length() == 0 || razaosocial == null || razaosocial.trim().length() == 0 || email == null || email.trim().length() == 0 || status == null || status.trim().length() == 0) {
+        if (login == null || login.trim().length() == 0 || senha == null || senha.trim().length() == 0 || razaosocial == null || razaosocial.trim().length() == 0 || email == null || email.trim().length() == 0 || cnpj == null || cnpj <=0 || telefone == null || telefone <=0 || email == null || email.trim().length() == 0 || status == null || status.trim().length() == 0) {
             return false;
         }
         EstabelecimentoDAO dao = new EstabelecimentoDAO();

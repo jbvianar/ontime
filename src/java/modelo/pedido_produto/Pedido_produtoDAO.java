@@ -52,7 +52,7 @@ public class Pedido_produtoDAO {
     }
 
     /**
-     * Método utilizado para obter um pedido_produto pelos ids
+     * Método utilizado para obter um item do pedido pelos ids
      *
      * @param pedido_id
      * @param produto_id
@@ -84,10 +84,10 @@ public class Pedido_produtoDAO {
     }
     
      /**
-     * Método utilizado para obter um pedido_produto pelos ids
-     *
+     * Método utilizado para obter um item do pedido pelo id do pedido
+     * FUNÇÃO PARA TORNAR VISÍVEL O NOME DO PRODUTO E NÃO SEU ID
+     * 
      * @param pedido_id
-     * @param produto_id
      * @return
      */
     public List<Pedido_produto> obterPedido_produto(Long pedido_id) {
@@ -95,7 +95,7 @@ public class Pedido_produtoDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT p.pedido_id, p.produto_id, p.quantidade, p.cliente_login, pp.nome as produto_nome FROM pedido_produto as p, produto as pp WHERE p.pedido_id = ? AND pp.id = p.produto_id");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT pp.pedido_id, pp.produto_id, pp.quantidade, pp.cliente_login, pr.nome as produto_nome FROM pedido_produto as pp, produto as pr WHERE pp.pedido_id = ? AND pr.id = pp.produto_id");
             preparedStatement.setLong(1, pedido_id);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
@@ -118,7 +118,7 @@ public class Pedido_produtoDAO {
 
 
     /**
-     * Método utilizado para inserir um novo pedido_produto
+     * Método utilizado para inserir um novo item no pedido (pedido_produto)
      *
      * @param pedido_id
      * @param produto_id
@@ -146,7 +146,7 @@ public class Pedido_produtoDAO {
     }
 
     /**
-     * Método utilizado para alterar um pedido_produto já existente
+     * Método utilizado para alterar um item do pedido (pedido_produto) já existente
      *
      * @param pedido_id
      * @param produto_id
@@ -174,7 +174,7 @@ public class Pedido_produtoDAO {
     }
 
     /**
-     * Método para excluir um pedido_produto já existente
+     * Método para excluir um item do pedido (pedido_produto) já existente
      *
      * @param pedido_id
      * @param produto_id
@@ -198,7 +198,7 @@ public class Pedido_produtoDAO {
     }
     
     /**
-     * Método para excluir todos os pedidos de produtos de um pedido pelo seu id
+     * Método para excluir todos os itens de um pedido pelo seu id
      *
      * @param pedido_id
      * @return
@@ -220,7 +220,7 @@ public class Pedido_produtoDAO {
     }
     
     /**
-     * Método para excluir todos os pedidos de produtos de um pedido pelo login do cliente
+     * Método para excluir todos os itens de um pedido pelo login do cliente
      *
      * @param cliente_login
      * @return

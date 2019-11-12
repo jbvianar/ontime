@@ -78,5 +78,4 @@ if (tipo == null) {// o usuário não possui uma sessão válida
             }
         %>
         <!--FIM DO CARRINHO-->
-    </body>
-</html>
+<%@include file="WEB-INF/pages/rodape.jsp" %>

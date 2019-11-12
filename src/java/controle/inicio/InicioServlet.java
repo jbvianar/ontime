@@ -36,6 +36,8 @@ public class InicioServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         boolean zerarCarrinho = false;
         if (request.getParameter("carrinhoVazio") != null && Boolean.parseBoolean(request.getParameter("carrinhoVazio"))) {
             zerarCarrinho = true;
@@ -43,8 +45,7 @@ public class InicioServlet extends HttpServlet {
         ProdutoNegocio produtoNegocio = new ProdutoNegocio();
         request.setAttribute("produtos", produtoNegocio.obterTodos());
         Cookie c = CookieUtils.obterCookie(request); // obtém o cookie da aplicação, caso exista
-        if (!zerarCarrinho) {
-
+        if (!zerarCarrinho) {//se não for para zerar o carrinho
             if (c == null) {
                 // se o cookie não existir, cria-o vazio
                 c = new Cookie(CookieUtils.COOKIE_KEY, null);
@@ -55,8 +56,7 @@ public class InicioServlet extends HttpServlet {
                 request.setAttribute("carrinho", carrinho);
 
             }
-        } else {
-            // se o cookie não existir, cria-o vazio
+        } else {// se for para zerar o carrinho, cria um novo cookie vazio
             c = new Cookie(CookieUtils.COOKIE_KEY, null);
             c.setValue("");
 

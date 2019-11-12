@@ -38,6 +38,8 @@ public class ProcessarPedidoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         PedidoDAO pedidoDAO = new PedidoDAO();
         Long pedidoId = pedidoDAO.obterNovoId();
         HttpSession session = request.getSession();//REQUESTPARAMETER, SEU ANIMAL

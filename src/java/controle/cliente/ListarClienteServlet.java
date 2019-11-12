@@ -34,6 +34,8 @@ public class ListarClienteServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         ClienteNegocio clienteNegocio = new ClienteNegocio();
         List<Cliente> resultado = clienteNegocio.obterTodos();
         request.setAttribute("resultado", resultado);

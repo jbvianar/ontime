@@ -11,8 +11,8 @@ package modelo.categoria;
  * Classe que representa a entidade Categoria
  */
 public class Categoria {
-    private Integer id;
-    private String nome;
+    private Integer id;//AUTOINCREMENTO
+    private String nome;//deveria ser UK, mas não é necessário por enquanto
 
     public Integer getId() {
         return id;

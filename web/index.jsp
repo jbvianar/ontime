@@ -3,7 +3,7 @@
 <%@page import="modelo.produto.Produto"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!---Teste Bosco/ERICK/rafael/TESTE BOSCO RAFAEL AÍ VOCÊ BOTA RAFAEL MAIÚSCULO, VAI LÁ -->
+
 <!--SELETOR DE  CABEÇALHO: EXIBIRÁ UM CABEÇALHO DIFERENTE PARA CLIENTE, ESTABELECIMENTO OU USUÁRIO NÃO LOGADO-->
 <%
 String tipo = (String) session.getAttribute("tipo");

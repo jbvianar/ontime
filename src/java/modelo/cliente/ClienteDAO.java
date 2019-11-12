@@ -107,11 +107,11 @@ public class ClienteDAO {
             preparedStatement.setString(2, senha);
             preparedStatement.setString(3, nome);
             preparedStatement.setString(4, email);
-            if (telefone != null) {
+            //if (telefone != null) {
                 preparedStatement.setLong(5, telefone);
-            } else {
-                preparedStatement.setNull(5, java.sql.Types.BIGINT);
-            }
+            //} else {
+               // preparedStatement.setNull(5, java.sql.Types.BIGINT);
+            //}
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();

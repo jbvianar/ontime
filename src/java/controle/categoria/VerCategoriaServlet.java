@@ -34,6 +34,8 @@ public class VerCategoriaServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(); // recupera a sessão do usuário
         Integer id = (Integer) session.getAttribute("id"); // recupera o atributo de id armazenado na sessão do usuário; caso não exista, é retornado nulo
         CategoriaNegocio categoriaNegocio = new CategoriaNegocio();

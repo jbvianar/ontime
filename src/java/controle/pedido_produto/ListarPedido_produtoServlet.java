@@ -34,6 +34,8 @@ public class ListarPedido_produtoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Pedido_produtoNegocio pedido_produtoNegocio = new Pedido_produtoNegocio();
         List<Pedido_produto> resultado = pedido_produtoNegocio.obterTodos();
         request.setAttribute("resultado", resultado);

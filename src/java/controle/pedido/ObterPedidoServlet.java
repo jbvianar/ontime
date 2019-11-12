@@ -34,6 +34,8 @@ public class ObterPedidoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Long id = Long.parseLong(request.getParameter("id"));
         PedidoNegocio pedidoNegocio = new PedidoNegocio();
         Pedido pedido = pedidoNegocio.obterPedido(id);

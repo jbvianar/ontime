@@ -39,7 +39,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <div class="rotulo">E-mail:</div>
     <div class="campo"><input type="text" name="email" id="email" value="<%= cliente.getEmail()%>" required/></div>
     <div class="rotulo">Telefone:</div>
-    <div class="campo"><input type="text" name="telefone" id="telefone" value="<%= cliente.getTelefone()%>" /></div>
+    <div class="campo"><input type="text" name="telefone" id="telefone" value="<%= cliente.getTelefone()%>" required/></div>
     <div class="controles"><input type="submit" value="Salvar" /></div>
 </form>
 <% }%>

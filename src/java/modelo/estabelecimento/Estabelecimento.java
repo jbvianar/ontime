@@ -14,8 +14,8 @@ public class Estabelecimento {
     private String login;
     private String senha;
     private String razaosocial;
-    private String email;
-    private Long cnpj;
+    private String email;//tem que ser UK
+    private Long cnpj;//deveria ser PK, pensar nisso depois
     private Long telefone;
     private String status; 
 

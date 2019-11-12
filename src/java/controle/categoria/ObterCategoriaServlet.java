@@ -34,6 +34,8 @@ public class ObterCategoriaServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Integer id = Integer.parseInt(request.getParameter("id"));
         CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
         Categoria categoria = categoriaNegocio.obterCategoria(id);

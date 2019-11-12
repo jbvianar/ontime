@@ -18,18 +18,18 @@ import modelo.pedido_produto.Pedido_produto;
  * @author Sony
  */
 public class Pedido {
-    private Long id;
+    private Long id;//AUTOINCREMENTO
     private String observacoes;//opcional
     private String agendamento;//opcional
-    private Date horario;//data + horário
-    private Integer senhadopedido;
-    private String status;
-    private Double valortotal;
-    private String cliente_login;
-    private String estabelecimento_login;//variável para futura escalabilidade
+    private Date horario;//data + horário - AUTOCAPTADO
+    private Integer senhadopedido;//AUTOGERADO
+    private String status;//mudado para "em preparo na hora da compra" e modificado pelo estabelecimento
+    private Double valortotal;//AUTOCALCULADO
+    private String cliente_login;//AUTOCAPTADO
+    private String estabelecimento_login;//variável para futura escalabilidade - AUTOCAPTADO
     
-    private String cliente_nome;
-    List<Pedido_produto> produtos;
+    private String cliente_nome;//para recuperar o nome do cliente sem mostrar seu login
+    List<Pedido_produto> produtos;//para recuperar os produtos do pedido e mostrá-los
 
     public List<Pedido_produto> getProdutos() {
         return produtos;

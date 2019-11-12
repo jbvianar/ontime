@@ -26,9 +26,9 @@ public class PedidoNegocio {
      * @return
      */
     public boolean inserir(Long id, String observacoes, String agendamento, Integer senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
-        //if (id == null || id <= 0 || senhadopedido == null || senhadopedido <= 0 || status == null || valortotal == null || valortotal <= 0 || status.trim().length() == 0 || cliente_login == null || cliente_login.trim().length() == 0 || estabelecimento_login == null || estabelecimento_login.trim().length() == 0) {
-        //    return false;
-        //}
+        if (id == null || id <= 0 || senhadopedido == null || senhadopedido <= 0 || status == null || valortotal == null || valortotal <= 0 || status.trim().length() == 0 || cliente_login == null || cliente_login.trim().length() == 0 || estabelecimento_login == null || estabelecimento_login.trim().length() == 0) {
+            return false;
+        }
         PedidoDAO dao = new PedidoDAO();
         return dao.inserir(id, observacoes, agendamento, senhadopedido, status, valortotal, cliente_login, estabelecimento_login);
     }

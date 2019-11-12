@@ -31,6 +31,8 @@ public class AlterarEstabelecimentoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         // entrada
         String login = request.getParameter("login");
         String senha = request.getParameter("senha");

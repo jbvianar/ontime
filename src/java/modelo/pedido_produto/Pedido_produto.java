@@ -13,11 +13,11 @@ package modelo.pedido_produto;
  * @author Sony
  */
 public class Pedido_produto {//Cada item do pedido
-    private Long pedido_id;
-    private Integer produto_id;
-    private String produto_nome;
+    private Long pedido_id;//PK FK
+    private Integer produto_id;//PK FK
+    private String produto_nome;//variável para resgatar o nome do produto pelo id
     private Integer quantidade;
-    private String cliente_login;//variável para facilitar a recuperação de cliente pelo item do produto
+    private String cliente_login;//variável FK para facilitar a recuperação de cliente pelo item do produto
 
     public String getProduto_nome() {
         return produto_nome;

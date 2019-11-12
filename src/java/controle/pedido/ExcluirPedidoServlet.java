@@ -33,6 +33,8 @@ public class ExcluirPedidoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Long id = Long.parseLong(request.getParameter("id"));
         PedidoNegocio pedidoNegocio = new PedidoNegocio();
         Pedido_produtoDAO pedido_produtoDAO = new Pedido_produtoDAO();

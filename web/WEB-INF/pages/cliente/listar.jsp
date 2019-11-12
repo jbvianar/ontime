@@ -32,14 +32,17 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 <% if (resultado != null && resultado.size() > 0) { %>
 <table>
     <tr>
-        <th>Login</th>
         <th>Nome</th>
+        <th>E-mail</th>
+        <th>Telefone</th>
         <th class="controles"></th>
     </tr>
     <% for (Cliente item : resultado) {%>
     <tr>
-        <td><%= item.getLogin()%></td>
         <td><%= item.getNome()%></td>
+        <td><%= item.getEmail()%></td>
+        <td><%= item.getTelefone()%></td>
+        <!--DELETAR A LINHA DE BAIXO ASSIM QUE OS TESTES FICAREM PRONTOS-->
         <td><a href="ObterClienteServlet?login=<%= item.getLogin()%>">Alterar</a>&nbsp;<a href="ExcluirClienteServlet?login=<%= item.getLogin()%>">Excluir</a></td>
     </tr>
     <% } %>

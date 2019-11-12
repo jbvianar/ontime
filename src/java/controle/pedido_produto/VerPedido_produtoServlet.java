@@ -34,6 +34,8 @@ public class VerPedido_produtoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(); // recupera a sessão do usuário
         Long pedido_id = (Long) session.getAttribute("pedido_id"); // recupera o atributo de pedido_id armazenado na sessão do usuário; caso não exista, é retornado nulo
         Integer produto_id = (Integer) session.getAttribute("produto_id"); // recupera o atributo de produto_id armazenado na sessão do usuário; caso não exista, é retornado nulo

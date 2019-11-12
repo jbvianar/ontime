@@ -16,8 +16,8 @@ public class Cliente {
     private String login;
     private String senha;
     private String nome;
-    private String email;//UK
-    private Long telefone;//opcional
+    private String email;//tem que ser UK
+    private Long telefone;
 
     public String getLogin() {
         return login;

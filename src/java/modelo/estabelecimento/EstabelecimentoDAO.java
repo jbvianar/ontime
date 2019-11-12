@@ -108,7 +108,7 @@ public class EstabelecimentoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO estabelecimento (login, senha, razaosocial, email, cnpj, telefone, status) VALUES (?, ?, ?, ?, ?, ?, ?)");
-            //\"razaosocial\"
+            //\"razaoSocial\"
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, senha);
             preparedStatement.setString(3, razaosocial);

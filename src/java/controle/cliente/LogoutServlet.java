@@ -32,6 +32,8 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession(); // recupera a sessão do usuário
         session.invalidate(); // invalida a sessão do usuário
         request.setAttribute("mensagem1", "Sua sessão foi encerrada"); // coloca uma mensagem no objeto request

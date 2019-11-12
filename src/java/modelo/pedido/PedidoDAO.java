@@ -209,8 +209,16 @@ public class PedidoDAO {
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO pedido (id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login) VALUES (?, ?, ?, now(), ?, ?, ?, ?, ?)");
             preparedStatement.setLong(1, id);
-            preparedStatement.setString(2, observacoes);
-            preparedStatement.setString(3, agendamento);
+            if (observacoes != null) {
+                preparedStatement.setString(2, observacoes);
+            } else {
+                preparedStatement.setNull(2, java.sql.Types.VARCHAR);
+            }
+            if (agendamento != null) {
+                preparedStatement.setString(3, agendamento);
+            } else {
+                preparedStatement.setNull(3, java.sql.Types.VARCHAR);
+            }
             preparedStatement.setInt(4, senhadopedido);
             preparedStatement.setString(5, status);
             preparedStatement.setDouble(6, valortotal);
@@ -245,8 +253,16 @@ public class PedidoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE pedido SET observacoes = ?, agendamento = ?, horario = now(), senhadopedido = ?, status = ?, valortotal = ?, cliente_login = ?, estabelecimento_login = ? WHERE id = ?");
-            preparedStatement.setString(1, observacoes);
-            preparedStatement.setString(2, agendamento);
+            if (observacoes != null) {
+                preparedStatement.setString(1, observacoes);
+            } else {
+                preparedStatement.setNull(1, java.sql.Types.VARCHAR);
+            }
+            if (agendamento != null) {
+                preparedStatement.setString(2, agendamento);
+            } else {
+                preparedStatement.setNull(2, java.sql.Types.VARCHAR);
+            }
             preparedStatement.setInt(3, senhadopedido);
             preparedStatement.setString(4, status);
             preparedStatement.setDouble(5, valortotal);

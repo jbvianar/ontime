@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Pedido_produtoNegocio {
     /**
-     * Método utilizado para inserir um novo pedido_produto
+     * Método utilizado para inserir um novo item no pedido (pedido_produto)
      *
      * @param pedido_id
      * @param produto_id
@@ -32,7 +32,7 @@ public class Pedido_produtoNegocio {
     }
     
     /**
-     * Método utilizado para retornar todos os pedido_produtos existentes
+     * Método utilizado para retornar todos os itens de pedidos existentes (??)
      * 
      * @return 
      */
@@ -42,7 +42,7 @@ public class Pedido_produtoNegocio {
     }
 
     /**
-     * Método utilizado para obter o pedido_produto por meio do seu pedido_id e seu produto_id
+     * Método utilizado para obter um item do pedido por meio do seu pedido_id e seu produto_id
      *
      * @param pedido_id
      * @param produto_id
@@ -57,7 +57,7 @@ public class Pedido_produtoNegocio {
     }
 
     /**
-     * Método utilizado para alterar um pedido_produto existente
+     * Método utilizado para alterar um item de pedido existente
      *
      * @param pedido_id
      * @param produto_id
@@ -74,7 +74,7 @@ public class Pedido_produtoNegocio {
     }
 
     /**
-     * Método utilizado para excluir o pedido_produto por meio do seu pedido_id e seu produto_id
+     * Método utilizado para excluir um item do pedido por meio do seu pedido_id e do seu produto_id
      *
      * @param pedido_id
      * @param produto_id

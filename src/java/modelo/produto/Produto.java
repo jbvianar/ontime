@@ -13,7 +13,7 @@ import modelo.categoria.Categoria;
  * Classe que representa a entidade Produto
  */
 public class Produto {
-    private Integer id;
+    private Integer id;//AUTOINCREMENTO
     private String nome;//UK
     private String descricao;//opcional
     private Double preco;

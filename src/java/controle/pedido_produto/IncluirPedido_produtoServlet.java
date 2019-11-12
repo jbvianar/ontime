@@ -32,6 +32,8 @@ public class IncluirPedido_produtoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         // entrada
         Long pedido_id = Long.parseLong(request.getParameter("pedido_id"));
         Integer produto_id = Integer.parseInt(request.getParameter("produto_id"));

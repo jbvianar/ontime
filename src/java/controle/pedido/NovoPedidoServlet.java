@@ -32,6 +32,8 @@ public class NovoPedidoServlet extends HttpServlet {
      */
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
         // entrada
         Long id = Long.parseLong(request.getParameter("id"));
         String observacoes = request.getParameter("observacoes");
