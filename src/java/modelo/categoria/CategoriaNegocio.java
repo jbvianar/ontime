@@ -15,16 +15,15 @@ public class CategoriaNegocio {
     /**
      * Método utilizado para inserir uma nova categoria
      *
-     * @param id
      * @param nome
      * @return
      */
-    public boolean inserir(Integer id, String nome) {
-        if (id == null || id <= 0 || nome == null || nome.trim().length() == 0) {
+    public boolean inserir(String nome) {
+        if (nome == null || nome.trim().length() == 0) {
             return false;
         }
         CategoriaDAO dao = new CategoriaDAO();
-        return dao.inserir(id, nome);
+        return dao.inserir(nome);
     }
     
     /**

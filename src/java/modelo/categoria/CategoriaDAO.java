@@ -99,18 +99,16 @@ public class CategoriaDAO {
     /**
      * Método utilizado para inserir uma nova categoria
      *
-     * @param id
      * @param nome
      * @return
      */
-    public boolean inserir(Integer id, String nome) {
+    public boolean inserir(String nome) {
         boolean resultado = false;
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO categoria (id, nome) VALUES (?, ?)");
-            preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, nome);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO categoria (nome) VALUES (?)");
+            preparedStatement.setString(1, nome);
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();

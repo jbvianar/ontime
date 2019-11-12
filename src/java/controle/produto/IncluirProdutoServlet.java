@@ -35,7 +35,6 @@ public class IncluirProdutoServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         // entrada
         boolean error = false;
-        Integer id = null;
         String nome = null;
         String descricao = null;
         Double preco = null;
@@ -44,7 +43,6 @@ public class IncluirProdutoServlet extends HttpServlet {
         Boolean disponibilidade = null;
         Integer categoria_id = null;
         try {
-            id = Integer.parseInt(request.getParameter("id"));
             nome = request.getParameter("nome");
             if (request.getParameter("descricao").trim().length() > 0) {
                 descricao = request.getParameter("descricao");
@@ -60,7 +58,6 @@ public class IncluirProdutoServlet extends HttpServlet {
             error = true;
         } finally {
             //recuperação
-            request.setAttribute("id", id);
             request.setAttribute("nome", nome);
             request.setAttribute("descricao", descricao);
             request.setAttribute("preco", preco);
@@ -72,7 +69,7 @@ public class IncluirProdutoServlet extends HttpServlet {
         if (!error) {
             // processamento
             ProdutoNegocio produtoNegocio = new ProdutoNegocio();
-            boolean sucessoInserir = produtoNegocio.inserir(id, nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id);
+            boolean sucessoInserir = produtoNegocio.inserir(nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id);
             // saída
             if (sucessoInserir) {
                 request.setAttribute("mensagem", "Produto inserido com sucesso");

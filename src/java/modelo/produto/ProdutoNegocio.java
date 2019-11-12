@@ -25,12 +25,12 @@ public class ProdutoNegocio {
      * @param categoria_id
      * @return
      */
-    public boolean inserir(Integer id, String nome, String descricao, Double preco, String imagem, Integer quantidade, Boolean disponibilidade, Integer categoria_id) {
-        if (id == null || id <= 0 || nome == null || nome.trim().length() == 0 || preco == null || preco <= 0 || quantidade == null || quantidade < 0 || disponibilidade == null || categoria_id == null || categoria_id <= 0) {
+    public boolean inserir(String nome, String descricao, Double preco, String imagem, Integer quantidade, Boolean disponibilidade, Integer categoria_id) {
+        if (nome == null || nome.trim().length() == 0 || preco == null || preco <= 0 || quantidade == null || quantidade < 0 || disponibilidade == null || categoria_id == null || categoria_id <= 0) {
             return false;
         }
         ProdutoDAO dao = new ProdutoDAO();
-        return dao.inserir(id, nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id);
+        return dao.inserir(nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id);
     }
     
     /**

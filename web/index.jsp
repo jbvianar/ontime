@@ -46,7 +46,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
                 <td>Preço</td>
                 <td>Imagem</td>
                 <td>Disponibilidade</td>
-                <td>ID da Categoria</td>
+                <td>Quantidade Disponível</td>
                 <td>Quantidade</td>
                 <td>&nbsp;</td>
             </tr>
@@ -62,10 +62,10 @@ if (tipo == null) {// o usuário não possui uma sessão válida
                 <td>R$ <%= formatarMoeda.format(p.getPreco()) %></td>
                 <td><%= p.getImagem()%></td>
                 <td><%= p.getDisponibilidade()%></td>
-                <td><%= p.getCategoria_id()%></td>
+                <td><%= p.getQuantidade()%></td>
                 <td>
                     <input type="hidden" name="produtoId" value="<%= p.getId() %>" />
-                    <input type="number" name="quantidade" value="1" min="1" />
+                    <input type="number" name="quantidade" value="1" min="1" max="<%= p.getQuantidade()%>"/>
                 </td>
                 <td>
                     <input type="submit" value="Adicionar ao Carrinho" />

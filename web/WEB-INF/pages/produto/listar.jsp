@@ -63,5 +63,5 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 </table>
 <% }%>
 <br/>
-<div><a href="novoProduto.jsp">Criar novo produto</a></div>
+<div><a href="NovoProdutoServlet">Criar novo produto</a></div>
 <%@include file="../rodape.jsp" %>

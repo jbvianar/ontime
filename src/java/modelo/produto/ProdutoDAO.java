@@ -111,7 +111,6 @@ public class ProdutoDAO {
     /**
      * Método utilizado para inserir um novo produto
      *
-     * @param id
      * @param nome
      * @param descricao
      * @param preco
@@ -121,28 +120,27 @@ public class ProdutoDAO {
      * @param categoria_id
      * @return
      */
-    public boolean inserir(Integer id, String nome, String descricao, Double preco, String imagem, Integer quantidade, Boolean disponibilidade, Integer categoria_id) {
+    public boolean inserir(String nome, String descricao, Double preco, String imagem, Integer quantidade, Boolean disponibilidade, Integer categoria_id) {
         boolean resultado = false;
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO produto (id, nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            preparedStatement.setInt(1, id);
-            preparedStatement.setString(2, nome);
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO produto (nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            preparedStatement.setString(1, nome);
             if (descricao != null) {
-                preparedStatement.setString(3, descricao);
+                preparedStatement.setString(2, descricao);
             } else {
-                preparedStatement.setNull(3, java.sql.Types.VARCHAR);
+                preparedStatement.setNull(2, java.sql.Types.VARCHAR);
             }
-            preparedStatement.setDouble(4, preco);
+            preparedStatement.setDouble(3, preco);
             if (imagem != null) {
-                preparedStatement.setString(5, imagem);
+                preparedStatement.setString(4, imagem);
             } else {
-                preparedStatement.setNull(5, java.sql.Types.VARCHAR);
+                preparedStatement.setNull(4, java.sql.Types.VARCHAR);
             }
-            preparedStatement.setInt(6, quantidade);
-            preparedStatement.setBoolean(7, disponibilidade);
-            preparedStatement.setInt(8, categoria_id);
+            preparedStatement.setInt(5, quantidade);
+            preparedStatement.setBoolean(6, disponibilidade);
+            preparedStatement.setInt(7, categoria_id);
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();

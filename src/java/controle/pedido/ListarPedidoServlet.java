@@ -38,7 +38,7 @@ public class ListarPedidoServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         PedidoNegocio pedidoNegocio = new PedidoNegocio();
         List<Pedido> resultado = pedidoNegocio.obterTodos();
-        request.setAttribute("resultado", resultado);
+        request.setAttribute("resultado", resultado);//if do resultado, se o size for zero é porque não tem nada
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/pedido/listar.jsp");
         rd.forward(request, response);
     }

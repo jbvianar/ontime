@@ -35,22 +35,19 @@ public class IncluirCategoriaServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         // entrada
         boolean error = false;
-        Integer id = null;
         String nome = null;
         try {
-            id = Integer.parseInt(request.getParameter("id"));
             nome = request.getParameter("nome");
         } catch (Exception ex) {
             error = true;
         } finally {
             //recuperação
-            request.setAttribute("id", id);
             request.setAttribute("nome", nome);
         }
         if (!error) {
             // processamento
             CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-            boolean sucessoInserir = categoriaNegocio.inserir(id, nome);
+            boolean sucessoInserir = categoriaNegocio.inserir(nome);
             // saída
             if (sucessoInserir) {
                 request.setAttribute("mensagem", "Categoria inserida com sucesso");

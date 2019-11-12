@@ -6,12 +6,13 @@
 package controle.produto;
 
 import java.io.IOException;
-import javax.servlet.RequestDispatcher;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.produto.ProdutoNegocio;
+import modelo.categoria.Categoria;
+import modelo.categoria.CategoriaNegocio;
 
 /**
  *
@@ -35,27 +36,10 @@ public class NovoProdutoServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         // entrada
-        Integer id = Integer.parseInt(request.getParameter("id"));
-        String nome = request.getParameter("nome");
-        String descricao = request.getParameter("descricao");
-        Double preco = Double.parseDouble(request.getParameter("preco"));
-        String imagem = request.getParameter("imagem");
-        Integer quantidade = Integer.parseInt(request.getParameter("quantidade"));
-        Boolean disponibilidade = Boolean.parseBoolean(request.getParameter("disponibilidade"));
-        Integer categoria_id = Integer.parseInt(request.getParameter("categoria_id"));
-        // processamento
-        ProdutoNegocio produtoNegocio = new ProdutoNegocio();
-        boolean sucessoInserir = produtoNegocio.inserir(id, nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id);
-        // saída
-        if (sucessoInserir) {
-            request.setAttribute("mensagem", "Produto inserido com sucesso");
-            RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/produto/listar.jsp");
-            rd.forward(request, response);
-        } else {
-            request.setAttribute("mensagem", "Não foi possível inserir este produto");
-            RequestDispatcher rd = request.getRequestDispatcher("novoProduto.jsp");
-            rd.forward(request, response);
-        }
+        CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+        List<Categoria> categorias = categoriaNegocio.obterTodos();
+        request.setAttribute("categorias", categorias);
+        request.getRequestDispatcher("novoProduto.jsp").forward(request, response);
     }
 
 }

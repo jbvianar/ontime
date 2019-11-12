@@ -15,17 +15,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import modelo.carrinho.CarrinhoItem;
 import modelo.pedido_produto.Pedido_produtoDAO;
+import modelo.produto.Produto;
+import modelo.produto.ProdutoDAO;
 
 /**
  *
- * @author Sony 
- * Classe que representa os acessos aos dados de pedidos
+ * @author Sony Classe que representa os acessos aos dados de pedidos
  * persistidos em um banco de dados relacional
  */
 public class PedidoDAO {
+
     //autoincremento
     public Long obterNovoId() {
         long id = -1;
@@ -82,9 +84,10 @@ public class PedidoDAO {
         }
         return resultado;
     }
-    
+
     /**
-     * Método utilizado para recuperar todos os pedidos de um certo login de cliente
+     * Método utilizado para recuperar todos os pedidos de um certo login de
+     * cliente
      *
      * @return
      */
@@ -97,6 +100,7 @@ public class PedidoDAO {
             PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE cliente_login = ?");
             preparedStatement.setString(1, cliente_login);
             ResultSet resultSet = preparedStatement.executeQuery();
+            Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
             while (resultSet.next()) {
                 Pedido pedido = new Pedido();
                 pedido.setId(resultSet.getLong("id"));
@@ -108,6 +112,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
                 resultado.add(pedido);
             }
             resultSet.close();
@@ -133,6 +138,7 @@ public class PedidoDAO {
             PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE id = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
+            Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
             while (resultSet.next()) {
                 pedido = new Pedido();
                 pedido.setId(resultSet.getLong("id"));
@@ -144,6 +150,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
             }
             resultSet.close();
             preparedStatement.close();
@@ -153,8 +160,8 @@ public class PedidoDAO {
         }
         return pedido;
     }
-    
-     /**
+
+    /**
      * Método utilizado para obter um pedido pelo login do cliente
      *
      * @param id
@@ -168,6 +175,7 @@ public class PedidoDAO {
             PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE id = ?");
             preparedStatement.setString(1, login);
             ResultSet resultSet = preparedStatement.executeQuery();
+            Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
             while (resultSet.next()) {
                 pedido = new Pedido();
                 pedido.setId(resultSet.getLong("id"));
@@ -179,6 +187,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
             }
             resultSet.close();
             preparedStatement.close();
@@ -228,7 +237,7 @@ public class PedidoDAO {
             preparedStatement.close();
             connection.close();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
             return false;
         }
         return resultado;
@@ -299,7 +308,7 @@ public class PedidoDAO {
         }
         return resultado;
     }
-    
+
     /**
      * Método para excluir todos os pedidos de um cliente
      *
@@ -320,5 +329,17 @@ public class PedidoDAO {
             return false;
         }
         return resultado;
+    }
+
+    public boolean verificarEstoque(List<CarrinhoItem> itens) {
+        ProdutoDAO produtoDAO = new ProdutoDAO();
+        for (int i = 0; i < itens.size(); i++) {
+            CarrinhoItem c = itens.get(i);
+            Produto p = produtoDAO.obterProduto(c.getProduto().getId());
+            if (c.getQuantidade() > p.getQuantidade()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

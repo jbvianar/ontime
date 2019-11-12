@@ -39,7 +39,7 @@ public class NovoCategoriaServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         // processamento
         CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
-        boolean sucessoInserir = categoriaNegocio.inserir(id, nome);
+        boolean sucessoInserir = categoriaNegocio.inserir(nome);
         // saída
         if (sucessoInserir) {
             request.setAttribute("mensagem", "Categoria inserida com sucesso");

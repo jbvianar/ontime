@@ -29,7 +29,7 @@ public class Pedido {
     private String estabelecimento_login;//variável para futura escalabilidade - AUTOCAPTADO
     
     private String cliente_nome;//para recuperar o nome do cliente sem mostrar seu login
-    List<Pedido_produto> produtos;//para recuperar os produtos do pedido e mostrá-los
+    List<Pedido_produto> produtos;//vetor para recuperar os produtos do pedido e mostrá-los
 
     public List<Pedido_produto> getProdutos() {
         return produtos;
