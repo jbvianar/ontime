@@ -31,9 +31,9 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 <% if (estabelecimento != null) {%>
 <form action="AlterarEstabelecimentoServlet" method="post">
     <div class="rotulo">Razão Social:</div>
-    <div class="campo"><input type="text" name="razaosocial" id="razaosocial" value="<%= estabelecimento.getRazaosocial()%>" required/></div>
+    <div class="campo"><input type="text" name="razaosocial" id="razaosocial" value="<%= estabelecimento.getRazaosocial()%>" readonly="readonly" required/></div>
     <div class="rotulo">CNPJ:</div>
-    <div class="campo"><input type="text" name="cnpj" id="cnpj" value="<%= estabelecimento.getCnpj()%>" required/><span id="msg"></span></div>
+    <div class="campo"><input type="text" name="cnpj" id="cnpj" value="<%= estabelecimento.getCnpj()%>" readonly="readonly" required/><span id="msg"></span></div>
     <div class="rotulo">Login:</div>
     <div class="campo"><input type="text" name="login" id="login" value="<%= estabelecimento.getLogin()%>" readonly="readonly" required/></div>
     <div class="rotulo">Senha:</div>
@@ -41,7 +41,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <div class="rotulo">E-mail:</div>
     <div class="campo"><input type="text" name="email" id="email" value="<%= estabelecimento.getEmail()%>" required/></div>
     <div class="rotulo">Telefone:</div>
-    <div class="campo"><input type="text" name="telefone" id="telefone" value="<%= estabelecimento.getTelefone()%>" /></div>
+    <div class="campo"><input type="text" name="telefone" id="telefone" value="<%= estabelecimento.getTelefone()%>" required/></div>
     <div class="rotulo">Status:</div>
     <div class="campo"><input type="text" name="status" id="status" value="<%= estabelecimento.getStatus()%>" required/></div>
     <div class="controles"><input type="submit" value="Salvar" onclick="return validarCampoNumerico('cnpj', 'msg')"/></div>

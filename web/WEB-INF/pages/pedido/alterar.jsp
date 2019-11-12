@@ -35,9 +35,9 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <div class="rotulo">Data e Horário:</div>
     <div class="campo"><input type="text" name="horario" id="horario" value="<%= pedido.getHorario()%>" readonly="readonly" required/></div>
     <div class="rotulo">Observações:</div>
-    <div class="campo"><input type="text" name="observacoes" id="observacoes" value="<%= pedido.getObservacoes()%>" readonly="readonly" /></div>
+    <div class="campo"><input type="text" name="observacoes" id="observacoes" value="<%= pedido.getObservacoes() == null ? "" : pedido.getObservacoes() %>" readonly="readonly" /></div>
     <div class="rotulo">Agendamento:</div>
-    <div class="campo"><input type="text" name="agendamento" id="agendamento" value="<%= pedido.getAgendamento()%>" readonly="readonly" /></div>
+    <div class="campo"><input type="text" name="agendamento" id="agendamento" value="<%= pedido.getAgendamento() == null ? "" : pedido.getAgendamento() %>" readonly="readonly" /></div>
     <div class="rotulo">Status:</div>
     <div class="campo"><input type="text" name="status" id="status" value="<%= pedido.getStatus()%>" required/></div>
     <div class="rotulo">Senha do Pedido:</div>

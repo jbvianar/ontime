@@ -82,12 +82,12 @@ public class IncluirPedidoServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/pedido/listar.jsp");
                 rd.forward(request, response);
             } else {
-                request.setAttribute("mensagem", "Não foi possível inserir este pedido");
+                request.setAttribute("mensagem", "Não foi possível fazer este pedido");
                 RequestDispatcher rd = request.getRequestDispatcher("novoPedido.jsp");
                 rd.forward(request, response);
             }
         } else {
-            request.setAttribute("mensagem", "Não foi possível inserir este pedido");
+            request.setAttribute("mensagem", "Não foi possível fazer este pedido");
             RequestDispatcher rd = request.getRequestDispatcher("novoPedido.jsp");
             rd.forward(request, response);
         }

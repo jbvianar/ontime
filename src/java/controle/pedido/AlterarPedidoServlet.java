@@ -49,7 +49,7 @@ public class AlterarPedidoServlet extends HttpServlet {
         boolean sucessoAlterar = pedidoNegocio.alterar(id, observacoes, agendamento, senhadopedido, status, valortotal, cliente_login, estabelecimento_login);
         // saída
         if (sucessoAlterar) {
-            request.setAttribute("mensagem", "Pedido alterada com sucesso");
+            request.setAttribute("mensagem", "Pedido alterado com sucesso");
         } else {
             request.setAttribute("mensagem", "Não foi possível alterar esta pedido");
         }

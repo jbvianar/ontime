@@ -26,6 +26,7 @@
                 <div id="menu-conteudo" class="div-table">
                     <div class="div-table-row">
                         <div class="div-table-col"><a href="InicioServlet">Home</a></div>
+                        <div class="div-table-col"><a href="VerEstabelecimentoServlet">Meus Dados</a></div>
                         <div class="div-table-col"><a href="ListarClienteServlet">Cadastro de Clientes</a></div>
                         <div class="div-table-col"><a href="ListarEstabelecimentoServlet">Cadastro de Estabelecimentos</a></div>
                         <div class="div-table-col"><a href="ListarCategoriaServlet">Cadastro de Categorias</a></div>

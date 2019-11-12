@@ -39,4 +39,6 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 <div class="valor"><jsp:getProperty name="estabelecimento" property="telefone" /></div>
 <div class="rotulo">Status:</div>
 <div class="valor"><jsp:getProperty name="estabelecimento" property="status" /></div>
+</br>
+<div><a href="ObterEstabelecimentoServlet?login=<%= estabelecimento.getLogin()%>">Alterar Dados</a></div>
 <%@include file="rodape.jsp" %>

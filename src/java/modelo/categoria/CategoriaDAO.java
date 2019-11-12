@@ -22,6 +22,25 @@ import java.util.List;
  * Classe que representa os acessos aos dados de categorias persistidos em um banco de dados relacional
  */
 public class CategoriaDAO {
+    //autoincremento
+    public Integer obterNovoId() {
+        int id = -1;
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            PreparedStatement preparedStatement = connection.prepareStatement("select nextval('categoria_id_seq') AS categoriaId");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getInt("categoriaId");
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return id;
+        }
+        return id;
+    }
     /**
      * Método utilizado para recuperar todas as categorias registradas
      *

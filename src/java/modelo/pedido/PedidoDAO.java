@@ -26,7 +26,7 @@ import modelo.pedido_produto.Pedido_produtoDAO;
  * persistidos em um banco de dados relacional
  */
 public class PedidoDAO {
-
+    //autoincremento
     public Long obterNovoId() {
         long id = -1;
         try {
