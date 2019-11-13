@@ -42,7 +42,7 @@ public class IncluirEstabelecimentoServlet extends HttpServlet {
         String email = null;
         Long cnpj = null;
         Long telefone = null;
-        String status = null;
+        Boolean status = null;
         try {
             login = request.getParameter("login");
             senha = request.getParameter("senha");
@@ -50,7 +50,7 @@ public class IncluirEstabelecimentoServlet extends HttpServlet {
             email = request.getParameter("email");
             cnpj = Long.parseLong(request.getParameter("cnpj"));
             telefone = Long.parseLong(request.getParameter("telefone"));
-            status = request.getParameter("status");
+           status = Boolean.parseBoolean(request.getParameter("status"));
         } catch (Exception ex) {
             error = true;
         } finally {

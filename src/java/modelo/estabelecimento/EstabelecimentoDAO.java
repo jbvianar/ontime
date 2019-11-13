@@ -45,7 +45,7 @@ public class EstabelecimentoDAO {
                 estabelecimento.setEmail(resultSet.getString("email"));
                 estabelecimento.setCnpj(resultSet.getLong("cnpj"));
                 estabelecimento.setTelefone(resultSet.getLong("telefone"));
-                estabelecimento.setStatus(resultSet.getString("status"));
+                estabelecimento.setStatus(resultSet.getBoolean("status"));
                 resultado.add(estabelecimento);
             }
             resultSet.close();
@@ -79,7 +79,7 @@ public class EstabelecimentoDAO {
                 estabelecimento.setEmail(resultSet.getString("email"));
                 estabelecimento.setCnpj(resultSet.getLong("cnpj"));
                 estabelecimento.setTelefone(resultSet.getLong("telefone"));
-                estabelecimento.setStatus(resultSet.getString("status"));
+                estabelecimento.setStatus(resultSet.getBoolean("status"));
             }
             resultSet.close();
             preparedStatement.close();
@@ -102,7 +102,7 @@ public class EstabelecimentoDAO {
      * @param status
      * @return
      */
-    public boolean inserir(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, String status) {
+    public boolean inserir(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, Boolean status) {
         boolean resultado = false;
         try {
             Class.forName(JDBC_DRIVER);
@@ -115,7 +115,7 @@ public class EstabelecimentoDAO {
             preparedStatement.setString(4, email);
             preparedStatement.setLong(5, cnpj);
             preparedStatement.setLong(6, telefone);
-            preparedStatement.setString(7, status);
+            preparedStatement.setBoolean(7, status);
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();
@@ -138,7 +138,7 @@ public class EstabelecimentoDAO {
      * @param status
      * @return
      */
-    public boolean alterar(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, String status) {
+    public boolean alterar(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, Boolean status) {
         boolean resultado = false;
         try {
             Class.forName(JDBC_DRIVER);
@@ -149,8 +149,25 @@ public class EstabelecimentoDAO {
             preparedStatement.setString(3, email);
             preparedStatement.setLong(4, cnpj);
             preparedStatement.setLong(5, telefone);
-            preparedStatement.setString(6, status);
+            preparedStatement.setBoolean(6, status);
             preparedStatement.setString(7, login);
+            resultado = (preparedStatement.executeUpdate() > 0);
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return false;
+        }
+        return resultado;
+    }
+    
+    public boolean mudarStatus(String login, Boolean status) {
+        boolean resultado = false;
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE estabelecimento SET status = ? WHERE login = ?");
+            preparedStatement.setBoolean(1, status);
+            preparedStatement.setString(2, login);
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();

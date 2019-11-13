@@ -17,7 +17,7 @@ public class Estabelecimento {
     private String email;//tem que ser UK
     private Long cnpj;//deveria ser PK, pensar nisso depois
     private Long telefone;
-    private String status; 
+    private Boolean status; 
 
     public String getLogin() {
         return login;
@@ -67,11 +67,11 @@ public class Estabelecimento {
         this.telefone = telefone;
     }
 
-    public String getStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 

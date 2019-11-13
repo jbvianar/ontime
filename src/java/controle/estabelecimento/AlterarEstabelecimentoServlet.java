@@ -40,7 +40,7 @@ public class AlterarEstabelecimentoServlet extends HttpServlet {
         String email = request.getParameter("email");
         Long cnpj = Long.parseLong(request.getParameter("cnpj"));
         Long telefone = Long.parseLong(request.getParameter("telefone"));
-        String status = request.getParameter("status");
+        Boolean status = Boolean.parseBoolean(request.getParameter("status"));
         // processamento
         EstabelecimentoNegocio estabelecimentoNegocio = new EstabelecimentoNegocio();
         boolean sucessoAlterar = estabelecimentoNegocio.alterar(login, senha, razaosocial, email, cnpj, telefone, status);

@@ -6,11 +6,14 @@
 package controle.produto;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.categoria.Categoria;
+import modelo.categoria.CategoriaNegocio;
 import modelo.produto.Produto;
 import modelo.produto.ProdutoNegocio;
 
@@ -40,6 +43,11 @@ public class ObterProdutoServlet extends HttpServlet {
         ProdutoNegocio produtoNegocio = new ProdutoNegocio();
         Produto produto = produtoNegocio.obterProduto(id);
         request.setAttribute("produto", produto);
+        
+        CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
+        List<Categoria> categorias = categoriaNegocio.obterTodos();
+        request.setAttribute("categorias", categorias);
+        
         RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/produto/alterar.jsp");
         rd.forward(request, response);
     }

@@ -71,7 +71,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
                 <td colspan="2"><input type="text" name="observacoes" id="observacoes" maxlength="180" value="<%= (request.getAttribute("observacoes") != null) ? request.getAttribute("observacoes") : ""%>" /></td>
                 <td>Agendar para (opcional):
                     <select name="agendamento" id="agendamento">
-                        <option value="null"></option>
+                        <option value=""></option>
                         <option value="12:00">12h00</option>
                         <option value="14:00">14h00</option>
                         <option value="16:00">16h00</option>

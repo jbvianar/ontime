@@ -204,6 +204,10 @@
         <servlet-name>MostrarProdutoCarrinhoServlet</servlet-name>
         <servlet-class>controle.carrinho.MostrarProdutoCarrinhoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AlterarEstabelecimentoStatusServlet</servlet-name>
+        <servlet-class>controle.estabelecimento.AlterarEstabelecimentoStatusServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -407,6 +411,10 @@
     <servlet-mapping>
         <servlet-name>MostrarProdutoCarrinhoServlet</servlet-name>
         <url-pattern>/MostrarProdutoCarrinhoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarEstabelecimentoStatusServlet</servlet-name>
+        <url-pattern>/AlterarEstabelecimentoStatusServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

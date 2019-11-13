@@ -5,13 +5,21 @@
  */
 package controle.produto;
 
+import static configuration.Configuracao.REPOSITORIO_IMAGEM_PRODUTOS;
+import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.produto.ProdutoNegocio;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.fileupload.servlet.ServletRequestContext;
 
 /**
  *
@@ -33,59 +41,91 @@ public class IncluirProdutoServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        // entrada
-        boolean error = false;
+        Integer id = null;
         String nome = null;
         String descricao = null;
         Double preco = null;
-        String imagem = null;
         Integer quantidade = null;
         Boolean disponibilidade = null;
         Integer categoria_id = null;
-        try {
-            nome = request.getParameter("nome");
-            if (request.getParameter("descricao").trim().length() > 0) {
-                descricao = request.getParameter("descricao");
-            }
-            preco = Double.parseDouble(request.getParameter("preco"));
-            if (request.getParameter("imagem").trim().length() > 0) {
-                imagem = request.getParameter("imagem");
-            }
-            quantidade = Integer.parseInt(request.getParameter("quantidade"));
-            disponibilidade = Boolean.parseBoolean(request.getParameter("disponibilidade"));
-            categoria_id = Integer.parseInt(request.getParameter("categoria_id"));
-        } catch (Exception ex) {
-            error = true;
-        } finally {
-            //recuperação
-            request.setAttribute("nome", nome);
-            request.setAttribute("descricao", descricao);
-            request.setAttribute("preco", preco);
-            request.setAttribute("imagem", imagem);
-            request.setAttribute("quantidade", quantidade);
-            request.setAttribute("disponibilidade", disponibilidade);
-            request.setAttribute("categoria_id", categoria_id);
-        }
-        if (!error) {
-            // processamento
-            ProdutoNegocio produtoNegocio = new ProdutoNegocio();
-            boolean sucessoInserir = produtoNegocio.inserir(nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id);
-            // saída
-            if (sucessoInserir) {
-                request.setAttribute("mensagem", "Produto inserido com sucesso");
-                RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/produto/listar.jsp");
-                rd.forward(request, response);
-            } else {
+        FileItem foto = null;
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+        if (isMultipart) {
+            boolean sucesso = false;
+            try {
+                DiskFileItemFactory factory = new DiskFileItemFactory();
+                factory.setRepository(new File(REPOSITORIO_IMAGEM_PRODUTOS + File.separator + "temp"));
+                ServletFileUpload upload = new ServletFileUpload(factory);
+                List<FileItem> items = upload.parseRequest(new ServletRequestContext(request));
+                Iterator<FileItem> iter = items.iterator();
+
+                ProdutoNegocio produtoNegocio = new ProdutoNegocio();
+                id = produtoNegocio.obterId();
+                while (iter.hasNext()) {
+                    FileItem item = iter.next();
+                    if (item.isFormField() && item.getFieldName().equals("nome")) {
+                        nome = (item.getString("UTF-8"));
+                    }
+                    if (item.isFormField() && item.getFieldName().equals("descricao")) {
+                        descricao = (item.getString("UTF-8"));
+                    }
+                    if (item.isFormField() && item.getFieldName().equals("preco")) {
+                        preco = Double.parseDouble(item.getString("UTF-8"));
+                    }
+                    if (item.isFormField() && item.getFieldName().equals("quantidade")) {
+                        quantidade = Integer.parseInt(item.getString("UTF-8"));
+                    }
+                    if (item.isFormField() && item.getFieldName().equals("disponibilidade")) {
+                        disponibilidade = Boolean.parseBoolean(item.getString("UTF-8"));
+                    }
+                    if (item.isFormField() && item.getFieldName().equals("categoria_id")) {
+                        categoria_id = Integer.parseInt(item.getString("UTF-8"));
+                    }
+                    if (!item.isFormField() && item.getFieldName().equals("imagem") && item.getContentType().startsWith("image/")) {
+                        foto = item;
+                    }
+                }
+                boolean uploadFoto = false;
+                if (id != -1 && foto != null) {
+                    File f = new File(REPOSITORIO_IMAGEM_PRODUTOS + File.separator + id + foto.getName().substring(foto.getName().lastIndexOf(".")));
+                    if (f.exists()) {
+                        f.delete();
+                    }
+
+                    foto.write(new File(REPOSITORIO_IMAGEM_PRODUTOS + File.separator + id + foto.getName().substring(foto.getName().lastIndexOf("."))));
+                    uploadFoto = true;
+                }
+                String fotoStr = "";
+                if (uploadFoto) {
+                    fotoStr = id + foto.getName().substring(foto.getName().lastIndexOf("."));
+                } else {
+                    fotoStr = produtoNegocio.obterProduto(id).getImagem();
+                }
+                sucesso = produtoNegocio.inserir(id, nome, descricao, preco, fotoStr, quantidade, disponibilidade, categoria_id);
+
+                if (!sucesso) {
+                    request.setAttribute("nome", nome);
+                    request.setAttribute("descricao", descricao);
+                    request.setAttribute("preco", preco);
+                    request.setAttribute("quantidade", quantidade);
+                    request.setAttribute("disponibilidade", disponibilidade);
+                    request.setAttribute("categoria_id", categoria_id);
+                    request.setAttribute("mensagem", "Não foi possível inserir este produto");
+                } else {
+                    request.setAttribute("mensagem", "Produto inserido com sucesso");
+                }
+            } catch (Exception ex) {
+                request.setAttribute("nome", nome);
+                request.setAttribute("descricao", descricao);
+                request.setAttribute("preco", preco);
+                request.setAttribute("quantidade", quantidade);
+                request.setAttribute("disponibilidade", disponibilidade);
+                request.setAttribute("categoria_id", categoria_id);
                 request.setAttribute("mensagem", "Não foi possível inserir este produto");
-                RequestDispatcher rd = request.getRequestDispatcher("novoProduto.jsp");
-                rd.forward(request, response);
             }
-        } else {
-            request.setAttribute("mensagem", "Não foi possível inserir este produto");
             RequestDispatcher rd = request.getRequestDispatcher("novoProduto.jsp");
             rd.forward(request, response);
         }
-
     }
 
 }

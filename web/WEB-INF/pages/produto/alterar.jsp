@@ -1,3 +1,6 @@
+<%@page import="modelo.categoria.Categoria"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page import="modelo.produto.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!--SELETOR DE CABEÇALHO: EXIBIRÁ UM CABEÇALHO DIFERENTE PARA CLIENTE, ESTABELECIMENTO OU USUÁRIO NÃO LOGADO-->
@@ -45,7 +48,19 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <div class="rotulo">Disponibilidade:</div>
     <div class="campo"><input type="text" name="disponibilidade" id="disponibilidade" value="<%= produto.getDisponibilidade()%>" required/></div><!--tags span mantidas aqui para possível uso futuro na aplicação final-->
     <div class="rotulo">ID da Categoria:</div>
-    <div class="campo"><input type="text" name="categoria_id" id="categoria_id" value="<%= produto.getCategoria_id()%>" required/><span id="msg"></span></div>
+    <div class="campo">
+        <select name="categoria_id" id="categoria_id">
+            <%
+                List<Categoria> categorias = (List<Categoria>) request.getAttribute("categorias");
+                for (int i = 0; categorias != null && i < categorias.size(); i++) {
+                    Categoria c = categorias.get(i);
+            %>
+            <option value="<%= c.getId()%>"<%= produto.getCategoria_id() == c.getId() ? " selected" : "" %>><%= c.getNome()%></option>
+            <%
+                }
+            %>
+        </select>
+    </div>
     <div class="controles"><input type="submit" value="Salvar" onclick="return validarCamposNumericos('id', 'preco', 'categoria_id', 'msg')"/></div>
 </form>
 <% }%>

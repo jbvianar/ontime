@@ -34,6 +34,14 @@
                         <div class="div-table-col"><a href="ListarPedidoServlet">Cadastro de Pedidos</a></div>
                         <div class="div-table-col"><a href="LogoutEstabelecimentoServlet">Sair</a></div>
                     </div>
+                    <div class="div-table-col">
+                        <form action="AlterarEstabelecimentoStatusServlet" id="statusLanchonete">
+                            <select name="status" id="status" onchange="document.getElementById('statusLanchonete').submit()">
+                                <option value="true">Lanchonete Aberta</option>
+                                <option value="false">Lanchonete Fechada</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
             </center>
         </div>

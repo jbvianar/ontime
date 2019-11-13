@@ -26,7 +26,7 @@
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
 <h1>Novo produto</h1>
-<form name="cadastro_produto" action="IncluirProdutoServlet" method="post">
+<form name="cadastro_produto" action="IncluirProdutoServlet" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
     <div>Nome:</div>
     <div><input type="text" name="nome" id="nome" required value="<%= (request.getAttribute("nome") != null) ? request.getAttribute("nome") : ""%>"/></div>
     <div>Descrição:</div>
@@ -34,7 +34,7 @@
     <div>Preço:</div>
     <div><input type="text" name="preco" id="preco" required value="<%= (request.getAttribute("preco") != null) ? request.getAttribute("preco") : ""%>"/><span id="msg"></span></div>
     <div>Imagem:</div>
-    <div><input type="text" name="imagem" id="imagem" value="<%= (request.getAttribute("imagem") != null) ? request.getAttribute("imagem") : ""%>"/></div>
+    <div><input type="file" name="imagem" id="imagem" /></div>
     <div>Quantidade Disponível:</div>
     <div><input type="text" name="quantidade" id="quantidade" required value="<%= (request.getAttribute("quantidade") != null) ? request.getAttribute("quantidade") : ""%>"/></div>
     <div>Disponibilidade:</div>

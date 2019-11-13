@@ -91,6 +91,11 @@ public class AlterarProdutoServlet extends HttpServlet {
                 }
                 boolean uploadFoto = false;
                 if (id != -1 && foto != null) {
+                    File f = new File(REPOSITORIO_IMAGEM_PRODUTOS + File.separator + id + foto.getName().substring(foto.getName().lastIndexOf(".")));
+                    if (f.exists()) {
+                        f.delete();
+                    }
+                    
                     foto.write(new File(REPOSITORIO_IMAGEM_PRODUTOS + File.separator + id + foto.getName().substring(foto.getName().lastIndexOf("."))));
                     uploadFoto = true;
                 }

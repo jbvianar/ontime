@@ -12,6 +12,11 @@ import java.util.List;
  * Classe de negócio que encapsula as regras de negócio dos estabelecimentos
  */
 public class EstabelecimentoNegocio {
+   
+    public boolean mudarStatus(Boolean status, String login) {
+        EstabelecimentoDAO dao = new EstabelecimentoDAO();
+        return dao.mudarStatus(login, status);
+    }
     /**
      * Método que verifica se o login e senha de um estabelecimento é válido
      *
@@ -40,8 +45,8 @@ public class EstabelecimentoNegocio {
      * @param status
      * @return
      */
-    public boolean inserir(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, String status) {
-        if (login == null || login.trim().length() == 0 || senha == null || senha.trim().length() == 0 || razaosocial == null || razaosocial.trim().length() == 0 || email == null || email.trim().length() == 0 || cnpj == null || cnpj <=0 || telefone == null || telefone <=0 || email.trim().length() == 0 || status == null || status.trim().length() == 0) {
+    public boolean inserir(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, Boolean status) {
+        if (login == null || login.trim().length() == 0 || senha == null || senha.trim().length() == 0 || razaosocial == null || razaosocial.trim().length() == 0 || email == null || email.trim().length() == 0 || cnpj == null || cnpj <=0 || telefone == null || telefone <=0 || email.trim().length() == 0) {
             return false;
         }
         EstabelecimentoDAO dao = new EstabelecimentoDAO();
@@ -84,8 +89,8 @@ public class EstabelecimentoNegocio {
      * @param status
      * @return
      */
-    public boolean alterar(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, String status) {
-        if (login == null || login.trim().length() == 0 || senha == null || senha.trim().length() == 0 || razaosocial == null || razaosocial.trim().length() == 0 || email == null || email.trim().length() == 0 || cnpj == null || cnpj <=0 || telefone == null || telefone <=0 || email == null || email.trim().length() == 0 || status == null || status.trim().length() == 0) {
+    public boolean alterar(String login, String senha, String razaosocial, String email, Long cnpj, Long telefone, Boolean status) {
+        if (login == null || login.trim().length() == 0 || senha == null || senha.trim().length() == 0 || razaosocial == null || razaosocial.trim().length() == 0 || email == null || email.trim().length() == 0 || cnpj == null || cnpj <=0 || telefone == null || telefone <=0 || email == null || email.trim().length() == 0) {
             return false;
         }
         EstabelecimentoDAO dao = new EstabelecimentoDAO();
