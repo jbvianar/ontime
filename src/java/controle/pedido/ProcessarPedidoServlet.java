@@ -7,6 +7,7 @@ package controle.pedido;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,11 +50,25 @@ public class ProcessarPedidoServlet extends HttpServlet {
         };
         String agendamento = null;
         if (request.getParameter("agendamento") != null && request.getParameter("agendamento").trim().length() > 0) {
-            observacoes = request.getParameter("agendamento");
+            agendamento = request.getParameter("agendamento");
         };
         //Date horario = new java.util.Date(request.getParameter("horario").getTime());
-        Integer senhadopedido = 123;
-        String status = "EM PREPARO";
+        final int TAMANHO_DA_SENHA = 4;
+        Random r = new Random();
+        String s = "";
+        for (int i = 1; i <= TAMANHO_DA_SENHA; i++) {
+            int index = r.nextInt(62);
+            if (index < 10) {
+                s += (char) (index + 48); //os chars 48 a 57 representam [0 - 9]
+            } else if (index < 36) {
+                s += (char) (index + 55); //os chars 65 a 90 representam [A - Z]
+            } else {
+                s += (char) (index + 61); //os chars 97 a 122 representam [a - z]
+            }
+        }
+        System.out.println("Senha final: " + s);
+        String senhadopedido = s;
+        String status = "em preparo";
         Double valorTotal = Double.parseDouble(request.getParameter("valorTotal"));
         String estabelecimento_login = "a";
         String cliente_login = (String) session.getAttribute("login");
@@ -66,7 +81,7 @@ public class ProcessarPedidoServlet extends HttpServlet {
             pedido_produtoDAO.inserir(pedidoId, carrinhoItem.getProduto().getId(), carrinhoItem.getQuantidade(), cliente_login);
         }
         if (sucessoCompra) { 
-            request.setAttribute("mensagem", "Compra realizada com sucesso");
+            request.setAttribute("mensagem", "Compra realizada com sucesso. Seu pedido está em preparo. Sua senha é: " + senhadopedido);
             RequestDispatcher rd = request.getRequestDispatcher("InicioServlet?carrinhoVazio=true");
             rd.forward(request, response);
         } else {

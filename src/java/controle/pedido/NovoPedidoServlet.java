@@ -39,7 +39,7 @@ public class NovoPedidoServlet extends HttpServlet {
         String observacoes = request.getParameter("observacoes");
         String agendamento = request.getParameter("agendamento");
         //Date horario = new java.util.Date(request.getParameter("horario").getTime());
-        Integer senhadopedido = Integer.parseInt(request.getParameter("senhadopedido"));
+        String senhadopedido = request.getParameter("senhadopedido");
         String status = request.getParameter("status");
         Double valortotal = Double.parseDouble(request.getParameter("valortotal"));
         String cliente_login = request.getParameter("cliente_login");

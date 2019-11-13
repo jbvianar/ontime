@@ -22,7 +22,7 @@ public class Pedido {
     private String observacoes;//opcional
     private String agendamento;//opcional
     private Date horario;//data + horário - AUTOCAPTADO
-    private Integer senhadopedido;//AUTOGERADO
+    private String senhadopedido;//AUTOGERADO
     private String status;//mudado para "em preparo na hora da compra" e modificado pelo estabelecimento
     private Double valortotal;//AUTOCALCULADO
     private String cliente_login;//AUTOCAPTADO
@@ -83,11 +83,11 @@ public class Pedido {
         this.horario = horario;
     }
 
-    public Integer getSenhadopedido() {
+    public String getSenhadopedido() {
         return senhadopedido;
     }
 
-    public void setSenhadopedido(Integer senhadopedido) {
+    public void setSenhadopedido(String senhadopedido) {
         this.senhadopedido = senhadopedido;
     }
 

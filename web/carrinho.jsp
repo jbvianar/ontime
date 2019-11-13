@@ -39,10 +39,10 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <h2>Meu Carrinho de Compras</h2>
         <table border="1">
             <tr>
-                <td>Nome</td>
-                <td>Preço</td>
-                <td>Quantidade</td>
-                <td>&nbsp;</td>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Quantidade</th>
+                <th>&nbsp;</th>
             </tr>
             <%
                 double total = 0;
@@ -66,6 +66,20 @@ if (tipo == null) {// o usuário não possui uma sessão válida
             %>
             <form action="ProcessarPedidoServlet">
                 <input type="hidden" name="valorTotal" value="<%=total%>" />
+            <tr>
+                <td>Observações (opcional):</td>
+                <td colspan="2"><input type="text" name="observacoes" id="observacoes" maxlength="180" value="<%= (request.getAttribute("observacoes") != null) ? request.getAttribute("observacoes") : ""%>" /></td>
+                <td>Agendar para (opcional):
+                    <select name="agendamento" id="agendamento">
+                        <option value="null"></option>
+                        <option value="12:00">12h00</option>
+                        <option value="14:00">14h00</option>
+                        <option value="16:00">16h00</option>
+                        <option value="18:00">18h00</option>
+                        <option value="20:00">20h00</option>
+                    </select>
+                </td>
+            </tr>
             <tr>
                 <td colspan="3">Total: R$ <%= formatarMoeda.format(total) %></td>
                 <td>

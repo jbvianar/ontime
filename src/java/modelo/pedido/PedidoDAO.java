@@ -67,7 +67,7 @@ public class PedidoDAO {
                 pedido.setObservacoes(resultSet.getString("observacoes"));
                 pedido.setAgendamento(resultSet.getString("agendamento"));
                 pedido.setHorario(new java.util.Date(resultSet.getTimestamp("horario").getTime()));
-                pedido.setSenhadopedido(resultSet.getInt("senhadopedido"));
+                pedido.setSenhadopedido(resultSet.getString("senhadopedido"));
                 pedido.setStatus(resultSet.getString("status"));
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
@@ -107,7 +107,7 @@ public class PedidoDAO {
                 pedido.setObservacoes(resultSet.getString("observacoes"));
                 pedido.setAgendamento(resultSet.getString("agendamento"));
                 pedido.setHorario(new java.util.Date(resultSet.getTimestamp("horario").getTime()));
-                pedido.setSenhadopedido(resultSet.getInt("senhadopedido"));
+                pedido.setSenhadopedido(resultSet.getString("senhadopedido"));
                 pedido.setStatus(resultSet.getString("status"));
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
@@ -145,7 +145,7 @@ public class PedidoDAO {
                 pedido.setObservacoes(resultSet.getString("observacoes"));
                 pedido.setAgendamento(resultSet.getString("agendamento"));
                 pedido.setHorario(new java.util.Date(resultSet.getTimestamp("horario").getTime()));
-                pedido.setSenhadopedido(resultSet.getInt("senhadopedido"));
+                pedido.setSenhadopedido(resultSet.getString("senhadopedido"));
                 pedido.setStatus(resultSet.getString("status"));
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
@@ -182,7 +182,7 @@ public class PedidoDAO {
                 pedido.setObservacoes(resultSet.getString("observacoes"));
                 pedido.setAgendamento(resultSet.getString("agendamento"));
                 pedido.setHorario(new java.util.Date(resultSet.getTimestamp("horario").getTime()));
-                pedido.setSenhadopedido(resultSet.getInt("senhadopedido"));
+                pedido.setSenhadopedido(resultSet.getString("senhadopedido"));
                 pedido.setStatus(resultSet.getString("status"));
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
@@ -211,7 +211,7 @@ public class PedidoDAO {
      * @param estabelecimento_login
      * @return
      */
-    public boolean inserir(Long id, String observacoes, String agendamento, Integer senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
+    public boolean inserir(Long id, String observacoes, String agendamento, String senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
         boolean resultado = false;
         try {
             Class.forName(JDBC_DRIVER);
@@ -228,7 +228,7 @@ public class PedidoDAO {
             } else {
                 preparedStatement.setNull(3, java.sql.Types.VARCHAR);
             }
-            preparedStatement.setInt(4, senhadopedido);
+            preparedStatement.setString(4, senhadopedido);
             preparedStatement.setString(5, status);
             preparedStatement.setDouble(6, valortotal);
             preparedStatement.setString(7, cliente_login);
@@ -256,7 +256,7 @@ public class PedidoDAO {
      * @param estabelecimento_login
      * @return
      */
-    public boolean alterar(Long id, String observacoes, String agendamento, Integer senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
+    public boolean alterar(Long id, String observacoes, String agendamento, String senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
         boolean resultado = false;
         try {
             Class.forName(JDBC_DRIVER);
@@ -272,7 +272,7 @@ public class PedidoDAO {
             } else {
                 preparedStatement.setNull(2, java.sql.Types.VARCHAR);
             }
-            preparedStatement.setInt(3, senhadopedido);
+            preparedStatement.setString(3, senhadopedido);
             preparedStatement.setString(4, status);
             preparedStatement.setDouble(5, valortotal);
             preparedStatement.setString(6, cliente_login);

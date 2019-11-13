@@ -39,7 +39,7 @@ public class IncluirPedidoServlet extends HttpServlet {
         String observacoes = null;
         String agendamento = null;
         //Date horario = null;
-        Integer senhadopedido = null;
+        String senhadopedido = null;
         String status = null;
         Double valortotal = null;
         String cliente_login = null;
@@ -53,7 +53,7 @@ public class IncluirPedidoServlet extends HttpServlet {
                 agendamento = request.getParameter("agendamento");
             }
             //horario = new java.util.Date(request.getParameter("horario").getTime());
-            senhadopedido = Integer.parseInt(request.getParameter("senhadopedido"));
+            senhadopedido = request.getParameter("senhadopedido");
             status = request.getParameter("status");
             valortotal = Double.parseDouble(request.getParameter("valortotal"));
             cliente_login = request.getParameter("cliente_login");

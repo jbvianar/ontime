@@ -25,8 +25,8 @@ public class PedidoNegocio {
      * @param estabelecimento_login
      * @return
      */
-    public boolean inserir(Long id, String observacoes, String agendamento, Integer senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
-        if (id == null || id <= 0 || senhadopedido == null || senhadopedido <= 0 || status == null || valortotal == null || valortotal <= 0 || status.trim().length() == 0 || cliente_login == null || cliente_login.trim().length() == 0 || estabelecimento_login == null || estabelecimento_login.trim().length() == 0) {
+    public boolean inserir(Long id, String observacoes, String agendamento, String senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
+        if (id == null || id <= 0 || senhadopedido == null || senhadopedido.trim().length() == 0 || status == null || status.trim().length() == 0 || valortotal == null || valortotal <= 0 || cliente_login == null || cliente_login.trim().length() == 0 || estabelecimento_login == null || estabelecimento_login.trim().length() == 0) {
             return false;
         }
         PedidoDAO dao = new PedidoDAO();
@@ -98,8 +98,8 @@ public class PedidoNegocio {
      * @param estabelecimento_login
      * @return
      */
-    public boolean alterar(Long id, String observacoes, String agendamento, Integer senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
-        if (id == null || id <= 0 || senhadopedido == null || senhadopedido <= 0 || status == null || valortotal == null || valortotal <= 0 || status.trim().length() == 0 || cliente_login == null || cliente_login.trim().length() == 0 || estabelecimento_login == null || estabelecimento_login.trim().length() == 0) {
+    public boolean alterar(Long id, String observacoes, String agendamento, String senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) {
+        if (id == null || id <= 0 || senhadopedido == null || senhadopedido.trim().length() == 0 || status == null || status.trim().length() == 0 || valortotal == null || valortotal <= 0 || cliente_login == null || cliente_login.trim().length() == 0 || estabelecimento_login == null || estabelecimento_login.trim().length() == 0) {
             return false;
         }
         PedidoDAO dao = new PedidoDAO();
