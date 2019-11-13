@@ -35,7 +35,6 @@ public class NovoCategoriaServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         // entrada
-        Integer id = Integer.parseInt(request.getParameter("id"));
         String nome = request.getParameter("nome");
         // processamento
         CategoriaNegocio categoriaNegocio = new CategoriaNegocio();
