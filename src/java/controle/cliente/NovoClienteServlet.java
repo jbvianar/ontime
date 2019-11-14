@@ -45,11 +45,11 @@ public class NovoClienteServlet extends HttpServlet {
         boolean sucessoInserir = clienteNegocio.inserir(login, senha, nome, email, telefone);
         // saída
         if (sucessoInserir) {
-            request.setAttribute("mensagem1", "Cliente inserido com sucesso");
+            request.setAttribute("mensagem1", "Cliente cadastrado com sucesso");
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/principal.jsp");
             rd.forward(request, response);
         } else {
-            request.setAttribute("mensagem", "Não foi possível inserir este cliente");
+            request.setAttribute("mensagem", "Não foi possível cadastrar cliente");
             RequestDispatcher rd = request.getRequestDispatcher("novoCliente.jsp");
             rd.forward(request, response);
         }

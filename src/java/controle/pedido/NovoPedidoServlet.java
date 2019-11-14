@@ -49,7 +49,7 @@ public class NovoPedidoServlet extends HttpServlet {
         boolean sucessoInserir = pedidoNegocio.inserir(id, observacoes, agendamento, senhadopedido, status, valortotal, cliente_login, estabelecimento_login);
         // saída
         if (sucessoInserir) {
-            request.setAttribute("mensagem", "Pedido inserida com sucesso");
+            request.setAttribute("mensagem", "Pedido inserido com sucesso");
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/pedido/listar.jsp");
             rd.forward(request, response);
         } else {
