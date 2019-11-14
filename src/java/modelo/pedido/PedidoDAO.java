@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -341,5 +342,100 @@ public class PedidoDAO {
             }
         }
         return true;
+    }
+
+    public boolean finalizarPedido(List<CarrinhoItem> carrinho, String observacoes, String agendamento, String senhadopedido, String status, Double valortotal, String cliente_login, String estabelecimento_login) throws SQLException, Exception {
+        boolean resultado = false;
+        Connection connection = null;
+        List<String> erros = new ArrayList<String>();
+        try {
+            Class.forName(JDBC_DRIVER);
+            connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            connection.setAutoCommit(false);
+
+            // etapa 1
+            long id = -1;
+            PreparedStatement preparedStatement = connection.prepareStatement("select nextval('pedido_id_seq') AS pedidoId");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                id = resultSet.getLong("pedidoId");
+            }
+            resultSet.close();
+            preparedStatement.close();
+
+            // etapa 2
+            preparedStatement = connection.prepareStatement("INSERT INTO pedido (id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login) VALUES (?, ?, ?, now(), ?, ?, ?, ?, ?)");
+            preparedStatement.setLong(1, id);
+            if (observacoes != null) {
+                preparedStatement.setString(2, observacoes);
+            } else {
+                preparedStatement.setNull(2, java.sql.Types.VARCHAR);
+            }
+            if (agendamento != null) {
+                preparedStatement.setString(3, agendamento);
+            } else {
+                preparedStatement.setNull(3, java.sql.Types.VARCHAR);
+            }
+            preparedStatement.setString(4, senhadopedido);
+            preparedStatement.setString(5, status);
+            preparedStatement.setDouble(6, valortotal);
+            preparedStatement.setString(7, cliente_login);
+            preparedStatement.setString(8, estabelecimento_login);
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+
+            // etapa 3
+            for (CarrinhoItem ci : carrinho) {
+                preparedStatement = connection.prepareStatement("SELECT quantidade FROM produto WHERE id = ?");
+                preparedStatement.setInt(1, ci.getProduto().getId());
+                resultSet = preparedStatement.executeQuery();
+                int quantidadeEmEstoque = 0;
+                while (resultSet.next()) {
+                    quantidadeEmEstoque = resultSet.getInt("quantidade");
+                }
+                resultSet.close();
+                preparedStatement.close();
+
+                if (quantidadeEmEstoque >= ci.getQuantidade()) {
+                    // etapa 3.1
+                    preparedStatement = connection.prepareStatement("INSERT INTO pedido_produto (pedido_id, produto_id, quantidade, cliente_login) VALUES (?, ?, ?, ?)");
+                    preparedStatement.setLong(1, id);
+                    preparedStatement.setInt(2, ci.getProduto().getId());
+                    preparedStatement.setInt(3, ci.getQuantidade());
+                    preparedStatement.setString(4, cliente_login);
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    // etapa 3.2
+                    preparedStatement = connection.prepareStatement("UPDATE produto SET quantidade = quantidade - ? WHERE id = ?");
+                    preparedStatement.setInt(1, ci.getQuantidade());
+                    preparedStatement.setInt(2, ci.getProduto().getId());
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                } else {
+                    erros.add("O produto " + ci.getProduto().getNome() + " não possui quantidade disponível");
+                }
+            }
+            if (erros.size() != 0) {
+                throw new Exception();
+            }
+            connection.commit();
+            resultado = true;
+        } catch (Exception ex) {
+            if (connection != null) {
+                connection.rollback();
+            }
+        } finally {
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
+        if (!erros.isEmpty()) {
+            String mensagem = "";
+            for (String e : erros) {
+                mensagem += e + "<br/>";
+            }
+            throw new Exception(mensagem);
+        }
+        return resultado;
     }
 }
