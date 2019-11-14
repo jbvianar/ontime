@@ -110,9 +110,9 @@ public class IncluirProdutoServlet extends HttpServlet {
                     request.setAttribute("quantidade", quantidade);
                     request.setAttribute("disponibilidade", disponibilidade);
                     request.setAttribute("categoria_id", categoria_id);
-                    request.setAttribute("mensagem", "Não foi possível inserir este produto");
+                    request.setAttribute("mensagem", "Não foi possível cadastrar este produto");
                 } else {
-                    request.setAttribute("mensagem", "Produto inserido com sucesso");
+                    request.setAttribute("mensagem", "Produto cadastrado com sucesso");
                 }
             } catch (Exception ex) {
                 request.setAttribute("nome", nome);
@@ -121,7 +121,7 @@ public class IncluirProdutoServlet extends HttpServlet {
                 request.setAttribute("quantidade", quantidade);
                 request.setAttribute("disponibilidade", disponibilidade);
                 request.setAttribute("categoria_id", categoria_id);
-                request.setAttribute("mensagem", "Não foi possível inserir este produto");
+                request.setAttribute("mensagem", "Não foi possível cadastrar este produto");
             }
             RequestDispatcher rd = request.getRequestDispatcher("novoProduto.jsp");
             rd.forward(request, response);

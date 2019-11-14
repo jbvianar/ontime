@@ -5,7 +5,7 @@
  */
 package modelo.produto;
 
-import modelo.categoria.Categoria;
+//import modelo.categoria.Categoria;
 
 /**
  *
