@@ -40,6 +40,21 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <h2>Produtos</h2>
         <table border="1">
             <tr>
+                <td><a href="MostrarProdutoComboServlet">Combos</a></td>
+                <td><a href="MostrarProdutoBebidaServlet">Bebidas</a></td>
+            </tr>
+            <tr>
+                <td><a href="MostrarProdutoSalgadoServlet">Salgados</a></td>
+                <td><a href="MostrarProdutoDoceServlet">Doces</a></td>
+            </tr>
+            <tr>
+                <td><a href="MostrarProdutoVariedadeServlet">Variedades</a></td>
+                <td><a href="MostrarTodosServlet">Todos</a></td>
+            </tr>
+        </table>
+        
+        <table border="1">
+            <tr>
                 <td>Nome</td>
                 <td>Descrição</td>
                 <td>Preço</td>

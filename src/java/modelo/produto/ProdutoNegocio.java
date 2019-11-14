@@ -63,6 +63,14 @@ public class ProdutoNegocio {
         ProdutoDAO dao = new ProdutoDAO();
         return dao.obterProduto(id);
     }
+    
+    public List<Produto> obterPorCategoria(Integer categoria_id) {
+        if (categoria_id == null || categoria_id <= 0) {
+            return null;
+        }
+        ProdutoDAO dao = new ProdutoDAO();
+        return dao.obterPorCategoria(categoria_id);
+    }
 
     /**
      * Método utilizado para alterar um produto existente

@@ -29,7 +29,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<div id="titulo">Cadastro de Funcionários</div>
+<div id="titulo">Cadastro de Estabelecimentos</div>
 <% List<Estabelecimento> resultado = (List<Estabelecimento>) request.getAttribute("resultado"); %>
 <% if (resultado != null && resultado.size() > 0) { %>
 <table>

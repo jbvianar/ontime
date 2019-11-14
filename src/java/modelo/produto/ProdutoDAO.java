@@ -107,6 +107,41 @@ public class ProdutoDAO {
         }
         return produto;
     }
+    
+    /**
+     * Método utilizado para recuperar produtos pela categoria
+     *
+     * @categoria_id
+     * @return
+     */
+    public List<Produto> obterPorCategoria(Integer categoria_id) {
+        List<Produto> resultado = new ArrayList<Produto>();
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, nome, descricao, preco, imagem, quantidade, disponibilidade, categoria_id FROM produto WHERE categoria_id = ?");
+            preparedStatement.setInt(1, categoria_id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Produto produto = new Produto();
+                produto.setId(resultSet.getInt("id"));
+                produto.setNome(resultSet.getString("nome"));
+                produto.setDescricao(resultSet.getString("descricao"));
+                produto.setPreco(resultSet.getDouble("preco"));
+                produto.setImagem(resultSet.getString("imagem"));
+                produto.setQuantidade(resultSet.getInt("quantidade"));
+                produto.setDisponibilidade(resultSet.getBoolean("disponibilidade"));
+                produto.setCategoria_id(resultSet.getInt("categoria_id"));
+                resultado.add(produto);
+            }
+            resultSet.close();
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return new ArrayList<Produto>();
+        }
+        return resultado;
+    }
 
     /**
      * Método utilizado para inserir um novo produto

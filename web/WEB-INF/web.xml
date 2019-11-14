@@ -208,6 +208,30 @@
         <servlet-name>AlterarEstabelecimentoStatusServlet</servlet-name>
         <servlet-class>controle.estabelecimento.AlterarEstabelecimentoStatusServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MostrarProdutoComboServlet</servlet-name>
+        <servlet-class>controle.produto.MostrarProdutoComboServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarProdutoBebidaServlet</servlet-name>
+        <servlet-class>controle.produto.MostrarProdutoBebidaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarProdutoSalgadoServlet</servlet-name>
+        <servlet-class>controle.produto.MostrarProdutoSalgadoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarProdutoDoceServlet</servlet-name>
+        <servlet-class>controle.produto.MostrarProdutoDoceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarProdutoVariedadeServlet</servlet-name>
+        <servlet-class>controle.produto.MostrarProdutoVariedadeServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MostrarTodosServlet</servlet-name>
+        <servlet-class>controle.produto.MostrarTodosServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -415,6 +439,30 @@
     <servlet-mapping>
         <servlet-name>AlterarEstabelecimentoStatusServlet</servlet-name>
         <url-pattern>/AlterarEstabelecimentoStatusServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProdutoComboServlet</servlet-name>
+        <url-pattern>/MostrarProdutoComboServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProdutoBebidaServlet</servlet-name>
+        <url-pattern>/MostrarProdutoBebidaServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProdutoSalgadoServlet</servlet-name>
+        <url-pattern>/MostrarProdutoSalgadoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProdutoDoceServlet</servlet-name>
+        <url-pattern>/MostrarProdutoDoceServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarProdutoVariedadeServlet</servlet-name>
+        <url-pattern>/MostrarProdutoVariedadeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MostrarTodosServlet</servlet-name>
+        <url-pattern>/MostrarTodosServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

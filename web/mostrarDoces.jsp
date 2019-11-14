@@ -34,7 +34,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         DecimalFormat formatarMoeda = new DecimalFormat("#,##0.00");
         %>
         <%
-            List<Produto> produtos = (List<Produto>) request.getAttribute("produtos");
+            List<Produto> produtos = (List<Produto>) request.getAttribute("doces");
             if (produtos != null && produtos.size() > 0) {
         %> 
         <h2>Doces</h2>
@@ -71,7 +71,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <%
             } else {
         %>
-        <div>Não existem produtos cadastrados</div>
+        <div>Não existem produtos cadastrados nesta categoria</div>
         <%
             }
         %>
