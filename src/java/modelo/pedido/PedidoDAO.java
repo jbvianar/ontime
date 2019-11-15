@@ -163,22 +163,23 @@ public class PedidoDAO {
     }
 
     /**
-     * Método utilizado para obter um pedido pelo login do cliente
+     * Método utilizado para obter um pedido pelo status
      *
-     * @param id
+     * @param status
      * @return
      */
-    public Pedido obterPedidoPorLogin(String login) {
-        Pedido pedido = null;
+    public List<Pedido> obterTodosPorStatus(String status) {
+        List<Pedido> resultado = new ArrayList<Pedido>();
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE id = ?");
-            preparedStatement.setString(1, login);
+            Statement statement = connection.createStatement();
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE status = ?");
+            preparedStatement.setString(1, status);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
             while (resultSet.next()) {
-                pedido = new Pedido();
+                Pedido pedido = new Pedido();
                 pedido.setId(resultSet.getLong("id"));
                 pedido.setObservacoes(resultSet.getString("observacoes"));
                 pedido.setAgendamento(resultSet.getString("agendamento"));
@@ -189,14 +190,15 @@ public class PedidoDAO {
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
                 pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
+                resultado.add(pedido);
             }
             resultSet.close();
-            preparedStatement.close();
+            statement.close();
             connection.close();
         } catch (Exception ex) {
-            return null;
+            return new ArrayList<Pedido>();
         }
-        return pedido;
+        return resultado;
     }
 
     /**
@@ -279,6 +281,31 @@ public class PedidoDAO {
             preparedStatement.setString(6, cliente_login);
             preparedStatement.setString(7, estabelecimento_login);
             preparedStatement.setLong(8, id);
+            resultado = (preparedStatement.executeUpdate() > 0);
+            preparedStatement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return false;
+        }
+        return resultado;
+    }
+    
+     /**
+     * Método para mudar só o status de um pedido feito
+     *
+     * @param id
+     * @param status
+     * @return
+     */
+    
+    public boolean mudarStatus(Long id, String status) {
+        boolean resultado = false;
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE pedido SET status = ? WHERE id = ?");
+            preparedStatement.setString(1, status);
+            preparedStatement.setLong(2, id);
             resultado = (preparedStatement.executeUpdate() > 0);
             preparedStatement.close();
             connection.close();

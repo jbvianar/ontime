@@ -33,7 +33,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<div id="titulo">Histórico de Pedidos</div>
+<div id="titulo">Pedidos Entregues</div>
 <% List<Pedido> resultado = (List<Pedido>) request.getAttribute("resultado"); %>
 <% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");%>
 <% if (resultado != null && resultado.size() > 0) { %>

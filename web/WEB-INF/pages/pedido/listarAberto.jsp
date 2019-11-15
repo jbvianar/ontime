@@ -33,7 +33,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<div id="titulo">Histórico de Pedidos</div>
+<div id="titulo">Pedidos Abertos (sem agendamento)</div>
 <% List<Pedido> resultado = (List<Pedido>) request.getAttribute("resultado"); %>
 <% SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");%>
 <% if (resultado != null && resultado.size() > 0) { %>
@@ -57,7 +57,15 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <td><%= sdf.format(item.getHorario())%></td>
         <td><%= item.getObservacoes() == null ? "" : item.getObservacoes() %></td>
         <td><%= item.getAgendamento() == null ? "" : item.getAgendamento() %></td>
-        <td><%= item.getStatus()%></td>
+        <td>
+            <form action="AlterarPedidoStatusServlet" id="statusPedido">
+                <input type="hidden" name="id" value="<%= item.getId() %>"/>
+                <select name="status" id="status" onchange="document.getElementById('statusPedido').submit()">
+                    <option value="em preparo">Em preparo</option>
+                    <option value="pronto">Pronto para entrega</option>
+                </select>
+            </form>
+        </td>
         <td><%= item.getSenhadopedido()%></td>
         <td>
             <% List<Pedido_produto> produtos = item.getProdutos();

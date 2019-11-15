@@ -12,8 +12,8 @@ import java.util.List;
  * Classe de negócio que encapsula as regras de negócio dos estabelecimentos
  */
 public class EstabelecimentoNegocio {
-   
-    public boolean mudarStatus(Boolean status, String login) {
+   //método que muda só o status do estabelecimento
+    public boolean mudarStatus(String login, Boolean status) {
         EstabelecimentoDAO dao = new EstabelecimentoDAO();
         return dao.mudarStatus(login, status);
     }

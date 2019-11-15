@@ -3,21 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controle.estabelecimento;
+package controle.pedido;
 
 import java.io.IOException;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import modelo.estabelecimento.EstabelecimentoNegocio;
+import modelo.pedido.Pedido;
+import modelo.pedido.PedidoNegocio;
 
 /**
  *
- * @author Sony
+ *
+ *
+ * Classe que representa a ação de consultar pedidos existentes
  */
-public class AlterarEstabelecimentoStatusServlet extends HttpServlet {
+public class ListarAbertoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,13 +36,11 @@ public class AlterarEstabelecimentoStatusServlet extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        String status = request.getParameter("status");
-        EstabelecimentoNegocio estabelecimentoNegocio = new EstabelecimentoNegocio();
-        HttpSession session = request.getSession();
-        estabelecimentoNegocio.mudarStatus(session.getAttribute("login").toString(), Boolean.parseBoolean(status));
-        request.setAttribute("status", status);
-        request.getRequestDispatcher("InicioServlet").forward(request, response);
-                
+        PedidoNegocio pedidoNegocio = new PedidoNegocio();
+        List<Pedido> resultado = pedidoNegocio.obterTodosPorStatus("em preparo");//em preparo vai para pronto
+        request.setAttribute("resultado", resultado);//if do resultado, se o size for zero é porque não tem nada
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/pedido/listarAberto.jsp");
+        rd.forward(request, response);
     }
 
 }

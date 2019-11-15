@@ -51,7 +51,7 @@ public class IncluirCategoriaServlet extends HttpServlet {
             // saída
             if (sucessoInserir) {
                 request.setAttribute("mensagem", "Categoria inserida com sucesso");
-                RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/categoria/listar.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("ListarCategoriaServlet");
                 rd.forward(request, response);
             } else {
                 request.setAttribute("mensagem", "Não foi possível inserir esta categoria");

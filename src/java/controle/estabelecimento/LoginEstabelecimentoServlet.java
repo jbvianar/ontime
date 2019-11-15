@@ -47,7 +47,7 @@ public class LoginEstabelecimentoServlet extends HttpServlet {
             HttpSession session = request.getSession(true); // cria e referencia a sessão do usuário
             session.setAttribute("login", login); // coloca o atributo login na sessão do usuário
             session.setAttribute("tipo", "estabelecimento"); //cria o atributo do tipo "estabelecimento" na sessão do usuário
-            RequestDispatcher rd = request.getRequestDispatcher("InicioServlet"); // despacha a requisição para a página principal.jsp, encaminhando as instâncias de request e response 
+            RequestDispatcher rd = request.getRequestDispatcher("ListarAbertoServlet"); // despacha a requisição para a página principal.jsp, encaminhando as instâncias de request e response 
             rd.forward(request, response);
         } else {
             request.setAttribute("mensagem2", "Login ou senha de estabelecimento incorreta"); // coloca uma mensagem no objeto request

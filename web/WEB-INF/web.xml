@@ -232,6 +232,30 @@
         <servlet-name>MostrarTodosServlet</servlet-name>
         <servlet-class>controle.produto.MostrarTodosServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListarAbertoServlet</servlet-name>
+        <servlet-class>controle.pedido.ListarAbertoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarAgendadoServlet</servlet-name>
+        <servlet-class>controle.pedido.ListarAgendadoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarProntoServlet</servlet-name>
+        <servlet-class>controle.pedido.ListarProntoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarEntregueServlet</servlet-name>
+        <servlet-class>controle.pedido.ListarEntregueServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AlterarPedidoStatusServlet</servlet-name>
+        <servlet-class>controle.pedido.AlterarPedidoStatusServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarHistoricoServlet</servlet-name>
+        <servlet-class>controle.pedido.ListarHistoricoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -463,6 +487,30 @@
     <servlet-mapping>
         <servlet-name>MostrarTodosServlet</servlet-name>
         <url-pattern>/MostrarTodosServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarAbertoServlet</servlet-name>
+        <url-pattern>/ListarAbertoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarAgendadoServlet</servlet-name>
+        <url-pattern>/ListarAgendadoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarProntoServlet</servlet-name>
+        <url-pattern>/ListarProntoServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarEntregueServlet</servlet-name>
+        <url-pattern>/ListarEntregueServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AlterarPedidoStatusServlet</servlet-name>
+        <url-pattern>/AlterarPedidoStatusServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarHistoricoServlet</servlet-name>
+        <url-pattern>/ListarHistoricoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

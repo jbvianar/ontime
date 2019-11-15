@@ -35,13 +35,24 @@
                         <div class="div-table-col"><a href="LogoutEstabelecimentoServlet">Sair</a></div>
                     </div>
                     <div class="div-table-col">
+                        <%
+                        String status = null;
+                        if (request.getAttribute("status") != null) {
+                            status = request.getAttribute("status").toString();
+                        }    
+                        %>
                         <form action="AlterarEstabelecimentoStatusServlet" id="statusLanchonete">
                             <select name="status" id="status" onchange="document.getElementById('statusLanchonete').submit()">
-                                <option value="true">Lanchonete Aberta</option>
-                                <option value="false">Lanchonete Fechada</option>
+                                <option value="true"<%= (status != null && status.equalsIgnoreCase("true")) ? " selected" : "" %>>Lanchonete Aberta</option>
+                                <option value="false"<%= (status != null && status.equalsIgnoreCase("false")) ? " selected" : "" %>>Lanchonete Fechada</option>
                             </select>
                         </form>
                     </div>
+                    <div class="div-table-col"><a href="ListarAbertoServlet">Pedidos Abertos (sem agendamento)</a></div>
+                    <div class="div-table-col"><a href="ListarAgendadoServlet">Pedidos Abertos Agendados</a></div>
+                    <div class="div-table-col"><a href="ListarProntoServlet">Pedidos Prontos para Entrega</a></div>
+                    <div class="div-table-col"><a href="ListarEntregueServlet">Pedidos Entregues</a></div>
+                    <div class="div-table-col"><a href="ListarHistoricoServlet">Histórico de Pedidos</a></div>
                 </div>
             </center>
         </div>

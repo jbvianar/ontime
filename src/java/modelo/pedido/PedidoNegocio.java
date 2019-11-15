@@ -12,6 +12,11 @@ import java.util.List;
  * Classe de negócio que encapsula as regras de negócio dos pedidos
  */
 public class PedidoNegocio {
+    //método que muda só o status do pedido
+    public boolean mudarStatus(Long id, String status) {
+        PedidoDAO dao = new PedidoDAO();
+        return dao.mudarStatus(id, status);
+    }
     /**
      * Método utilizado para inserir um novo pedido
      *
@@ -77,13 +82,14 @@ public class PedidoNegocio {
      * @param cliente_login
      * @return
      */
-    public Pedido obterPedidoPorLogin(String cliente_login) {
-        if (cliente_login == null || cliente_login.trim().length() == 0) {
+    public List<Pedido> obterTodosPorStatus(String status) {
+        if (status == null || status.trim().length() == 0) {
             return null;
         }
         PedidoDAO dao = new PedidoDAO();
-        return dao.obterPedidoPorLogin(cliente_login);
+        return dao.obterTodosPorStatus(status);
     }
+
 
     /**
      * Método utilizado para alterar um pedido existente

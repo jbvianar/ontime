@@ -160,6 +160,13 @@ public class EstabelecimentoDAO {
         return resultado;
     }
     
+     /**
+     * Método para mudar só o status do estabelecimento
+     *
+     * @param login
+     * @param status
+     * @return
+     */
     public boolean mudarStatus(String login, Boolean status) {
         boolean resultado = false;
         try {
