@@ -98,7 +98,7 @@ public class PedidoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             Statement statement = connection.createStatement();
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE cliente_login = ?");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND cliente_login = ?");
             preparedStatement.setString(1, cliente_login);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
@@ -113,6 +113,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setCliente_nome(resultSet.getString("cliente_nome"));
                 pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
                 resultado.add(pedido);
             }
@@ -136,7 +137,7 @@ public class PedidoDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND id = ?");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
@@ -151,6 +152,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setCliente_nome(resultSet.getString("cliente_nome"));
                 pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
             }
             resultSet.close();
@@ -174,7 +176,7 @@ public class PedidoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             Statement statement = connection.createStatement();
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE status = ?");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND status = ?");
             preparedStatement.setString(1, status);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
@@ -189,6 +191,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setCliente_nome(resultSet.getString("cliente_nome"));
                 pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
                 resultado.add(pedido);
             }

@@ -46,7 +46,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <th>Status</th>
         <th>Senha do Pedido</th>
         <th>Valor Total</th>
-        <th>Login do Cliente</th>
+        <th>Cliente</th>
         <th>Login do Estabelecimento</th>
         <th class="controles"></th>
     </tr>
@@ -59,7 +59,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <td><%= item.getStatus()%></td>
         <td><%= item.getSenhadopedido()%></td>
         <td>R$ <%= formatarMoeda.format(item.getValortotal())%></td>
-        <td><%= item.getCliente_login()%></td>
+        <td><%= item.getCliente_nome()%></td>
         <td><%= item.getEstabelecimento_login()%></td>
         </tr>
     <% } %>

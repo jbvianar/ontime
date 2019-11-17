@@ -39,7 +39,7 @@ public class ListarEntregueServlet extends HttpServlet {
         PedidoNegocio pedidoNegocio = new PedidoNegocio();
         List<Pedido> resultado = pedidoNegocio.obterTodosPorStatus("entregue");//em preparo vai para pronto
         request.setAttribute("resultado", resultado);//if do resultado, se o size for zero é porque não tem nada
-        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/pedido/listarAberto.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/pedido/listarEntregue.jsp");
         rd.forward(request, response);
     }
 

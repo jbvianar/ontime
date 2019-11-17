@@ -54,7 +54,12 @@ public class ProcessarPedidoServlet extends HttpServlet {
             if (request.getParameter("agendamento") != null && request.getParameter("agendamento").trim().length() > 0) {
                 agendamento = request.getParameter("agendamento");
             };
-            String status = "em preparo";
+            String status = null;
+            if (agendamento == null){
+                status = "em preparo";
+            } else {
+                status = "agendado";
+            }
             Double valorTotal = Double.parseDouble(request.getParameter("valorTotal"));
             String estabelecimento_login = "a";
             String cliente_login = (String) session.getAttribute("login");

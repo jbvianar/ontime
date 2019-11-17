@@ -37,8 +37,15 @@ public class AlterarPedidoStatusServlet extends HttpServlet {
         PedidoNegocio pedidoNegocio = new PedidoNegocio();
         //HttpSession session = request.getSession();
         pedidoNegocio.mudarStatus(id, status);
-        request.getRequestDispatcher("ListarProntoServlet").forward(request, response);
-                
+        if (status.equalsIgnoreCase("pronto")){
+            request.getRequestDispatcher("ListarProntoServlet").forward(request, response);
+        } else if (status.equalsIgnoreCase("entregue")) {
+            request.getRequestDispatcher("ListarEntregueServlet").forward(request, response);
+        } else if (status.equalsIgnoreCase("agendado")) {
+            request.getRequestDispatcher("ListarAgendadoServlet").forward(request, response);//////
+        } else {
+            request.getRequestDispatcher("ListarAbertoServlet").forward(request, response);//////
+        }
     }
 
 }

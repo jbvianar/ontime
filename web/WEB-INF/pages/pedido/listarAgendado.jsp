@@ -59,6 +59,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <td><%= item.getAgendamento() == null ? "" : item.getAgendamento() %></td>
         <td>
             <form action="AlterarPedidoStatusServlet" id="statusPedido">
+                <input type="hidden" name="id" value="<%= item.getId() %>"/>
                 <select name="status" id="status" onchange="document.getElementById('statusPedido').submit()">
                     <option value="agendado">Agendado</option>
                     <option value="pronto">Pronto para entrega</option>
