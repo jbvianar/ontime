@@ -25,7 +25,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div id="titulo">Seus Dados</div>
+<div id="titulo">Minha Conta</div>
 <jsp:useBean id="cliente" class="modelo.cliente.Cliente" scope="request" />
 <div class="rotulo">Nome:</div>
 <div class="valor"><jsp:getProperty name="cliente" property="nome" /></div>

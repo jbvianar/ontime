@@ -183,6 +183,34 @@ public class EstabelecimentoDAO {
         }
         return resultado;
     }
+    
+    /**
+     * Método para mostrar só o status do estabelecimento
+     *
+     * @param login
+     * @param status
+     * @return
+     */
+    public List<Estabelecimento> mostrarStatus(String login, Boolean status) {
+        List<Estabelecimento> resultado = new ArrayList<Estabelecimento>();
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT status FROM estabelecimento");
+            while (resultSet.next()) {
+                Estabelecimento estabelecimento = new Estabelecimento();
+                estabelecimento.setStatus(resultSet.getBoolean("status"));
+                resultado.add(estabelecimento);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return new ArrayList<Estabelecimento>();
+        }
+        return resultado;
+    }
 
     /**
      * Método para excluir um estabelecimento já existente

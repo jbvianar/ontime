@@ -25,7 +25,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<div id="titulo">Seus Dados</div>
+<div id="titulo">Meus Dados</div>
 <jsp:useBean id="estabelecimento" class="modelo.estabelecimento.Estabelecimento" scope="request" />
 <div class="rotulo">Razão Social:</div>
 <div class="valor"><jsp:getProperty name="estabelecimento" property="razaosocial" /></div>
@@ -37,8 +37,6 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 <div class="valor"><jsp:getProperty name="estabelecimento" property="email" /></div>
 <div class="rotulo">Telefone:</div>
 <div class="valor"><jsp:getProperty name="estabelecimento" property="telefone" /></div>
-<div class="rotulo">Status:</div>
-<div class="valor"><jsp:getProperty name="estabelecimento" property="status" /></div>
 </br>
 <div><a href="ObterEstabelecimentoServlet?login=<%= estabelecimento.getLogin()%>">Alterar Dados</a></div>
 <%@include file="rodape.jsp" %>
