@@ -25,7 +25,7 @@
             <center>
                 <div id="menu-conteudo" class="div-table">
                     <div class="div-table-row">
-                        <div class="div-table-col"><a href="InicioServlet">Home</a></div>
+                        <div class="div-table-col"><a href="">Menu Sanduíche</a></div>
                         <div class="div-table-col"><a href="VerClienteServlet">Minha Conta</a></div>
                         <div class="div-table-col"><a href="VerPedidoServlet">Meus Pedidos</a></div>
                         <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet">Carrinho de Compras</a></div>

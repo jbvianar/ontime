@@ -18,7 +18,7 @@
             <center>
                 <div id="menu-conteudo" class="div-table">
                     <div class="div-table-row">
-                        <div class="div-table-col"><a href="InicioServlet">Home</a></div>
+                        <div class="div-table-col"><a href="">Menu Sanduíche</a></div>
                         <div class="div-table-col"><a href="loginCliente.jsp">Faça login para fazer seu pedido<br/><br/></a>
                                                    <a href="novoCliente.jsp">Não tem login? Cadastre-se!</a></div>
                         <div class="div-table-col"><a href="loginEstabelecimento.jsp">É dono do estabelecimento? Faça seu login aqui!</a></div>
