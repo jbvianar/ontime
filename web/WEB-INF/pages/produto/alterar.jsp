@@ -29,7 +29,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<div id="titulo">Cadastro de Produtos</div>
+<div id="titulo">Alterar produto</div>
 <% Produto produto = (Produto) request.getAttribute("produto"); %>
 <% if (produto != null) {%>
 <form action="AlterarProdutoServlet" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
