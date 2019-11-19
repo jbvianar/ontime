@@ -26,11 +26,11 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<div id="titulo">Cadastro de Funcionários</div>
+<div id="titulo">Alterar Dados do Estabelecimento</div>
 <% Estabelecimento estabelecimento = (Estabelecimento) request.getAttribute("estabelecimento"); %>
 <% if (estabelecimento != null) {%>
 <form action="AlterarEstabelecimentoServlet" method="post">
-    <div class="rotulo">Razão Social:</div>
+     <div class="rotulo">Razão Social:</div>
     <div class="campo"><input type="text" name="razaosocial" id="razaosocial" value="<%= estabelecimento.getRazaosocial()%>" readonly="readonly" required/></div>
     <div class="rotulo">CNPJ:</div>
     <div class="campo"><input type="text" name="cnpj" id="cnpj" value="<%= estabelecimento.getCnpj()%>" readonly="readonly" required/><span id="msg"></span></div>
@@ -42,8 +42,6 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <div class="campo"><input type="text" name="email" id="email" value="<%= estabelecimento.getEmail()%>" required/></div>
     <div class="rotulo">Telefone:</div>
     <div class="campo"><input type="text" name="telefone" id="telefone" value="<%= estabelecimento.getTelefone()%>" required/></div>
-    <div class="rotulo">Status:</div>
-    <div class="campo"><input type="text" name="status" id="status" value="<%= estabelecimento.getStatus()%>" required/></div>
     <div class="controles"><input type="submit" value="Salvar" onclick="return validarCampoNumerico('cnpj', 'msg')"/></div>
 </form>
 <% }%>

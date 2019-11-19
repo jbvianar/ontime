@@ -29,7 +29,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<div id="titulo">Cadastro de Produtos</div>
+<div id="titulo">Alterar produto</div>
 <% Produto produto = (Produto) request.getAttribute("produto"); %>
 <% if (produto != null) {%>
 <form action="AlterarProdutoServlet" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
@@ -45,9 +45,13 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <div class="campo"><input type="file" name="imagem" id="imagem" /><span id="msg"></span></div><!--tags span mantidas aqui para possível uso futuro na aplicação final-->
     <div class="rotulo">Quantidade à venda:</div>
     <div class="campo"><input type="text" name="quantidade" id="quantidade" value="<%= produto.getQuantidade()%>" required/><span id="msg"></span></div><!--tags span mantidas aqui para possível uso futuro na aplicação final-->
-    <div class="rotulo">Disponibilidade:</div>
-    <div class="campo"><input type="text" name="disponibilidade" id="disponibilidade" value="<%= produto.getDisponibilidade()%>" required/></div><!--tags span mantidas aqui para possível uso futuro na aplicação final-->
-    <div class="rotulo">ID da Categoria:</div>
+    <div class="rotulo">Disponível?</div>
+    <div class="campo"><select name="disponibilidade" id="disponibilidade">
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+        </select>
+    </div>
+    <div class="rotulo">Categoria:</div>
     <div class="campo">
         <select name="categoria_id" id="categoria_id">
             <%

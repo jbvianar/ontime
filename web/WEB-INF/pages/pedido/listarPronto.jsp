@@ -41,12 +41,12 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <tr>
         <th>ID do Pedido</th>
         <th>Data e Horário</th>
+        <th>Itens</th>
+        <th>Valor Total</th>
         <th>Observações</th>
         <th>Agendamento</th>
         <th>Status</th>
         <th>Senha do Pedido</th>
-        <th>Itens</th>
-        <th>Valor Total</th>
         <th>Nome do Cliente</th>
         <th>Login do Estabelecimento</th>
         <th class="controles"></th>
@@ -55,17 +55,6 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <tr>
         <td><%= item.getId()%></td>
         <td><%= sdf.format(item.getHorario())%></td>
-        <td><%= item.getObservacoes() == null ? "" : item.getObservacoes() %></td>
-        <td><%= item.getAgendamento() == null ? "" : item.getAgendamento() %></td>
-        <td>
-            <form action="AlterarPedidoStatusServlet" id="statusPedido">
-                <select name="status" id="status" onchange="document.getElementById('statusPedido').submit()">
-                    <option value="pronto">Pronto para entrega</option>
-                    <option value="entregue">Entregue</option>
-                </select>
-            </form>
-        </td>
-        <td><%= item.getSenhadopedido()%></td>
         <td>
             <% List<Pedido_produto> produtos = item.getProdutos();
             for (int i = 0; i < produtos.size(); i++) {
@@ -77,13 +66,25 @@ if (tipo == null) {// o usuário não possui uma sessão válida
             %>
         </td>
         <td>R$ <%= formatarMoeda.format(item.getValortotal())%></td>
+        <td><%= item.getObservacoes() == null ? "" : item.getObservacoes() %></td>
+        <td><%= item.getAgendamento() == null ? "" : item.getAgendamento() %></td>
+        <td>
+            <form action="AlterarPedidoStatusServlet" id="statusPedido">
+                <input type="hidden" name="id" value="<%= item.getId() %>"/>
+                <select name="status" id="status" onchange="document.getElementById('statusPedido').submit()">
+                    <option value="pronto">Pronto para entrega</option>
+                    <option value="entregue">Entregue</option>
+                </select>
+            </form>
+        </td>
+        <td><%= item.getSenhadopedido()%></td>
         <td><%= item.getCliente_nome()%></td>
         <td><%= item.getEstabelecimento_login()%></td>
-        <td><a href="ObterPedidoServlet?id=<%= item.getId()%>">Alterar</a>&nbsp;<a href="ExcluirPedidoServlet?id=<%= item.getId()%>">Excluir</a></td>
+        <!--<td><a href="ObterPedidoServlet?id=<%--= item.getId()--%>">Alterar</a>&nbsp;<a href="ExcluirPedidoServlet?id=<%--= item.getId()--%>">Excluir</a></td>-->
     </tr>
     <% } %>
 </table>
 <% }%>
 <br/>
-<div><a href="novoPedido.jsp">Criar novo pedido</a></div>
+<!--<div><a href="novoPedido.jsp">Criar novo pedido</a></div>-->
 <%@include file="../rodape.jsp" %>

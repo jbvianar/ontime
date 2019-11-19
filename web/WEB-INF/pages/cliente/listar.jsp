@@ -43,7 +43,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <td><%= item.getEmail()%></td>
         <td><%= item.getTelefone()%></td>
         <!--DELETAR A LINHA DE BAIXO ASSIM QUE OS TESTES FICAREM PRONTOS-->
-        <td><a href="ObterClienteServlet?login=<%= item.getLogin()%>">Alterar</a>&nbsp;<a href="ExcluirClienteServlet?login=<%= item.getLogin()%>">Excluir</a></td>
+        <!--<td><a href="ObterClienteServlet?login=<%--= item.getLogin()--%>">Alterar</a>&nbsp;<a href="ExcluirClienteServlet?login=<%--= item.getLogin()--%>">Excluir</a></td>-->
     </tr>
     <% } %>
 </table>

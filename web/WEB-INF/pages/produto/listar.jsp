@@ -32,7 +32,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<div id="titulo">Cadastro de Produtos</div>
+<div id="titulo">Produtos Cadastrados</div>
 <% List<Produto> resultado = (List<Produto>) request.getAttribute("resultado"); %>
 <% if (resultado != null && resultado.size() > 0) { %>
 <table>
@@ -43,7 +43,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <th>Preço</th>
         <th>Imagem</th>
         <th>Quantidade à venda</th>
-        <th>Disponibilidade</th>
+        <th>Disponível?</th>
         <th>ID da Categoria</th>
         <th class="controles"></th>
     </tr>
@@ -55,7 +55,12 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <td>R$ <%= formatarMoeda.format(item.getPreco())%></td>
         <td><img src="MostrarImagemProdutoServlet?foto=<%= item.getImagem()%>" width="100" height="100" /></td>
         <td><%= item.getQuantidade()%></td>
-        <td><%= item.getDisponibilidade()%></td>
+        <td><% if(item.getDisponibilidade()) {%>
+                Sim
+            <%} else {%>
+                Não
+            <% } %>
+        </td>
         <td><%= item.getCategoria_id()%></td>
         <td><a href="ObterProdutoServlet?id=<%= item.getId()%>">Alterar</a>&nbsp;<a href="ExcluirProdutoServlet?id=<%= item.getId()%>">Excluir</a></td>
     </tr>

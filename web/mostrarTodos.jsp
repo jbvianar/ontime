@@ -39,14 +39,14 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         %> 
         <h2>Todos os produtos disponíveis</h2>
         <table border="1">
-            <tr>
+            <!--<tr>
                 <td>Nome</td>
                 <td>Descrição</td>
                 <td>Preço</td>
                 <td>Imagem</td>
                 <td>Disponível</td>
                 <td>Quantidade</td>
-            </tr>
+            </tr>-->
             <%
                 for (Produto p : produtos) {
             %>

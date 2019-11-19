@@ -20,6 +20,7 @@ public final class Configuracao {
     public static final String JDBC_SENHA = "jb123"; //JB
    // public static final String JDBC_SENHA = "senha"; //Rafael
     public static final String REPOSITORIO_IMAGEM_PRODUTOS = "C:\\img";
+    //public static final String loginEstabelecimento = "a";
 
     private Configuracao() {
         

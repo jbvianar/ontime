@@ -17,6 +17,12 @@ public class EstabelecimentoNegocio {
         EstabelecimentoDAO dao = new EstabelecimentoDAO();
         return dao.mudarStatus(login, status);
     }
+    //método que mostra só o status do estabelecimento
+    public List<Estabelecimento> mostrarStatus() {
+        EstabelecimentoDAO dao = new EstabelecimentoDAO();
+        return dao.obterTodos();
+    }
+    
     /**
      * Método que verifica se o login e senha de um estabelecimento é válido
      *

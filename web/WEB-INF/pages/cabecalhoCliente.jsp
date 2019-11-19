@@ -11,7 +11,7 @@
 <html><!--este é o cabeçalho visto somente com login de cliente-->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>OnTime</title>
+        <title>OnTime - Virtual Lanches</title>
         <link href="css/principal.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="js/script.js"></script>
     </head>
@@ -25,11 +25,11 @@
             <center>
                 <div id="menu-conteudo" class="div-table">
                     <div class="div-table-row">
-                        <div class="div-table-col"><a href="InicioServlet">Home</a></div>
-                        <div class="div-table-col"><a href="VerClienteServlet">Meus Dados de Cliente</a></div>
+                        <div class="div-table-col"><a href="">Menu Sanduíche</a></div>
+                        <div class="div-table-col"><a href="VerClienteServlet">Minha Conta</a></div>
                         <div class="div-table-col"><a href="VerPedidoServlet">Meus Pedidos</a></div>
                         <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet">Carrinho de Compras</a></div>
-                        <div class="div-table-col"><a href="LogoutServlet">Sair</a></div>
+                        <div class="div-table-col"><a href="LogoutServlet">Fazer Logout</a></div>
                     </div>
                 </div>
             </center>

@@ -25,7 +25,7 @@
 <%    }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<h1>Novo produto</h1>
+<h1>Cadastrar novo produto</h1>
 <form name="cadastro_produto" action="IncluirProdutoServlet" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
     <div>Nome:</div>
     <div><input type="text" name="nome" id="nome" required value="<%= (request.getAttribute("nome") != null) ? request.getAttribute("nome") : ""%>"/></div>

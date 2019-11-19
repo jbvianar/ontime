@@ -26,7 +26,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-        <h1>Novo cliente</h1>
+        <h1>Nova conta</h1>
         <form name="cadastro_cliente" action="IncluirClienteServlet" method="post">
             <div>Nome:</div>
             <div><input type="text" name="nome" id="nome" required value="<%= (request.getAttribute("nome") != null) ? request.getAttribute("nome") : "" %>"/></div>

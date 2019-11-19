@@ -11,7 +11,7 @@
 <html><!--este é o cabeçalho visto somente com login de estabelecimento-->
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>OnTime</title>
+        <title>OnTime - Virtual Lanches</title>
         <link href="css/principal.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="js/script.js"></script>
     </head>
@@ -25,14 +25,14 @@
             <center>
                 <div id="menu-conteudo" class="div-table">
                     <div class="div-table-row">
-                        <div class="div-table-col"><a href="InicioServlet">Home</a></div>
-                        <div class="div-table-col"><a href="VerEstabelecimentoServlet">Meus Dados</a></div>
-                        <div class="div-table-col"><a href="ListarClienteServlet">Cadastro de Clientes</a></div>
-                        <div class="div-table-col"><a href="ListarEstabelecimentoServlet">Cadastro de Estabelecimentos</a></div>
-                        <div class="div-table-col"><a href="ListarCategoriaServlet">Cadastro de Categorias</a></div>
-                        <div class="div-table-col"><a href="ListarProdutoServlet">Cadastro de Produtos</a></div>
-                        <div class="div-table-col"><a href="ListarPedidoServlet">Cadastro de Pedidos</a></div>
-                        <div class="div-table-col"><a href="LogoutEstabelecimentoServlet">Sair</a></div>
+                        <div class="div-table-col"><a href="">Menu Sanduíche</a></div>
+                        <div class="div-table-col"><a href="VerEstabelecimentoServlet">Minha Conta</a></div>
+                        <!--<div class="div-table-col"><a href="ListarClienteServlet">Cadastro de Clientes</a></div>-->
+                        <!--<div class="div-table-col"><a href="ListarEstabelecimentoServlet">Cadastro de Estabelecimentos</a></div>-->
+                        <!--<div class="div-table-col"><a href="ListarCategoriaServlet">Cadastro de Categorias</a></div>-->
+                        <div class="div-table-col"><a href="ListarProdutoServlet">Lista de Produtos Cadastrados</a></div>
+                        <!--<div class="div-table-col"><a href="ListarPedidoServlet">Cadastro de Pedidos</a></div>-->
+                        <div class="div-table-col"><a href="LogoutEstabelecimentoServlet">Fazer Logout</a></div>
                     </div>
                     <div class="div-table-col">
                         <%

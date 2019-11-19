@@ -26,7 +26,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<div id="titulo">Cadastro de Clientes</div>
+<div id="titulo">Alterar Dados</div>
 <% Cliente cliente = (Cliente) request.getAttribute("cliente"); %>
 <% if (cliente != null) {%>
 <form action="AlterarClienteServlet" method="post">

@@ -27,7 +27,7 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <div id="titulo">Dados da Categoria</div>
 <jsp:useBean id="categoria" class="modelo.categoria.Categoria" scope="request" />
-<div class="rotulo">ID do Categoria:</div>
+<div class="rotulo">ID da Categoria:</div>
 <div class="valor"><jsp:getProperty name="categoria" property="id" /></div>
 <div class="rotulo">Nome:</div>
 <div class="valor"><jsp:getProperty name="categoria" property="nome" /></div>

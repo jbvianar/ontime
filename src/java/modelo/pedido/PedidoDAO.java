@@ -60,7 +60,7 @@ public class PedidoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login");
+            ResultSet resultSet = statement.executeQuery("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login ORDER BY p.id DESC");
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();
             while (resultSet.next()) {
                 Pedido pedido = new Pedido();
@@ -98,7 +98,7 @@ public class PedidoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             Statement statement = connection.createStatement();
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE cliente_login = ?");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND cliente_login = ? ORDER BY p.id DESC");
             preparedStatement.setString(1, cliente_login);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
@@ -113,6 +113,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setCliente_nome(resultSet.getString("cliente_nome"));
                 pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
                 resultado.add(pedido);
             }
@@ -136,7 +137,7 @@ public class PedidoDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE id = ?");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND id = ? ORDER BY p.id DESC");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
@@ -151,6 +152,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setCliente_nome(resultSet.getString("cliente_nome"));
                 pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
             }
             resultSet.close();
@@ -174,7 +176,7 @@ public class PedidoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             Statement statement = connection.createStatement();
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login FROM pedido WHERE status = ?");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND status = ? ORDER BY p.id DESC");
             preparedStatement.setString(1, status);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
@@ -189,6 +191,7 @@ public class PedidoDAO {
                 pedido.setValortotal(resultSet.getDouble("valortotal"));
                 pedido.setCliente_login(resultSet.getString("cliente_login"));
                 pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setCliente_nome(resultSet.getString("cliente_nome"));
                 pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));/////////////////////
                 resultado.add(pedido);
             }
@@ -380,7 +383,7 @@ public class PedidoDAO {
             connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             connection.setAutoCommit(false);
 
-            // etapa 1
+            // etapa 1 - implementação do autoincremento
             long id = -1;
             PreparedStatement preparedStatement = connection.prepareStatement("select nextval('pedido_id_seq') AS pedidoId");
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -390,7 +393,7 @@ public class PedidoDAO {
             resultSet.close();
             preparedStatement.close();
 
-            // etapa 2
+            // etapa 2 - criação do pedido
             preparedStatement = connection.prepareStatement("INSERT INTO pedido (id, observacoes, agendamento, horario, senhadopedido, status, valortotal, cliente_login, estabelecimento_login) VALUES (?, ?, ?, now(), ?, ?, ?, ?, ?)");
             preparedStatement.setLong(1, id);
             if (observacoes != null) {
@@ -411,7 +414,7 @@ public class PedidoDAO {
             preparedStatement.executeUpdate();
             preparedStatement.close();
 
-            // etapa 3
+            // etapa 3 - obter a quantidade de cada produto do carrinho
             for (CarrinhoItem ci : carrinho) {
                 preparedStatement = connection.prepareStatement("SELECT quantidade FROM produto WHERE id = ?");
                 preparedStatement.setInt(1, ci.getProduto().getId());
@@ -423,8 +426,8 @@ public class PedidoDAO {
                 resultSet.close();
                 preparedStatement.close();
 
-                if (quantidadeEmEstoque >= ci.getQuantidade()) {
-                    // etapa 3.1
+                if (quantidadeEmEstoque >= ci.getQuantidade()) {//verifica se a quantidade em estoque é maior ou igual à quantidade do item no carrinho
+                    // etapa 3.1 - se o pedido for aprovado, inserir os campos do carrinho no pedido
                     preparedStatement = connection.prepareStatement("INSERT INTO pedido_produto (pedido_id, produto_id, quantidade, cliente_login) VALUES (?, ?, ?, ?)");
                     preparedStatement.setLong(1, id);
                     preparedStatement.setInt(2, ci.getProduto().getId());
@@ -432,13 +435,13 @@ public class PedidoDAO {
                     preparedStatement.setString(4, cliente_login);
                     preparedStatement.executeUpdate();
                     preparedStatement.close();
-                    // etapa 3.2
+                    // etapa 3.2 - diminuir do estoque a quantidade dos itens comprados
                     preparedStatement = connection.prepareStatement("UPDATE produto SET quantidade = quantidade - ? WHERE id = ?");
                     preparedStatement.setInt(1, ci.getQuantidade());
                     preparedStatement.setInt(2, ci.getProduto().getId());
                     preparedStatement.executeUpdate();
                     preparedStatement.close();
-                } else {
+                } else {//mostra mensagem de erro com os produtos cujo estoque é inferior à quantidade do pedido
                     erros.add("O produto " + ci.getProduto().getNome() + " não possui quantidade disponível");
                 }
             }
@@ -448,7 +451,7 @@ public class PedidoDAO {
             connection.commit();
             resultado = true;
         } catch (Exception ex) {
-            if (connection != null) {
+            if (connection != null) {//se o pedido der errado, desfazer a criação do pedido
                 connection.rollback();
             }
         } finally {

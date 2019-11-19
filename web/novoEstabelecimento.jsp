@@ -23,7 +23,7 @@
 <%    }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-<h1>Novo Estabelecimento</h1>
+<h1>Cadastre seu Estabelecimento</h1>
 <form name="cadastro_estabelecimento" action="IncluirEstabelecimentoServlet" method="post">
     <div>Razão Social:</div>
     <div><input type="text" name="razaosocial" id="razaosocial" required value="<%= (request.getAttribute("razaosocial") != null) ? request.getAttribute("razaosocial") : "" %>" /></div>
