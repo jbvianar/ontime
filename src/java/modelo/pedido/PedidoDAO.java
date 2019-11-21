@@ -137,7 +137,7 @@ public class PedidoDAO {
         try {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND id = ? ORDER BY p.id DESC");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND p.id = ? ORDER BY p.id DESC");
             preparedStatement.setLong(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////
@@ -176,7 +176,7 @@ public class PedidoDAO {
             Class.forName(JDBC_DRIVER);
             Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
             Statement statement = connection.createStatement();
-            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND status = ? ORDER BY p.id DESC");
+            PreparedStatement preparedStatement = connection.prepareCall("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND p.status = ? ORDER BY p.id DESC");
             preparedStatement.setString(1, status);
             ResultSet resultSet = preparedStatement.executeQuery();
             Pedido_produtoDAO pdao = new Pedido_produtoDAO();//////////////////

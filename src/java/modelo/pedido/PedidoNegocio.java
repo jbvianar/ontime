@@ -76,8 +76,8 @@ public class PedidoNegocio {
         return dao.obterPedido(id);
     }
     
-        /**
-     * Método utilizado para obter pedido por meio do login do cliente
+    /**
+     * Método utilizado para obter pedido por meio do status
      *
      * @param cliente_login
      * @return
@@ -124,6 +124,20 @@ public class PedidoNegocio {
         }
         PedidoDAO dao = new PedidoDAO();
         return dao.excluir(id);
+    }
+    
+    /**
+     * Método para excluir todos os pedidos de um cliente
+     *
+     * @param cliente_login
+     * @return
+     */
+    public boolean excluirPedidos(String cliente_login) {
+        if (cliente_login == null || cliente_login.trim().length() == 0) {
+            return false;
+        }
+        PedidoDAO dao = new PedidoDAO();
+        return dao.excluirPedidos(cliente_login);
     }
     
     
