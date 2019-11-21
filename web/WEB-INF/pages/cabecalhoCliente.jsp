@@ -1,3 +1,5 @@
+<%@page import="modelo.estabelecimento.Estabelecimento"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String login = (String) session.getAttribute("login");
@@ -30,6 +32,13 @@
                         <div class="div-table-col"><a href="VerPedidoServlet">Meus Pedidos</a></div>
                         <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet">Carrinho de Compras</a></div>
                         <div class="div-table-col"><a href="LogoutServlet">Fazer Logout</a></div>
+                        <div>
+                            <% List<Estabelecimento> resultado = (List<Estabelecimento>) request.getAttribute("status");%>
+                            <% for (int i = 0; resultado != null && i < resultado.size(); i++) {%>
+                            <% Estabelecimento item = resultado.get(i);%>  
+                            <div><%= (item.getStatus() != null && item.getStatus() == true) ? "Lanchonete Aberta" : "Lanchonete Fechada"%></div>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
             </center>

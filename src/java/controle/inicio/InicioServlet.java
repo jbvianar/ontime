@@ -15,6 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.carrinho.CarrinhoItem;
 import modelo.carrinho.CarrinhoNegocio;
 import modelo.cookie.CookieUtils;
+import modelo.email.EmailEnviado;
+import modelo.estabelecimento.Estabelecimento;
+import modelo.estabelecimento.EstabelecimentoNegocio;
 import modelo.produto.ProdutoNegocio;
 
 /**
@@ -63,6 +66,12 @@ public class InicioServlet extends HttpServlet {
         }
         c.setMaxAge(Integer.MAX_VALUE); // atualiza a idade do cookie para o máximo do valor inteiro
         response.addCookie(c);
+        
+        EstabelecimentoNegocio estabelecimentoNegocio = new EstabelecimentoNegocio();
+        List<Estabelecimento> status = estabelecimentoNegocio.mostrarStatus();
+        request.setAttribute("status", status);
+        EmailEnviado email = new EmailEnviado();
+        //email.enviarEmail();
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
