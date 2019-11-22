@@ -38,7 +38,7 @@
                     <li>
                         <div class="circle_photo" id="circle_photo">
                             <img src="img/profile.png"></div>
-                        <div class="texto" id="texto"><p>Olá, Fulano Fulano</p></div>
+                        <div class="texto" id="texto"><p>Olá, Rafael</p></div>
                     </li>
 
                     <li><a href="InicioServlet">Início</a></li>

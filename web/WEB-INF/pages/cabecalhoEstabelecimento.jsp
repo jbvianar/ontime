@@ -35,7 +35,7 @@
                     <li>
                         <div class="circle_photo" id="circle_photo">
                             <img src="img/profile.png"></div>
-                        <div class="texto" id="texto"><p>Olá, Fulano Fulano</p></div>
+                        <div class="texto" id="texto"><p>Olá, Adriano Queiroz</p></div>
                     </li>
 
                     <li><a href="InicioServlet">Início</a></li>
@@ -45,7 +45,8 @@
                     <li><a href="ListarAgendadoServlet">Pedidos Agendados</a></li>
                     <li><a href="ListarProntoServlet">Pedidos Prontos</a></li>
                     <li><a href="ListarEntregueServlet">Pedidos Entregues</a></li>
-                    <li><a href="ListarHistoricoServlet">Histórico</a></li>
+                    <li><a href="ListarHistoricoServlet">Histórico do Dia</a></li>
+                    <!--<li><a href="IncluirCategoriaServlet">Cadastro Categoria</a></li>--><!--página a ser retirada-->
                     <li><a href="LogoutEstabelecimentoServlet">Sair</a></li>
                 </ul>
             </div>
@@ -53,7 +54,7 @@
 
         <div id="menu">
 
-            <!--<div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet">🛒</a></div>--->
+
             <div class="div-table-col">
                 <%
                     String status = null;

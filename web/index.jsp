@@ -35,12 +35,13 @@ if (tipo == null) {// o usuário não possui uma sessão válida
     <h2>Faça sua escolha!</h2>
         
         <div class="grid-container-01">
-        <a href="MostrarProdutoComboServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
-        <a href="MostrarProdutoBebidaServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
-        <a href="MostrarProdutoSalgadoServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
-        <a href="MostrarProdutoDoceServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
-        <a href="MostrarProdutoVariedadeServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
-        <a href="MostrarTodosServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
-    </div>
+        <a href="MostrarProdutoComboServlet"><div class="grid-item"><img src="img/combos.jpg"></div></a>
+        <a href="MostrarProdutoBebidaServlet"><div class="grid-item"><img src="img/bebidas.jpg"></div></a>
+        <a href="MostrarProdutoSalgadoServlet"><div class="grid-item"><img src="img/salgados.jpg"></div></a>
+        <a href="MostrarProdutoDoceServlet"><div class="grid-item"><img src="img/doces.jpg"></div></a>
+        <a href="MostrarProdutoVariedadeServlet"><div class="grid-item"><img src="img/variedades.jpg"></div></a>
+        <a href="MostrarTodosServlet"><div class="grid-item"><img src="img/todos.jpg"></div></a>
+        </div>
+    <br/><br/><br/>
 
-<%--@include file="WEB-INF/pages/rodape.jsp" --%>
+<%@include file="WEB-INF/pages/rodape.jsp" %>

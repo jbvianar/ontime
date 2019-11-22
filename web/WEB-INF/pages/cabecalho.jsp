@@ -31,13 +31,14 @@
                     <li>
                         <div class="circle_photo" id="circle_photo">
                             <img src="img/profile.png"></div>
-                        <div class="texto" id="texto"><p>Olá, Fulano Fulano</p></div>
+                        <div class="texto" id="texto"><p>Olá, novo usuário</p></div>
                     </li>
 
                     <li><a href="InicioServlet">Início</a></li>
                     <li><a href="loginCliente.jsp">Login Cliente</a></li>
-                    <li><a href="loginEstabelecimento.jsp">Login Estabelecimento</a></li>
                     <li><a href="novoCliente.jsp">Cadastre-se</a></li>
+                    <li><a href="loginEstabelecimento.jsp">Login Estabelecimento</a></li>
+                    <!--<li><a href="IncluirEstabelecimentoServlet">Cadastro Estabelecimento</a></li>--><!--esta página será removida--> 
                 </ul>
             </div>
         </div>
@@ -46,11 +47,7 @@
 
             <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet"><img src="img/carrinho.png"></a></div>
             <div>
-                <% List<Estabelecimento> resultado = (List<Estabelecimento>) request.getAttribute("status");%>
-                <% for (int i = 0; resultado != null && i < resultado.size(); i++) {%>
-                <% Estabelecimento item = resultado.get(i);%>  
-                <div><%= (item.getStatus() != null && item.getStatus() == true) ? "Lanchonete Aberta" : "Lanchonete Fechada"%></div>
-                <% } %>
+                
             </div>
         </div>
         <%

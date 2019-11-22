@@ -36,7 +36,7 @@
     <div>E-mail:</div>
     <div><input type="text" name="email" id="email" required value="<%= (request.getAttribute("email") != null) ? request.getAttribute("email") : "" %>"/></div>
     <div>Telefone:</div>
-    <div><input type="text" name="telefone" id="telefone"  value="<%= (request.getAttribute("telefone") != null) ? request.getAttribute("telefone") : "" %>"/></div>
+    <div><input type="text" name="telefone" id="telefone" required value="<%= (request.getAttribute("telefone") != null) ? request.getAttribute("telefone") : "" %>"/></div>
     <div>Status:</div>
     <div><input type="text" name="status" id="status" required value="<%= (request.getAttribute("status") != null) ? request.getAttribute("status") : "" %>"/></div>
     <div><input type="submit" value="Salvar" onclick="return validarCampoNumerico('cnpj', 'msg')"/></div>
