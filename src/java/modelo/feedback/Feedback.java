@@ -14,7 +14,7 @@ import java.util.Date;
 public class Feedback {
     private Long id;//AUTOINCREMENTO
     private Date horario;//data + horário - AUTOCAPTADO
-    private String mensagem;//caixa de texto com limite de caracteres
+    private String msg;//mensagem com limite de caracteres
     private String cliente_login;
     
     private String cliente_nome;//para recuperar o nome do cliente sem mostrar seu login
@@ -43,12 +43,12 @@ public class Feedback {
         this.horario = horario;
     }
 
-    public String getMensagem() {
-        return mensagem;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public String getCliente_login() {

@@ -1,0 +1,82 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    margin: 0px;
+    color: darkblue;
+}
+#logo {
+    padding: 15px 0px 15px 0px;
+    background-color: lavender;
+    font-size: 24px;
+}
+#logo-conteudo {
+    text-align: center;
+    font-weight: bold;
+    width: 700px;
+}
+#menu {
+    padding: 15px 0px 15px 0px;
+    background-color: skyblue;
+    color: #ffffff;
+}
+#menu-conteudo {
+    text-align: left;
+    width: auto;
+}
+#menu-conteudo div a {
+    color: #000000;
+}
+.div-table { 
+    display:table; 
+    width: auto; 
+}
+.div-table-row {
+    display:table-row;
+    width: auto;
+}
+.div-table-col { 
+    border: 1px solid #484848; 
+    display: table-cell; 
+    color: #000000;
+    padding: 5px; 
+    width: auto; 
+    text-align: center; 
+}
+#mensagem {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid #ff0000;
+    width: 700px;
+    font-weight: bold;
+    color: #ff0000;
+}
+#conteudo {
+    width: 700px;
+    text-align: left;
+    min-height: 500px;
+    padding: 15px;
+}
+#conteudo table {
+    width: 100%;
+    border: 1px solid darkblue;
+}
+#conteudo table tr th.controles {
+    width: 100px;
+}
+#titulo {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+.rotulo {
+    width: 150px;
+}
+.valor {
+
+}
+#rodape {
+    background-color: lavender;
+    text-align: center;
+    font-weight: bold;
+    padding: 15px;
+}

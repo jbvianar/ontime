@@ -23,12 +23,11 @@
 <%    }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-        <h1>Faça seu login</h1>
-            <form name="logincliente" action="LoginServlet" method="post">
-                <div>Login:</div>
-                <div><input type="text" name="login" required/><span id="msg"></span></div>
-                <div>Senha:</div>
-                <div><input type="password" name="senha" required/><span id="msg"></span></div>
-                <div><input type="submit" value="Fazer Login" /></div>
+
+            <form id="Login_Cliente" name="logincliente" action="LoginServlet" method="post">
+                <h1>Login Cliente</h1><div><input placeholder="Usuário" type="text" name="login" required/><span id="msg"></span></div>
+                <div><input placeholder="Senha" type="password" name="senha" required/><span id="msg"></span></div>
+                <div id="bb" ><input type="submit" value="Logar" /></div>
             </form>
+
 <%@include file="WEB-INF/pages/rodape.jsp" %>

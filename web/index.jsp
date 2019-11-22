@@ -30,21 +30,17 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
+<body>
 
-        <h2>Faça sua escolha!</h2>
-        <table border="1">
-            <tr>
-                <td><a href="MostrarProdutoComboServlet">Combos</a></td>
-                <td><a href="MostrarProdutoBebidaServlet">Bebidas</a></td>
-            </tr>
-            <tr>
-                <td><a href="MostrarProdutoSalgadoServlet">Salgados</a></td>
-                <td><a href="MostrarProdutoDoceServlet">Doces</a></td>
-            </tr>
-            <tr>
-                <td><a href="MostrarProdutoVariedadeServlet">Variedades</a></td>
-                <td><a href="MostrarTodosServlet">Todos</a></td>
-            </tr>
-        </table>
+    <h2>Faça sua escolha!</h2>
+        
+        <div class="grid-container-01">
+        <a href="MostrarProdutoComboServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
+        <a href="MostrarProdutoBebidaServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
+        <a href="MostrarProdutoSalgadoServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
+        <a href="MostrarProdutoDoceServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
+        <a href="MostrarProdutoVariedadeServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
+        <a href="MostrarTodosServlet"><div class="grid-item"><img src="img/COMBO.png"></div></a>
+    </div>
 
-<%@include file="WEB-INF/pages/rodape.jsp" %>
+<%--@include file="WEB-INF/pages/rodape.jsp" --%>

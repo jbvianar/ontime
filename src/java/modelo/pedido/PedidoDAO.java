@@ -85,6 +85,43 @@ public class PedidoDAO {
         }
         return resultado;
     }
+    
+    /**
+     * Método utilizado para recuperar todos os pedidos registrados
+     *
+     * @return
+     */
+    public List<Pedido> obterTodosDoDia() {
+        List<Pedido> resultado = new ArrayList<Pedido>();
+        try {
+            Class.forName(JDBC_DRIVER);
+            Connection connection = DriverManager.getConnection(JDBC_URL, JDBC_USUARIO, JDBC_SENHA);
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT c.nome as cliente_nome, p.id, p.observacoes, p.agendamento, p.horario, p.senhadopedido, p.status, p.valortotal, p.cliente_login, p.estabelecimento_login FROM pedido as p, cliente as c WHERE c.login = p.cliente_login AND p.horario::date = current_date ORDER BY p.id DESC");
+            Pedido_produtoDAO pdao = new Pedido_produtoDAO();
+            while (resultSet.next()) {
+                Pedido pedido = new Pedido();
+                pedido.setId(resultSet.getLong("id"));
+                pedido.setObservacoes(resultSet.getString("observacoes"));
+                pedido.setAgendamento(resultSet.getString("agendamento"));
+                pedido.setHorario(new java.util.Date(resultSet.getTimestamp("horario").getTime()));
+                pedido.setSenhadopedido(resultSet.getString("senhadopedido"));
+                pedido.setStatus(resultSet.getString("status"));
+                pedido.setValortotal(resultSet.getDouble("valortotal"));
+                pedido.setCliente_login(resultSet.getString("cliente_login"));
+                pedido.setEstabelecimento_login(resultSet.getString("estabelecimento_login"));
+                pedido.setCliente_nome(resultSet.getString("cliente_nome"));
+                pedido.setProdutos(pdao.obterPedido_produto(pedido.getId()));
+                resultado.add(pedido);
+            }
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (Exception ex) {
+            return new ArrayList<Pedido>();
+        }
+        return resultado;
+    }
 
     /**
      * Método utilizado para recuperar todos os pedidos de um certo login de

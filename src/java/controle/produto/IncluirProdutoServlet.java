@@ -123,7 +123,7 @@ public class IncluirProdutoServlet extends HttpServlet {
                 request.setAttribute("categoria_id", categoria_id);
                 request.setAttribute("mensagem", "Não foi possível cadastrar este produto");
             }
-            RequestDispatcher rd = request.getRequestDispatcher("novoProduto.jsp");
+            RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/produto/listar.jsp");
             rd.forward(request, response);
         }
     }

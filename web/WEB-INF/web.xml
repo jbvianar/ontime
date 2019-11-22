@@ -260,6 +260,22 @@
         <servlet-name>MostrarEstabelecimentoStatusServlet</servlet-name>
         <servlet-class>controle.estabelecimento.MostrarEstabelecimentoStatusServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>IncluirFeedbackServlet</servlet-name>
+        <servlet-class>controle.feedback.IncluirFeedbackServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListarFeedbackServlet</servlet-name>
+        <servlet-class>controle.feedback.ListarFeedbackServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerFeedbackServlet</servlet-name>
+        <servlet-class>controle.feedback.VerFeedbackServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutRegister</servlet-name>
+        <servlet-class>controle.checkout.CheckoutRegister</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -519,6 +535,22 @@
     <servlet-mapping>
         <servlet-name>MostrarEstabelecimentoStatusServlet</servlet-name>
         <url-pattern>/MostrarEstabelecimentoStatusServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>IncluirFeedbackServlet</servlet-name>
+        <url-pattern>/IncluirFeedbackServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListarFeedbackServlet</servlet-name>
+        <url-pattern>/ListarFeedbackServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerFeedbackServlet</servlet-name>
+        <url-pattern>/VerFeedbackServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutRegister</servlet-name>
+        <url-pattern>/CheckoutRegister</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

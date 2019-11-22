@@ -15,16 +15,16 @@ public class FeedbackNegocio {
     /**
      * Método utilizado para inserir um novo feedback
      *
-     * @param mensagem
+     * @param msg
      * @param cliente_login
      * @return
      */
-    public boolean inserir(String mensagem, String cliente_login) {
-        if (mensagem == null || mensagem.trim().length() == 0 || cliente_login == null || cliente_login.trim().length() == 0) {
+    public boolean inserir(String msg, String cliente_login) {
+        if (msg == null || msg.trim().length() == 0 || cliente_login == null || cliente_login.trim().length() == 0) {
             return false;
         }
         FeedbackDAO dao = new FeedbackDAO();
-        return dao.inserir(mensagem, cliente_login);
+        return dao.inserir(msg, cliente_login);
     }
     
     /**
@@ -70,16 +70,16 @@ public class FeedbackNegocio {
      * Método utilizado para alterar um feedback existente
      *
      * @param id
-     * @param mensagem
+     * @param msg
      * @param cliente_login
      * @return
      */
-    public boolean alterar(Long id, String mensagem, String cliente_login) {
-        if (id == null || id <= 0 || mensagem == null || mensagem.trim().length() == 0 || cliente_login == null || cliente_login.trim().length() == 0) {
+    public boolean alterar(Long id, String msg, String cliente_login) {
+        if (id == null || id <= 0 || msg == null || msg.trim().length() == 0 || cliente_login == null || cliente_login.trim().length() == 0) {
             return false;
         }
         FeedbackDAO dao = new FeedbackDAO();
-        return dao.alterar(id, mensagem, cliente_login);
+        return dao.alterar(id, msg, cliente_login);
     }
 
     /**

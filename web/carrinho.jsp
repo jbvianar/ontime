@@ -3,73 +3,73 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-        DecimalFormat formatarMoeda = new DecimalFormat("#,##0.00");
+    DecimalFormat formatarMoeda = new DecimalFormat("#,##0.00");
 %>
 <!--SELETOR DE  CABEÇALHO: EXIBIRÁ UM CABEÇALHO DIFERENTE PARA CLIENTE, ESTABELECIMENTO OU USUÁRIO NÃO LOGADO-->
 <%
-String tipo = (String) session.getAttribute("tipo");
-if (tipo != null && tipo.equals("estabelecimento")) { // usuário do tipo estabelecimento logado
+    String tipo = (String) session.getAttribute("tipo");
+    if (tipo != null && tipo.equals("estabelecimento")) { // usuário do tipo estabelecimento logado
 %>
 <%@include file="WEB-INF/pages/cabecalhoEstabelecimento.jsp" %>
-<%
-}
+<%    }
 %>
 <!----------------------------------------------------------------------------------------->
 <%
-if (tipo != null && tipo.equals("cliente")) {// usuário do tipo cliente logado
+    if (tipo != null && tipo.equals("cliente")) {// usuário do tipo cliente logado
 %>
 <%@include file="WEB-INF/pages/cabecalhoCliente.jsp" %>
-<%
-}
+<%    }
 %>
 <!----------------------------------------------------------------------------------------->
 <%
-if (tipo == null) {// o usuário não possui uma sessão válida
+    if (tipo == null) {// o usuário não possui uma sessão válida
 %>
 <%@include file="WEB-INF/pages/cabecalho.jsp" %>
-<%
-}
+<%    }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-        <!---------------CARRINHO DE COMPRAS------------------------------------------>
-        <%
-            List<CarrinhoItem> carrinhoItens = (List<CarrinhoItem>) request.getAttribute("carrinho");
-            if (carrinhoItens != null && carrinhoItens.size() > 0) {
-        %>
-        <h2>Meu Carrinho de Compras</h2>
-        <table border="1">
+
+<!---------------CARRINHO DE COMPRAS------------------------------------------>
+<%
+    List<CarrinhoItem> carrinhoItens = (List<CarrinhoItem>) request.getAttribute("carrinho");
+    if (carrinhoItens != null && carrinhoItens.size() > 0) {
+%>
+<h2>Meu Carrinho de Compras</h2>
+<section>
+    <table border="1">
+        <h2>Meu Carrinho</h2>
+        <tr>
+            <th>Nome</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+            <th>&nbsp;</th>
+        </tr>
+        <!--<%
+            double total = 0;
+            for (CarrinhoItem c : carrinhoItens) {
+                total += c.getQuantidade() * c.getProduto().getPreco();
+        %>--->
+        <form action="RemoverProdutoCarrinhoServlet">
             <tr>
-                <th>Nome</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-                <th>&nbsp;</th>
-            </tr>
-            <%
-                double total = 0;
-                for (CarrinhoItem c : carrinhoItens) {
-                    total += c.getQuantidade() * c.getProduto().getPreco();
-            %>
-            <form action="RemoverProdutoCarrinhoServlet">
-            <tr>
-                
-                <td><%= c.getProduto().getNome() %></td>
-                <td>R$ <%= formatarMoeda.format(c.getProduto().getPreco()) %></td>
-                <td><%= c.getQuantidade() %></td>
+
+                <td>PRODUTO<!--<%= c.getProduto().getNome()%>--></td>
+                <td>R$ 5,00<!--R$ <%= formatarMoeda.format(c.getProduto().getPreco())%>--></td>
+                <td>01<!--<%= c.getQuantidade()%>--></td>
                 <td>
-                    <input type="hidden" name="produtoId" value="<%= c.getProduto().getId() %>" />
-                    <input type="submit" value="Remover do Carrinho" />
+                    <input type="hidden" name="produtoId" value="<%= c.getProduto().getId()%>" />
+                    <input type="submit" value="X" />
                 </td>
             </tr>
-            </form>
-            <%
-                }
-            %>
-            <form action="ProcessarPedidoServlet">
-                <input type="hidden" name="valorTotal" value="<%=total%>" />
+        </form>
+        <!--<%
+            }
+        %>-->
+        <form action="ProcessarPedidoServlet">
+            <input type="hidden" name="valorTotal" value="<%=total%>" />
             <tr>
-                <td>Observações (opcional):</td>
+                <td>Observações:</td> 
                 <td colspan="2"><input type="text" name="observacoes" id="observacoes" maxlength="180" value="<%= (request.getAttribute("observacoes") != null) ? request.getAttribute("observacoes") : ""%>" /></td>
-                <td>Agendar para (opcional):
+                <td>Agendar:
                     <select name="agendamento" id="agendamento">
                         <option value=""></option>
                         <option value="12:00">12h00</option>
@@ -81,15 +81,15 @@ if (tipo == null) {// o usuário não possui uma sessão válida
                 </td>
             </tr>
             <tr>
-                <td colspan="3">Total: R$ <%= formatarMoeda.format(total) %></td>
-                <td>
-                    <input type="submit" value="Finalizar Pedido" />
+                <td colspan="3">Total: R$ 5,00<!--Total: R$ <%= formatarMoeda.format(total)%>-->
+                    <input type="submit" value="Finalizar" />
                 </td>
             </tr>
-            </form>
-        </table>
-        <%
-            }
-        %>
-        <!--FIM DO CARRINHO-->
+        </form>
+    </table>
+</section>
+<%
+    }
+%>
+<!--FIM DO CARRINHO-->
 <%@include file="WEB-INF/pages/rodape.jsp" %>

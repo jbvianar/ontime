@@ -41,7 +41,7 @@ public class VerPedidoServlet extends HttpServlet {
         String login = (String) session.getAttribute("login"); // recupera o atributo de login armazenado na sessão do usuário; caso não exista, é retornado nulo
         PedidoNegocio pedidoNegocio = new PedidoNegocio();
         List<Pedido> resultado = pedidoNegocio.obterTodosPorLogin(login); // recupera o objeto pedido por meio do login armazenado na sessão
-        if (resultado != null) { // caso exista o pedido com o id armazenado na sessão
+        if (resultado != null) { // caso exista o pedido com o login armazenado na sessão
             request.setAttribute("resultado", resultado);
             RequestDispatcher rd = request.getRequestDispatcher("WEB-INF/pages/verPedido.jsp");
             rd.forward(request, response);
