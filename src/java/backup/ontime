@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.10
 -- Dumped by pg_dump version 9.6.10
 
--- Started on 2019-11-22 04:40:02
+-- Started on 2019-11-25 19:25:28
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -251,7 +251,7 @@ INSERT INTO public.cliente VALUES ('a', 'a', 'rafaelmapin@gmail.com', 'Rafael', 
 -- Data for Name: estabelecimento; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.estabelecimento VALUES ('a', 'a', 'Virtual Lanches', 'rafaelmapin@gmail.com', 3333, 33333333, true);
+INSERT INTO public.estabelecimento VALUES ('a', 'a', 'Virtual Lanches', 'rafaelmapin@gmail.com', 3333, 33333333, false);
 
 
 --
@@ -285,7 +285,7 @@ SELECT pg_catalog.setval('public.feedback_id_seq', 1, false);
 -- Name: pedido_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pedido_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pedido_id_seq', 1, true);
 
 
 --
@@ -449,7 +449,7 @@ ALTER TABLE ONLY public.produto
     ADD CONSTRAINT produto_categoria_id_fkey FOREIGN KEY (categoria_id) REFERENCES public.categoria(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2019-11-22 04:40:04
+-- Completed on 2019-11-25 19:25:31
 
 --
 -- PostgreSQL database dump complete
