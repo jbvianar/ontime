@@ -36,58 +36,66 @@
 %>
 <h2>Meu Carrinho de Compras</h2>
 <section>
-    <table border="1">
-        <h2>Meu Carrinho</h2>
-        <tr>
-            <th>Nome</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>&nbsp;</th>
-        </tr>
-        <%
-            double total = 0;
-            for (CarrinhoItem c : carrinhoItens) {
-                total += c.getQuantidade() * c.getProduto().getPreco();
-        %>
-        <form action="RemoverProdutoCarrinhoServlet">
+        <table border="1">
+        	<h2>Meu Carrinho</h2>
             <tr>
-
-                <td><%= c.getProduto().getNome()%></td>
-                <td>R$ <%= formatarMoeda.format(c.getProduto().getPreco())%></td>
-                <td><%= c.getQuantidade()%></td>
+                <th id="tt-1">Nome</th>
+                <th>Preço</th>
+                <th>Quant</th>
+                <th id="tt-2">&nbsp;</th>
+                
+            </tr>
+            <%
+                double total = 0;
+                for (CarrinhoItem c : carrinhoItens) {
+                    total += c.getQuantidade() * c.getProduto().getPreco();
+            %>
+            <form action="RemoverProdutoCarrinhoServlet">
+            <tr>
+                
+                <td><%= c.getProduto().getNome() %></td>
+                <td>R$ <%= formatarMoeda.format(c.getProduto().getPreco()) %></td>
+                <td><%= c.getQuantidade() %></td>
                 <td>
-                    <input type="hidden" name="produtoId" value="<%= c.getProduto().getId()%>" />
+                    <input type="hidden" name="produtoId" value="<%= c.getProduto().getId() %>" />
                     <input type="submit" value="X" />
                 </td>
             </tr>
-        </form>
-        <%
-            }
-        %>
-        <form action="ProcessarPedidoServlet">
-            <input type="hidden" name="valorTotal" value="<%=total%>" />
+            </form>
+            <%
+                }
+            %>
+            <form action="ProcessarPedidoServlet">
+                <input type="hidden" name="valorTotal" value="<%=total%>" />
             <tr>
                 <td>Observações:</td> 
                 <td colspan="2"><input type="text" name="observacoes" id="observacoes" maxlength="180" value="<%= (request.getAttribute("observacoes") != null) ? request.getAttribute("observacoes") : ""%>" /></td>
                 <td>Agendar:
-                    <select name="agendamento" id="agendamento">
+                    <td colspan="3"><select id="pedido" name="agendamento" id="agendamento">
                         <option value=""></option>
                         <option value="12:00">12h00</option>
                         <option value="14:00">14h00</option>
                         <option value="16:00">16h00</option>
                         <option value="18:00">18h00</option>
                         <option value="20:00">20h00</option>
-                    </select>
+                    </select></td>
+                    
+
                 </td>
+
             </tr>
             <tr>
-                <td colspan="3">Total: R$ <%= formatarMoeda.format(total)%>
-                    <input type="submit" value="Finalizar" />
-                </td>
-            </tr>
-        </form>
-    </table>
-</section>
+                <td id="valorTotal" colspan="1">Total:</td>
+                 <td id="valorTotal" colspan="3"><%= formatarMoeda.format(total) %></td>
+                    
+                </tr>
+
+                <tr><td colspan="5"><input type="submit" value="Finalizar" /></td></tr>
+                
+            
+            </form>
+        </table>
+    </section>
 <%
     }
 %>

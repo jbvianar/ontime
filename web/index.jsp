@@ -32,6 +32,8 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
 <body>
 
+    <section>
+
     <h2>Faça sua escolha!</h2>
         
         <div class="grid-container-01">
@@ -41,7 +43,8 @@ if (tipo == null) {// o usuário não possui uma sessão válida
         <a href="MostrarProdutoDoceServlet"><div class="grid-item"><img src="img/doces.jpg"></div></a>
         <a href="MostrarProdutoVariedadeServlet"><div class="grid-item"><img src="img/variedades.jpg"></div></a>
         <a href="MostrarTodosServlet"><div class="grid-item"><img src="img/todos.jpg"></div></a>
-        </div>
-    <br/><br/><br/>
+    </div>
+
+    </section>
 
 <%@include file="WEB-INF/pages/rodape.jsp" %>

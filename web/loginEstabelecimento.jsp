@@ -24,7 +24,7 @@
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
 
-            <form id="Login_Cliente" name="loginestabelecimento" action="LoginEstabelecimentoServlet" method="post">
+            <form id="Login_Estabelecimento" name="loginestabelecimento" action="LoginEstabelecimentoServlet" method="post">
                 <h1>Login Comercial</h1><div><input placeholder="Usuário" type="text" name="login" required/><span id="msg"></span></div>
                 <div><input placeholder="Senha" type="password" name="senha" required/><span id="msg"></span></div>
                 <div id="bb" ><input type="submit" value="Logar" /></div>

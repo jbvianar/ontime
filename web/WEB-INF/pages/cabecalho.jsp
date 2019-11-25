@@ -6,19 +6,35 @@
 <html><!--este é o cabeçalho visto quando não foi feito nenhum login-->
     <head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>OnTime</title>
 
-        <link href="css/principal.css" rel="stylesheet" type="text/css" />
+     <link href="css/principal.css" rel="stylesheet" type="text/css" />
 
-        <script type="text/javascript" src="js/script.js"></script>
+      <script type="text/javascript" src="js/script.js"></script>
 
-    </head>
-    <body>
+</head>
+<body>
 
-        <div id="nav-container_01">
+    <div id="menu">
+        <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet"><img src="img/carrinho.png" width="28" height="28"></a></div>
+
+     <div class="scrollmenu">
+            <a href="MostrarProdutoComboServlet">Combos</a>
+            <a href="MostrarProdutoBebidaServlet">Bebidas</a>
+            <a href="MostrarProdutoSalgadoServlet">Salgados</a>
+            <a href="MostrarProdutoDoceServlet">Doces</a>
+            <a href="MostrarProdutoVariedadeServlet">Variedades</a>
+            <a href="MostrarTodosServlet">Todos</a>
+        </div>
+
+        <form id="demo-2">
+            <input type="search" placeholder="Search">
+        </form>
+
+	<div id="nav-container_01">
             <div class="bg"></div>
             <div class="button" tabindex="0">
                 <span class="linha-menu"></span>
@@ -26,29 +42,20 @@
                 <span class="linha-menu"></span>
             </div>
 
-            <div id="nav-content" tabindex="0">
-                <ul id="categorias" class="categorias">
-                    <li>
-                        <div class="circle_photo" id="circle_photo">
-                            <img src="img/profile.png"></div>
-                        <div class="texto" id="texto"><p>Olá, novo usuário</p></div>
-                    </li>
+        <div id="nav-content" tabindex="0">
+            <ul id="categorias" class="categorias">
+                <li>
+                    <div class="circle_photo" id="circle_photo">
+                    <img src="img/profile.png" alt="perfil de usuário"></div>
+                    <div class="texto" id="texto"><p>Olá, Visitante</p></div>
+                </li>
 
-                    <li><a href="InicioServlet">Início</a></li>
-                    <li><a href="loginCliente.jsp">Login Cliente</a></li>
-                    <li><a href="novoCliente.jsp">Cadastre-se</a></li>
-                    <li><a href="loginEstabelecimento.jsp">Login Estabelecimento</a></li>
-                    <!--<li><a href="IncluirEstabelecimentoServlet">Cadastro Estabelecimento</a></li>--><!--esta página será removida--> 
-                </ul>
-            </div>
+                <li><a href="InicioServlet">Início</a></li>
+                <li><a href="loginCliente.jsp">Login Cliente</a></li>
+                <li><a href="loginEstabelecimento.jsp">Login Estabelecimento</a></li>
+                <li><a href="novoCliente.jsp">Cadastre-se</a></li>
+            </ul>
         </div>
-
-        <div id="menu">
-
-            <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet"><img src="img/carrinho.png"></a></div>
-            <div>
-                
-            </div>
         </div>
         <%
             String mensagem1 = (String) request.getAttribute("mensagem1");
@@ -66,8 +73,6 @@
                 <%
                     }
                 %>
-
-</div>
   
     <%
         String mensagem = (String) request.getAttribute("mensagem");
