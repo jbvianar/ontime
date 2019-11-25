@@ -44,26 +44,26 @@
             <th>Quantidade</th>
             <th>&nbsp;</th>
         </tr>
-        <!--<%
+        <%
             double total = 0;
             for (CarrinhoItem c : carrinhoItens) {
                 total += c.getQuantidade() * c.getProduto().getPreco();
-        %>--->
+        %>
         <form action="RemoverProdutoCarrinhoServlet">
             <tr>
 
-                <td>PRODUTO<!--<%= c.getProduto().getNome()%>--></td>
-                <td>R$ 5,00<!--R$ <%= formatarMoeda.format(c.getProduto().getPreco())%>--></td>
-                <td>01<!--<%= c.getQuantidade()%>--></td>
+                <td><%= c.getProduto().getNome()%></td>
+                <td>R$ <%= formatarMoeda.format(c.getProduto().getPreco())%></td>
+                <td><%= c.getQuantidade()%></td>
                 <td>
                     <input type="hidden" name="produtoId" value="<%= c.getProduto().getId()%>" />
                     <input type="submit" value="X" />
                 </td>
             </tr>
         </form>
-        <!--<%
+        <%
             }
-        %>-->
+        %>
         <form action="ProcessarPedidoServlet">
             <input type="hidden" name="valorTotal" value="<%=total%>" />
             <tr>
@@ -81,7 +81,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3">Total: R$ 5,00<!--Total: R$ <%= formatarMoeda.format(total)%>-->
+                <td colspan="3">Total: R$ <%= formatarMoeda.format(total)%>
                     <input type="submit" value="Finalizar" />
                 </td>
             </tr>

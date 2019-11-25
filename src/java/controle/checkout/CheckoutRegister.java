@@ -18,7 +18,7 @@
  * Copyright: 2007-2016 PagSeguro Internet Ltda.
  * Licence: http://www.apache.org/licenses/LICENSE-2.0
  */
-package br.com.uol.pagseguro.example.api.checkout;
+package controle.checkout;
 
 import java.math.BigDecimal;
 
@@ -166,6 +166,7 @@ public class CheckoutRegister {
                         )
                     )
             );
+            //response.sendRedirect(registeredCheckout.getRedirectURL());//pedido dao,obterporid
             System.out.println(registeredCheckout.getRedirectURL());/////////////////
 
         }catch (Exception e){
