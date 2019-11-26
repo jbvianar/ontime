@@ -5,7 +5,7 @@
 -- Dumped from database version 9.6.10
 -- Dumped by pg_dump version 9.6.10
 
--- Started on 2019-11-25 19:25:28
+-- Started on 2019-11-25 21:09:12
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -151,15 +151,15 @@ ALTER TABLE public.pedido_id_seq OWNER TO postgres;
 --
 
 CREATE TABLE public.pedido (
-    id integer DEFAULT nextval('public.pedido_id_seq'::regclass) NOT NULL,
+    id bigint DEFAULT nextval('public.pedido_id_seq'::regclass) NOT NULL,
     observacoes character varying,
     agendamento character varying,
     status character varying NOT NULL,
     cliente_login character varying NOT NULL,
     horario timestamp without time zone NOT NULL,
     estabelecimento_login character varying NOT NULL,
-    senhadopedido integer NOT NULL,
-    valortotal double precision NOT NULL
+    valortotal double precision NOT NULL,
+    senhadopedido character varying NOT NULL
 );
 
 
@@ -277,6 +277,8 @@ SELECT pg_catalog.setval('public.feedback_id_seq', 1, false);
 -- Data for Name: pedido; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.pedido VALUES (11, NULL, NULL, 'em preparo', 'a', '2019-11-25 21:58:19.18703', 'a', 8.5, 'PWMO');
+INSERT INTO public.pedido VALUES (12, NULL, NULL, 'em preparo', 'a', '2019-11-25 22:06:08.038086', 'a', 10.5, '5LCB');
 
 
 --
@@ -285,7 +287,7 @@ SELECT pg_catalog.setval('public.feedback_id_seq', 1, false);
 -- Name: pedido_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.pedido_id_seq', 1, true);
+SELECT pg_catalog.setval('public.pedido_id_seq', 12, true);
 
 
 --
@@ -294,6 +296,10 @@ SELECT pg_catalog.setval('public.pedido_id_seq', 1, true);
 -- Data for Name: pedido_produto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.pedido_produto VALUES (11, 5, 1, 'a');
+INSERT INTO public.pedido_produto VALUES (11, 2, 1, 'a');
+INSERT INTO public.pedido_produto VALUES (12, 3, 2, 'a');
+INSERT INTO public.pedido_produto VALUES (12, 8, 1, 'a');
 
 
 --
@@ -302,16 +308,16 @@ SELECT pg_catalog.setval('public.pedido_id_seq', 1, true);
 -- Data for Name: produto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.produto VALUES (2, 'Cachorro-Quente + Suco (200 mL)', '', 5, '2.png', 5, true, 1);
 INSERT INTO public.produto VALUES (1, 'Salgado + Café (200 mL)', 'Recheio de carne-do-sol', 5, '1.png', 5, true, 1);
-INSERT INTO public.produto VALUES (3, 'Coca-Cola em lata', '', 3.5, '3.png', 5, true, 2);
 INSERT INTO public.produto VALUES (4, 'Nescau em caixinha', '', 2.5, '4.png', 5, true, 2);
-INSERT INTO public.produto VALUES (5, 'Salgado Misto no pão árabe', '', 3.5, '5.png', 5, true, 3);
 INSERT INTO public.produto VALUES (6, 'Coxinha de Frango', '', 3.5, '6.png', 5, true, 3);
 INSERT INTO public.produto VALUES (7, 'Chocolate Aerado', 'Chocolate preto', 2, '7.png', 5, true, 4);
-INSERT INTO public.produto VALUES (8, 'Pudim', '', 3.5, '8.png', 5, true, 4);
 INSERT INTO public.produto VALUES (9, 'Cheetos', '', 2, '9.png', 5, true, 5);
 INSERT INTO public.produto VALUES (10, 'Delicitos', '', 2, '10.jpg', 5, true, 5);
+INSERT INTO public.produto VALUES (5, 'Salgado Misto no pão árabe', '', 3.5, '5.png', 4, true, 3);
+INSERT INTO public.produto VALUES (2, 'Cachorro-Quente + Suco (200 mL)', '', 5, '2.png', 4, true, 1);
+INSERT INTO public.produto VALUES (3, 'Coca-Cola em lata', '', 3.5, '3.png', 3, true, 2);
+INSERT INTO public.produto VALUES (8, 'Pudim', '', 3.5, '8.png', 4, true, 4);
 
 
 --
@@ -360,7 +366,7 @@ ALTER TABLE ONLY public.feedback
 
 
 --
--- TOC entry 2053 (class 2606 OID 17088)
+-- TOC entry 2053 (class 2606 OID 17387)
 -- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -423,7 +429,7 @@ ALTER TABLE ONLY public.pedido_produto
 
 
 --
--- TOC entry 2061 (class 2606 OID 17112)
+-- TOC entry 2062 (class 2606 OID 17388)
 -- Name: pedido_produto pedido_produto_pedido_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -432,7 +438,7 @@ ALTER TABLE ONLY public.pedido_produto
 
 
 --
--- TOC entry 2062 (class 2606 OID 17117)
+-- TOC entry 2061 (class 2606 OID 17117)
 -- Name: pedido_produto pedido_produto_produto_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -449,7 +455,7 @@ ALTER TABLE ONLY public.produto
     ADD CONSTRAINT produto_categoria_id_fkey FOREIGN KEY (categoria_id) REFERENCES public.categoria(id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
--- Completed on 2019-11-25 19:25:31
+-- Completed on 2019-11-25 21:09:15
 
 --
 -- PostgreSQL database dump complete
