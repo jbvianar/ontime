@@ -10,8 +10,10 @@
     }
 %>
 <!DOCTYPE html>
-<html><!--este é o cabeçalho visto somente com login de cliente-->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>OnTime</title>
@@ -24,15 +26,15 @@
 <body>
 
     <div id="menu">
-        <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet"><img src="img/carrinho.png" alt="Carrinho de Compras" width="28" height="28"></a><label>VIRTUAL LANCHES</label></div>
+        <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet"><img src="img/carrinho.png" width="28px" height="28px"></a><label>VIRTUAL LANCHES</label></div>
+    </div>
 
      <div class="scrollmenu">
-            <a href="MostrarProdutoComboServlet">Combos</a>
-            <a href="MostrarProdutoBebidaServlet">Bebidas</a>
-            <a href="MostrarProdutoSalgadoServlet">Salgados</a>
-            <a href="MostrarProdutoDoceServlet">Doces</a>
-            <a href="MostrarProdutoVariedadeServlet">Variedades</a>
-            <a href="MostrarTodosServlet">Todos</a>
+            <a href="#">Combos</a>
+            <a href="#">Salgados</a>
+            <a href="#">Bebidas</a>
+            <a href="#">Doces</a>
+            <a href="#">Variedades</a>
         </div>
 
         <form id="demo-2">
@@ -51,32 +53,22 @@
             <ul id="categorias_01" class="categorias_01">
                 <li>
                     <div class="circle_photo" id="circle_photo">
-                    <img src="img/profile.png" alt="perfil de usuário"></div>
+                    <img src="img/profile.png"></div>
                     <div class="texto" id="texto"><p>Olá, Fulano Fulano</p></div>
                 </li>
 
                 <li><a href="InicioServlet">Início</a></li>
                 <li><a href="VerClienteServlet">Minha Conta</a></li>
                 <li><a href="VerPedidoServlet">Meus Pedidos</a></li>
-                <li><a href="MostrarProdutoCarrinhoServlet">Carrinho de Compras</a></li>
+                <li><a href="MostrarProdutoCarrinhoServlet">Carrinho</a></li>
                 <li><a href="LogoutServlet">Sair</a></li>
             </ul>
         </div>
         </div>
 
-        <div id="menu">
-
-            <div class="div-table-col"><a href="MostrarProdutoCarrinhoServlet"><img src="img/carrinho.png"></a></div>
-            <div>
-                <% List<Estabelecimento> resultado = (List<Estabelecimento>) request.getAttribute("status");%>
-                <% for (int i = 0; resultado != null && i < resultado.size(); i++) {%>
-                <% Estabelecimento item = resultado.get(i);%>  
-                <div><%= (item.getStatus() != null && item.getStatus() == true) ? "Lanchonete Aberta" : "Lanchonete Fechada"%></div>
-                <% } %>
-            </div>
-        </div>
-   
-<center>    
+     
+</body>
+</html>    
     <%
         String mensagem = (String) request.getAttribute("mensagem");
         if (mensagem != null) {
@@ -86,4 +78,4 @@
             <%
                 }
             %>
-    <div id="conteudo">
+    

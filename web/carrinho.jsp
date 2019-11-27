@@ -34,7 +34,7 @@
     List<CarrinhoItem> carrinhoItens = (List<CarrinhoItem>) request.getAttribute("carrinho");
     if (carrinhoItens != null && carrinhoItens.size() > 0) {
 %>
-<h2>Meu Carrinho de Compras</h2>
+
 <section>
         <table border="1">
         	<h2>Meu Carrinho</h2>
@@ -69,9 +69,9 @@
                 <input type="hidden" name="valorTotal" value="<%=total%>" />
             <tr>
                 <td>Observações:</td> 
-                <td colspan="2"><input type="text" name="observacoes" id="observacoes" maxlength="180" value="<%= (request.getAttribute("observacoes") != null) ? request.getAttribute("observacoes") : ""%>" /></td>
+                <td colspan="1"><input type="text" name="observacoes" id="observacoes" maxlength="180" value="<%= (request.getAttribute("observacoes") != null) ? request.getAttribute("observacoes") : ""%>" /></td>
                 <td>Agendar:
-                    <td colspan="3"><select id="pedido" name="agendamento" id="agendamento">
+                    <td colspan="1"><select id="pedido" name="agendamento" id="agendamento">
                         <option value=""></option>
                         <option value="12:00">12h00</option>
                         <option value="14:00">14h00</option>

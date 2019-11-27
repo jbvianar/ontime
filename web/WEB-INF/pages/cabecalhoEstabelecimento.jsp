@@ -24,6 +24,8 @@
 <body>
 
   <div id="menu">
+        <div class="div-table-col"><label>VIRTUAL LANCHES</label></div>
+  </div>
 
     <%
         String status = null;
@@ -31,7 +33,7 @@
             status = request.getAttribute("status").toString();
         }
     %>
-    <form action="AlterarEstabelecimentoStatusServlet" id="statusLanchonete"><select name="status" id="status" onchange="document.getElementById('statusLanchonete').submit()">
+     <form action="AlterarEstabelecimentoStatusServlet" id="statusLanchonete"><select name="status" id="status" onchange="document.getElementById('statusLanchonete').submit()">
             <option value="true"<%= (status != null && status.equalsIgnoreCase("true")) ? " selected" : "" %>>Lanchonete Aberta</option>
             <option value="false"<%= (status != null && status.equalsIgnoreCase("false")) ? " selected" : "" %>>Lanchonete Fechada</option>
         </select>
@@ -50,7 +52,7 @@
                 <li>
                     <div class="circle_photo" id="circle_photo">
                     <img src="img/profile.png"></div>
-                    <div class="texto" id="texto"><p>Olá, Adriano</p></div>
+                    <div class="texto" id="texto"><p>Olá, Fulano Fulano</p></div>
                 </li>
 
                 <li><a href="InicioServlet">Início</a></li>
@@ -64,16 +66,15 @@
                 <li><a href="LogoutEstabelecimentoServlet">Sair</a></li>
             </ul>
         </div>
-        </div>
-        
-<center>    
+        </div>    
     <%
         String mensagem = (String) request.getAttribute("mensagem");
         if (mensagem != null) {
     %>
 
     <div id="mensagem"><b><%= mensagem%></b></div>
+    
             <%
                 }
             %>
-    <div id="conteudo">
+   

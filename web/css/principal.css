@@ -39,12 +39,21 @@ h1, h2 {
 
   text-align: center;
   font-family: Roboto-Bold;
-  color: #5F890D ;
+  color: #5F890D;
+
 }
+
+section > h1 {
+
+  padding-top: 90px;
+  margin: 0;
+
+}
+
 
 section > h2 {
 
-  padding-top: 80px;
+  padding-top: 90px;
   margin: 0;
 
 }
@@ -53,10 +62,10 @@ section > h2 {
 
     display: grid;
     grid-template-columns: auto auto;
-    grid-gap: 9px;
+    grid-gap: 12px;
     padding: 18px;
     padding-bottom: 0;
-    width: 90%;
+    width: 80%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -81,7 +90,6 @@ div[class=grid-container-01] a:hover {
 .grid-item {
 
   text-align: center;
-  box-shadow: 1px 2px 2px #aaaaaa;
   transition: .2s;
   border-radius: 10px;
 
@@ -93,9 +101,10 @@ div[class=grid-container-01] a:hover {
   height: 90%;
   position: inherit;
   top: -25px;
-  opacity: 0.5;
+  opacity: 0.7;
   transition: all 0.2s ease-out 0s;
   border-radius: 10px;
+  box-shadow: 0 5px 5px rgba( 0, 0, 0, 0.1);
 
 }
 
@@ -167,6 +176,10 @@ div[class=grid-item]:hover {
     grid-template-columns: auto;
 }
 
+#container-prod{
+    padding-top: 85px;
+}
+
 .row {
     
     display: -webkit-box;
@@ -227,7 +240,9 @@ div[class=grid-item]:hover {
     border-radius: .25rem;
     background-color: #FDFFF5;
     width: 80%;
-    margin: 15px auto;
+    margin: -75px auto;
+    margin-top: 0;
+     
 
 }
 
@@ -245,7 +260,7 @@ div > h2 {
     margin: 0 auto;
     text-align: left;
     margin-bottom: 5px;
-    font-size: 28px;
+    font-size: 25px;
 
 }
 
@@ -277,6 +292,7 @@ div > p {
     top: 0;
     width: 100%;
     height: 45px;
+    z-index: 1;
 
 }
 
@@ -316,15 +332,95 @@ div > p {
     font-size: 30px;
 }
 
-#mensagem {
+#mensagem, #mensagem1, #mensagem2 {
 
-    margin: 15px;
-    padding: 15px;
-    border: 1px solid #ff0000;
-    width: 700px;
-    font-weight: bold;
-    color: #ff0000;
+    margin: 0 auto;
+    position: absolute;
+    color: #fff;
+    background: blue;
+    z-index: 1;
+    opacity: .7;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 111px;
+    text-align: center;
+    
 }
+
+#mensagem1{
+    background-color:#C23B22;
+    animation:mensagem1 2s 1;
+    -webkit-animation:mensagem1 2s 1;
+    animation-fill-mode: forwards;
+    
+    animation-delay:5s;
+    -webkit-animation-delay:5s; /* Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+    
+} 
+
+@-webkit-keyframes mensagem1  {
+    0%   {opacity: 0.6;-webkit-transform: translateY(90px);}
+    70%  {opacity: 0.6;}
+    80% {opacity: 0.5;}
+    85% {opacity: 0.45;}
+    90% {opacity: 0.40;}
+    92% {opacity: 0.35;}
+    94% {opacity: 0.30;}
+    96% {opacity: 0.25;}
+    100% {opacity: 0.20;-webkit-transform: translateY(-3000px);}
+}
+
+#mensagem2{
+    background-color:#C23B22;
+    animation:mensagem2 2s 1;
+    -webkit-animation:mensagem2 2s 1;
+    animation-fill-mode: forwards;
+    
+    animation-delay:5s;
+    -webkit-animation-delay:5s; /* Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+    
+} 
+
+@-webkit-keyframes mensagem2  {
+    0%   {opacity: 0.6;-webkit-transform: translateY(90px);}
+    70%  {opacity: 0.6;}
+    80% {opacity: 0.5;}
+    85% {opacity: 0.45;}
+    90% {opacity: 0.40;}
+    92% {opacity: 0.35;}
+    94% {opacity: 0.30;}
+    96% {opacity: 0.25;}
+    100% {opacity: 0.20;-webkit-transform: translateY(-3000px);}
+}
+
+#mensagem{
+    background-color:#C23B22;
+    animation:mensagem 2s 1;
+    -webkit-animation:mensagem 2s 1;
+    animation-fill-mode: forwards;
+    
+    animation-delay:5s;
+    -webkit-animation-delay:5s; /* Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+    
+} 
+
+@-webkit-keyframes mensagem  {
+    0%   {opacity: 0.6;-webkit-transform: translateY(90px);}
+    70%  {opacity: 0.6;}
+    80% {opacity: 0.5;}
+    85% {opacity: 0.45;}
+    90% {opacity: 0.40;}
+    92% {opacity: 0.35;}
+    94% {opacity: 0.30;}
+    96% {opacity: 0.25;}
+    100% {opacity: 0.20;-webkit-transform: translateY(-3000px);}
+}
+
 
 #conteudo {
 
@@ -457,6 +553,13 @@ input[type=submit]:hover{
 
 }
 
+b {
+    margin-top: 43px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .form_cont_2{
 
     background-color: rgba(233, 105, 44, .8);
@@ -495,7 +598,7 @@ div > input[type=text], input[type=password]{
     opacity: 0.8;
     color: gray;
     position: unset;
-    padding: 15px;
+    padding: 10px;
     font-family: Roboto-Thin;
 
 }
@@ -901,7 +1004,7 @@ ul {
 }
 
 #grid-item > a > img:nth-child(1) {
-      width: 100%;
+    width: 100%;
     height: 90%;
     position: inherit;
     float: inherit;
@@ -972,7 +1075,7 @@ input::-webkit-input-placeholder {
     border: none;
     top: 3px;
     right: 40px;
-	z-index: 1;
+    z-index: 1;
 }
 #demo-2 input[type=search]:hover {
 	
@@ -996,27 +1099,28 @@ input::-webkit-input-placeholder {
 div.scrollmenu {
 
     background-color: #C23B22;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
     overflow: auto;
-    white-space: nowrap;
     position: fixed;
     margin-top: 45px;
     z-index: 1;
     width: 100%;
-    top: 0;
+    display: inline-flex;
 }
 
 div.scrollmenu a {
 
     display: inline-block;
-    color: white;
+    color: #FDFFF5;
     text-align: center;
-    padding: 8px;
+    padding: 8px 28px 5px 28px;
     border-left: #fff;
     text-decoration: none;
     box-sizing: content-box;
     width: 5.1rem;
     transition: 0.4s;
+    font-size: 18px;
+    font-family: Roboto-Thin;
 }
 
 
@@ -1194,6 +1298,7 @@ tr {
 td > input {
   position: unset;
   margin-top: 0;
+  width: 90px;
 }
 
 td > input[type=submit] {
@@ -1288,7 +1393,7 @@ td {
     position: absolute;
     left: 50%;
     transform: translate(-50%, 0);
-    top: 200%;
+    top: 90px;
   
   }
 
@@ -1297,10 +1402,13 @@ td {
     outline: none;
     right: 0;
     width: 100%;
-    border-radius: 0px;
+    border-radius: 5px;
     background-color: #8CBA01;
     transition: .1s;
     font-family: Roboto-Thin;
+    z-index: 0;
+    margin-top: 5px;
+    padding: 5px;
   }
 
    #bt_prod > input:hover {
@@ -1375,7 +1483,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 #espaço {
 
-  margin-bottom: 16px;
+  margin-bottom: 5px;
   color: #666666;
   font-size: 18px;
 
@@ -1388,9 +1496,11 @@ table {
 }
 
 th, td {
-  padding: 8px;
   text-align: center;
   width: 80px;
+  padding:0px;
+  padding-bottom:5px;
+  padding-top:5px;
 }
 
 td:hover {
@@ -1428,12 +1538,13 @@ tr:hover {
 
 #cadastro-cli > div {
 
-	padding: 5px;
+	padding: 2px;
 
 }
 
 #cd_cli {
 	color: #5F890D;
+	opacity: .8;
 }
 
 
