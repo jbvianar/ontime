@@ -52,7 +52,7 @@ public class LoginServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             request.setAttribute("mensagem1", "Login ou senha de cliente incorreta"); // coloca uma mensagem no objeto request
-            RequestDispatcher rd = request.getRequestDispatcher("InicioServlet"); // despacha a requisição para a página index.jsp, encaminhando as instâncias de request e response
+            RequestDispatcher rd = request.getRequestDispatcher("loginCliente.jsp"); // despacha a requisição para a página index.jsp, encaminhando as instâncias de request e response
             rd.forward(request, response);
         }
     }

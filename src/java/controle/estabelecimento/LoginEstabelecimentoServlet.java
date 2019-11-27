@@ -51,7 +51,7 @@ public class LoginEstabelecimentoServlet extends HttpServlet {
             rd.forward(request, response);
         } else {
             request.setAttribute("mensagem2", "Login ou senha de estabelecimento incorreta"); // coloca uma mensagem no objeto request
-            RequestDispatcher rd = request.getRequestDispatcher("InicioServlet"); // despacha a requisição para a página index.jsp, encaminhando as instâncias de request e response
+            RequestDispatcher rd = request.getRequestDispatcher("loginEstabelecimento.jsp"); // despacha a requisição para a página index.jsp, encaminhando as instâncias de request e response
             rd.forward(request, response);
         }
     }

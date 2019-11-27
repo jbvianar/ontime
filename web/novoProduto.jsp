@@ -39,7 +39,7 @@
     <div><input type="text" name="quantidade" id="quantidade" required value="<%= (request.getAttribute("quantidade") != null) ? request.getAttribute("quantidade") : ""%>"/></div>
     <div>Disponibilidade:</div>
     <div><input type="text" name="disponibilidade" id="disponibilidade" required value="<%= (request.getAttribute("disponibilidade") != null) ? request.getAttribute("disponibilidade") : ""%>"/></div>
-    <div>ID da Categoria:</div>
+    <div>Categoria:</div>
     <div>
         <select name="categoria_id" id="categoria_id">
             <%

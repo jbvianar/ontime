@@ -50,20 +50,33 @@ if (tipo == null) {// o usuário não possui uma sessão válida
             <%
                 for (Produto p : produtos) {
             %>
-            <form action="AdicionarProdutoCarrinhoServlet">
-            <tr>
-                <td><%= p.getNome()%></td>
-                <td><%= p.getDescricao()%></td>
-                <td>R$ <%= formatarMoeda.format(p.getPreco()) %></td>
-                <td><img src="MostrarImagemProdutoServlet?foto=<%= p.getImagem()%>" alt="Imagem de <%= p.getNome()%>" width="100" height="100" /></td>
-                <td>Disponível: <%= p.getQuantidade()%></td>
-                <td>Quantidade
-                    <input type="hidden" name="produtoId" value="<%= p.getId() %>" />
-                    <input type="number" name="quantidade" value="1" min="1" max="<%= p.getQuantidade()%>"/>
-                    <input type="submit" value="Adicionar ao Carrinho" />
-                </td>
-            </tr>
-            </form>
+            <div id="container-prod">
+				<div class="col" action="AdicionarProdutoCarrinhoServlet">
+				<div class="card-block">
+                 <div class="imagem_produto"><img class="card-img-top" src="MostrarImagemProdutoServlet?foto=<%= p.getImagem()%>" alt="Imagem de <%= p.getNome()%>" width="100" height="100"/></div>
+                <div><h2><%= p.getNome()%></h2></div>
+                <div id="espaço"><%= p.getDescricao() %></div>
+                <div id="espaço">R$ <%= formatarMoeda.format(p.getPreco()) %></div>
+                <div id="espaço">Disponível: <%= p.getQuantidade()%></div>
+               
+                
+
+                   <div><input type="hidden" name="produtoId" value="<%= p.getId() %>" /></div>
+                    
+         
+
+                <div class="number-input">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" ></button>
+                    <input class="quantity" min="1" name="quantidade" value="1" type="number" max="<%= p.getQuantidade()%>">
+                    <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+                </div>
+                    
+                    <div id="bt_prod"><input type="submit" value="Adicionar ao carrinho" /></div>
+				</div>
+                    
+				</div>
+			
+			</div>
             <%
                 }
             %>

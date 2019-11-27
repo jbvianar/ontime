@@ -26,19 +26,37 @@ if (tipo == null) {// o usuário não possui uma sessão válida
 }
 %>
 <!--------------------------FIM DO SELETOR DE CABEÇALHO----------------------------------->
-        <h1>Nova conta</h1>
-        <form name="cadastro_cliente" action="IncluirClienteServlet" method="post">
-            <div>Nome:</div>
+<html>
+
+	<link href="css/principal.css" rel="stylesheet" type="text/css" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<head>
+	<title></title>
+</head>
+<body>
+
+	<section>
+
+	 <h1>Nova conta</h1>
+        <form id="cadastro-cli" name="cadastro_cliente" action="IncluirClienteServlet" method="post">
+            <div id="cd_cli">Nome:</div>
             <div><input type="text" name="nome" id="nome" required value="<%= (request.getAttribute("nome") != null) ? request.getAttribute("nome") : "" %>"/></div>
-            <div>Login:</div>
+            <div id="cd_cli">Login:</div>
             <div><input type="text" name="login" id="login" required value="<%= (request.getAttribute("login") != null) ? request.getAttribute("login") : "" %>"/></div>
-            <div>Senha:</div>
+            <div id="cd_cli">Senha:</div>
             <div><input type="password" name="senha" id="senha" required/></div>
-            <div>E-mail:</div>
+            <div id="cd_cli">E-mail:</div>
             <div><input type="text" name="email" id="email" required value="<%= (request.getAttribute("email") != null) ? request.getAttribute("email") : "" %>"/></div>
-            <div>Telefone:</div>
+            <div id="cd_cli">Telefone:</div>
             <div><input type="text" name="telefone" id="telefone" required value="<%= (request.getAttribute("telefone") != null) ? request.getAttribute("telefone") : "" %>"/></div>
             <div><input type="submit" value="Salvar" /></div>
         </form>
+    </section>
+
+</body>
+</html>
 
 <%@include file="WEB-INF/pages/rodape.jsp" %>

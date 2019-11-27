@@ -1,0 +1,463 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.10
+-- Dumped by pg_dump version 9.6.10
+
+-- Started on 2019-11-25 21:09:12
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 1 (class 3079 OID 12387)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2198 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- TOC entry 185 (class 1259 OID 16960)
+-- Name: categoria_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.categoria_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.categoria_id_seq OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 191 (class 1259 OID 17043)
+-- Name: categoria; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.categoria (
+    id integer DEFAULT nextval('public.categoria_id_seq'::regclass) NOT NULL,
+    nome character varying NOT NULL
+);
+
+
+ALTER TABLE public.categoria OWNER TO postgres;
+
+--
+-- TOC entry 189 (class 1259 OID 17027)
+-- Name: cliente; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.cliente (
+    login character varying NOT NULL,
+    senha character varying NOT NULL,
+    email character varying NOT NULL,
+    nome character varying NOT NULL,
+    telefone bigint NOT NULL
+);
+
+
+ALTER TABLE public.cliente OWNER TO postgres;
+
+--
+-- TOC entry 190 (class 1259 OID 17035)
+-- Name: estabelecimento; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.estabelecimento (
+    login character varying NOT NULL,
+    senha character varying NOT NULL,
+    razaosocial character varying NOT NULL,
+    email character varying NOT NULL,
+    cnpj bigint NOT NULL,
+    telefone bigint NOT NULL,
+    status boolean NOT NULL
+);
+
+
+ALTER TABLE public.estabelecimento OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 16962)
+-- Name: feedback_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.feedback_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.feedback_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 192 (class 1259 OID 17052)
+-- Name: feedback; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.feedback (
+    id bigint DEFAULT nextval('public.feedback_id_seq'::regclass) NOT NULL,
+    msg character varying NOT NULL,
+    cliente_login character varying NOT NULL,
+    horario timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE public.feedback OWNER TO postgres;
+
+--
+-- TOC entry 188 (class 1259 OID 16966)
+-- Name: pedido_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.pedido_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pedido_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 194 (class 1259 OID 17080)
+-- Name: pedido; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.pedido (
+    id bigint DEFAULT nextval('public.pedido_id_seq'::regclass) NOT NULL,
+    observacoes character varying,
+    agendamento character varying,
+    status character varying NOT NULL,
+    cliente_login character varying NOT NULL,
+    horario timestamp without time zone NOT NULL,
+    estabelecimento_login character varying NOT NULL,
+    valortotal double precision NOT NULL,
+    senhadopedido character varying NOT NULL
+);
+
+
+ALTER TABLE public.pedido OWNER TO postgres;
+
+--
+-- TOC entry 195 (class 1259 OID 17099)
+-- Name: pedido_produto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.pedido_produto (
+    pedido_id bigint NOT NULL,
+    produto_id integer NOT NULL,
+    quantidade integer NOT NULL,
+    cliente_login character varying NOT NULL
+);
+
+
+ALTER TABLE public.pedido_produto OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 16964)
+-- Name: produto_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.produto_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.produto_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 193 (class 1259 OID 17066)
+-- Name: produto; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.produto (
+    id integer DEFAULT nextval('public.produto_id_seq'::regclass) NOT NULL,
+    nome character varying NOT NULL,
+    descricao character varying,
+    preco double precision NOT NULL,
+    imagem character varying,
+    quantidade integer NOT NULL,
+    disponibilidade boolean NOT NULL,
+    categoria_id integer NOT NULL
+);
+
+
+ALTER TABLE public.produto OWNER TO postgres;
+
+--
+-- TOC entry 2186 (class 0 OID 17043)
+-- Dependencies: 191
+-- Data for Name: categoria; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.categoria VALUES (1, 'Combo');
+INSERT INTO public.categoria VALUES (2, 'Bebida');
+INSERT INTO public.categoria VALUES (3, 'Salgado');
+INSERT INTO public.categoria VALUES (4, 'Doce');
+INSERT INTO public.categoria VALUES (5, 'Variedade');
+
+
+--
+-- TOC entry 2199 (class 0 OID 0)
+-- Dependencies: 185
+-- Name: categoria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.categoria_id_seq', 5, true);
+
+
+--
+-- TOC entry 2184 (class 0 OID 17027)
+-- Dependencies: 189
+-- Data for Name: cliente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.cliente VALUES ('a', 'a', 'rafaelmapin@gmail.com', 'Rafael', 33333333);
+
+
+--
+-- TOC entry 2185 (class 0 OID 17035)
+-- Dependencies: 190
+-- Data for Name: estabelecimento; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.estabelecimento VALUES ('a', 'a', 'Virtual Lanches', 'rafaelmapin@gmail.com', 3333, 33333333, false);
+
+
+--
+-- TOC entry 2187 (class 0 OID 17052)
+-- Dependencies: 192
+-- Data for Name: feedback; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 2200 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: feedback_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.feedback_id_seq', 1, false);
+
+
+--
+-- TOC entry 2189 (class 0 OID 17080)
+-- Dependencies: 194
+-- Data for Name: pedido; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.pedido VALUES (11, NULL, NULL, 'em preparo', 'a', '2019-11-25 21:58:19.18703', 'a', 8.5, 'PWMO');
+INSERT INTO public.pedido VALUES (12, NULL, NULL, 'em preparo', 'a', '2019-11-25 22:06:08.038086', 'a', 10.5, '5LCB');
+
+
+--
+-- TOC entry 2201 (class 0 OID 0)
+-- Dependencies: 188
+-- Name: pedido_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.pedido_id_seq', 12, true);
+
+
+--
+-- TOC entry 2190 (class 0 OID 17099)
+-- Dependencies: 195
+-- Data for Name: pedido_produto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.pedido_produto VALUES (11, 5, 1, 'a');
+INSERT INTO public.pedido_produto VALUES (11, 2, 1, 'a');
+INSERT INTO public.pedido_produto VALUES (12, 3, 2, 'a');
+INSERT INTO public.pedido_produto VALUES (12, 8, 1, 'a');
+
+
+--
+-- TOC entry 2188 (class 0 OID 17066)
+-- Dependencies: 193
+-- Data for Name: produto; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.produto VALUES (1, 'Salgado + Café (200 mL)', 'Recheio de carne-do-sol', 5, '1.png', 5, true, 1);
+INSERT INTO public.produto VALUES (4, 'Nescau em caixinha', '', 2.5, '4.png', 5, true, 2);
+INSERT INTO public.produto VALUES (6, 'Coxinha de Frango', '', 3.5, '6.png', 5, true, 3);
+INSERT INTO public.produto VALUES (7, 'Chocolate Aerado', 'Chocolate preto', 2, '7.png', 5, true, 4);
+INSERT INTO public.produto VALUES (9, 'Cheetos', '', 2, '9.png', 5, true, 5);
+INSERT INTO public.produto VALUES (10, 'Delicitos', '', 2, '10.jpg', 5, true, 5);
+INSERT INTO public.produto VALUES (5, 'Salgado Misto no pão árabe', '', 3.5, '5.png', 4, true, 3);
+INSERT INTO public.produto VALUES (2, 'Cachorro-Quente + Suco (200 mL)', '', 5, '2.png', 4, true, 1);
+INSERT INTO public.produto VALUES (3, 'Coca-Cola em lata', '', 3.5, '3.png', 3, true, 2);
+INSERT INTO public.produto VALUES (8, 'Pudim', '', 3.5, '8.png', 4, true, 4);
+
+
+--
+-- TOC entry 2202 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: produto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.produto_id_seq', 10, true);
+
+
+--
+-- TOC entry 2047 (class 2606 OID 17051)
+-- Name: categoria categoria_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.categoria
+    ADD CONSTRAINT categoria_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2043 (class 2606 OID 17034)
+-- Name: cliente cliente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cliente
+    ADD CONSTRAINT cliente_pkey PRIMARY KEY (login);
+
+
+--
+-- TOC entry 2045 (class 2606 OID 17042)
+-- Name: estabelecimento estabelecimento_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.estabelecimento
+    ADD CONSTRAINT estabelecimento_pkey PRIMARY KEY (login);
+
+
+--
+-- TOC entry 2049 (class 2606 OID 17060)
+-- Name: feedback feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback
+    ADD CONSTRAINT feedback_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2053 (class 2606 OID 17387)
+-- Name: pedido pedido_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pedido
+    ADD CONSTRAINT pedido_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2055 (class 2606 OID 17106)
+-- Name: pedido_produto pedido_produto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pedido_produto
+    ADD CONSTRAINT pedido_produto_pkey PRIMARY KEY (pedido_id, produto_id);
+
+
+--
+-- TOC entry 2051 (class 2606 OID 17074)
+-- Name: produto produto_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produto
+    ADD CONSTRAINT produto_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2056 (class 2606 OID 17061)
+-- Name: feedback feedback_cliente_login_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.feedback
+    ADD CONSTRAINT feedback_cliente_login_fkey FOREIGN KEY (cliente_login) REFERENCES public.cliente(login) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2058 (class 2606 OID 17089)
+-- Name: pedido pedido_cliente_login_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pedido
+    ADD CONSTRAINT pedido_cliente_login_fkey FOREIGN KEY (cliente_login) REFERENCES public.cliente(login) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2059 (class 2606 OID 17094)
+-- Name: pedido pedido_estabelecimento_login_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pedido
+    ADD CONSTRAINT pedido_estabelecimento_login_fkey FOREIGN KEY (estabelecimento_login) REFERENCES public.estabelecimento(login) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2060 (class 2606 OID 17107)
+-- Name: pedido_produto pedido_produto_cliente_login_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pedido_produto
+    ADD CONSTRAINT pedido_produto_cliente_login_fkey FOREIGN KEY (cliente_login) REFERENCES public.cliente(login) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2062 (class 2606 OID 17388)
+-- Name: pedido_produto pedido_produto_pedido_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pedido_produto
+    ADD CONSTRAINT pedido_produto_pedido_id_fkey FOREIGN KEY (pedido_id) REFERENCES public.pedido(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2061 (class 2606 OID 17117)
+-- Name: pedido_produto pedido_produto_produto_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pedido_produto
+    ADD CONSTRAINT pedido_produto_produto_id_fkey FOREIGN KEY (produto_id) REFERENCES public.produto(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- TOC entry 2057 (class 2606 OID 17075)
+-- Name: produto produto_categoria_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produto
+    ADD CONSTRAINT produto_categoria_id_fkey FOREIGN KEY (categoria_id) REFERENCES public.categoria(id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- Completed on 2019-11-25 21:09:15
+
+--
+-- PostgreSQL database dump complete
+--
+
